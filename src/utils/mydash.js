@@ -48,7 +48,7 @@ export function rangeRight(start, end, step) {
 
 function isLength(value) {
   return (
-    typeof value === 'number' &&
+    typeof value === "number" &&
     value > -1 &&
     value % 1 === 0 &&
     value <= Number.MAX_SAFE_INTEGER
@@ -60,16 +60,16 @@ function isNil(value) {
 }
 
 function isArrayLike(value) {
-  return !isNil(value) && typeof value !== 'function' && isLength(value.length);
+  return !isNil(value) && typeof value !== "function" && isLength(value.length);
 }
 
 function isObjectLike(value) {
-  return typeof value === 'object' && value !== null;
+  return typeof value === "object" && value !== null;
 }
 
 function getTag(value) {
   if (value === null) {
-    return value === undefined ? '[object Undefined]' : '[object Null]';
+    return value === undefined ? "[object Undefined]" : "[object Null]";
   }
   return toString.call(value);
 }
@@ -77,13 +77,13 @@ function getTag(value) {
 const objectProto = Object.prototype;
 function isPrototype(value) {
   const ctor = value && value.constructor;
-  const proto = (typeof ctor === 'function' && ctor.prototype) || objectProto;
+  const proto = (typeof ctor === "function" && ctor.prototype) || objectProto;
 
   return value === proto;
 }
 
 function isArguments(value) {
-  return isObjectLike(value) && getTag(value) === '[object Arguments]';
+  return isObjectLike(value) && getTag(value) === "[object Arguments]";
 }
 
 // Реализация лодаша
@@ -95,8 +95,8 @@ export function isEmpty(value) {
   if (
     isArrayLike(value) &&
     (Array.isArray(value) ||
-      typeof value === 'string' ||
-      typeof value.splice === 'function' ||
+      typeof value === "string" ||
+      typeof value.splice === "function" ||
       isBuffer(value) ||
       isTypedArray(value) ||
       isArguments(value))
@@ -105,7 +105,7 @@ export function isEmpty(value) {
   }
 
   const tag = getTag(value);
-  if (tag === '[object Map]' || tag === '[object Set]') {
+  if (tag === "[object Map]" || tag === "[object Set]") {
     return !value.size;
   }
 

@@ -1,0 +1,19 @@
+<form
+  onsubmit="{{onSubmit}}"
+  {{#if actionUrl}}
+    action="{{actionUrl}}"
+    method="post"
+  {{/if}}
+>
+  <span class="{{styles.header}}">{{title}}</span>
+  <div class="{{styles.content}}">
+    {{#each content}}
+      {{{this}}}
+    {{/each}}
+  </div>
+
+  <div class="{{styles.footer}}">
+    {{{submitBtn}}}
+    {{{redirectBtn}}}
+  </div>
+</form>
