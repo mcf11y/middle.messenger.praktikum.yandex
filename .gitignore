@@ -23,3 +23,5 @@ storybook-static
 /cache/
 !/build-config.json
 .vscode/bookmarks.json
+
+package-lock.json
