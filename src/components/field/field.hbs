@@ -1,4 +1,5 @@
-{{#with styles}}<div class="{{container}}{{customClasses}}">{{/with}}
-  <label for='{{id}}'>{{label}}</label>
+<div class="field"
+  {{#if style}} style="{{style}}" {{/if}}>
+  {{{label}}}
   {{{input}}}
 </div>

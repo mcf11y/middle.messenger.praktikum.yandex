@@ -1,12 +1,18 @@
 <button
-  class="{{styles.container}}{{styles.customClasses}}{{#if disabled}}disabled{{/if}}"
+  class="button button__{{variant}}{{#if disabled}} disabled{{/if}}{{#if withIcon}} button__with-icon{{/if}}"
   {{#if id}} id="{{id}}" {{/if}}
   {{#if name}} name="{{name}}" {{/if}}
   {{#if value}} value="{{value}}" {{/if}}
-  {{#if onClick}} onclick="{{onClick}}" {{/if}}
   {{#if type}} type="{{type}}" {{/if}}
+  {{#if width}}
+    style="width: {{width}}px"
+  {{/if}}
 >
-  <div class="{{styles.text}}">
-    {{{text}}}
-  </div>
+  {{#if startIcon}}
+    <img class="button__img" src="{{startIcon}}" />
+  {{/if}}
+  <span class="button__text">{{text}}</span>
+  {{#if endIcon}}
+    <img class="button__img" src="{{endIcon}}" />
+  {{/if}}
 </button>

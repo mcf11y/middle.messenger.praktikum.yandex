@@ -1,41 +1,23 @@
+import Login from "./pages/login";
+import SignUp from "./pages/signup";
 import ErrorPage from "./pages/error";
-import Button from "./components/button";
-import Input from "./components/input";
-import Field from "./components/field";
-import Login from "./pages/login"
-import SignUp from "./pages/signup"
-import Home from "./pages/home";
+import ProfilePage from "./pages/profile";
+import EditProfilePage from "./pages/editProfile";
+import EditPasswordPage from "./pages/editPassword";
+import SignUp from "./pages/signup";
+import HomePage from "./pages/home";
 
-/* -------------------------------- TESTS -------------------------------- */
-/* const error404 = ErrorPage({
+// --> Test Pages <-- //
+const errorPage = ErrorPage({
   code: 404,
-  message: "Не туда попали",
+  message: "OOPS...",
 });
-const error500 = ErrorPage({
-  code: 500,
-  message: "Мы уже фиксим",
-});
-const input = Input({
-  id: 'login-input',
-  type: "password",
-  id: "login-input",
-  placeholder: "Введите свой логин",
-});
-const button = Button({
-  type: "primary",
-  text: "Назад к чатам",
-});
-const field = Field({
-  id: 'login',
-  type: 'password',
-  label: 'login',
-  placeholder: 'Введите логин',
-  customClasses: 'padding: 20px',
-})
-const login = Login();
-const signUp = SignUp();
-const page = SignUp();
-*/
+const loginPage = Login();
+const signUpPage = SignUp();
+const profilePage = ProfilePage();
+const editProfilePage = EditProfilePage();
+const editPasswordPage = EditPasswordPage();
 
-const home = Home();
-document.getElementById("root").innerHTML = home;
+const homePage = HomePage();
+
+document.getElementById("root").innerHTML = HomePage;

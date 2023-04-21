@@ -1,0 +1,20 @@
+<div class="profile-form">
+  <div class="profile-form__header">
+    {{{avatar}}}
+    {{#if title}}
+      <div class="profile-form__header__title">{{{title}}}</div>
+    {{/if}}
+  </div>
+
+  <div class="profile-form__content">
+    {{#each contentFields}}
+      {{{this}}}
+    {{/each}}
+  </div>
+
+  <div class="profile-form__footer">
+    {{#each footerFields}}
+      {{{this}}}
+    {{/each}}
+  </div>
+</div>

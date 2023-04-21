@@ -1,15 +1,12 @@
 import template from "./authForm.hbs";
-import * as styles from "./authForm.module.scss";
 
-const AuthForm = ({ title, content, submitBtn, redirectBtn, actionUrl }) => {
-  return template({
+const AuthForm = ({ title, contentItems, submitBtn, redirectBtn, actionUrl }) =>
+  template({
     title,
-    content,
+    contentItems,
     submitBtn,
     redirectBtn,
     actionUrl,
-    styles,
   });
-};
 
 export default AuthForm;

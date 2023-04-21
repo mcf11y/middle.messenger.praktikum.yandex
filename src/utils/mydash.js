@@ -31,7 +31,6 @@ const baseRange = (start, end, step, isRight) => {
   return result;
 };
 
-// Проверку на типы данных не добавлял, но студенты должны будут
 export function range(start = 0, end, step, isRight = false) {
   if (end === undefined) {
     end = start;

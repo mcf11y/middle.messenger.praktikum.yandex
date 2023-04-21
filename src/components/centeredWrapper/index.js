@@ -1,11 +1,5 @@
 import template from "./centeredWrapper.hbs";
-import * as styles from "./centeredWrapper.module.scss";
 
-const CenteredLayout = ({ content }) => {
-  return template({
-    content,
-    styles,
-  });
-};
+const CenteredWrapper = ({ content }) => template({ content });
 
-export default CenteredLayout;
+export default CenteredWrapper;

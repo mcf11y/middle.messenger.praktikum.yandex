@@ -1,30 +1,25 @@
 import template from "./button.hbs";
-import * as styles from "./button.module.scss";
 
 const Button = ({
-  view,
+  id,
+  variant = "primary",
   type,
   text,
-  id,
-  onClick,
   disabled = false,
-  customClasses,
-}) => {
-  const options = {
-    text,
+  startIcon,
+  endIcon,
+  width,
+}) =>
+  template({
     id,
-    onClick,
-    styles: {
-      container: styles[view === "link" ? "link" : "primary"],
-    },
-    name: `custom-button-${id}`,
-    value: `custom-button-${id}`,
+    variant,
     type,
-    customClasses,
+    text,
     disabled,
-  };
-
-  return template(options);
-};
+    withIcon: startIcon || endIcon,
+    startIcon,
+    endIcon,
+    width,
+  });
 
 export default Button;

@@ -1,0 +1,13 @@
+.message-section-content {
+  display: flex;
+  max-width: 100%;
+  margin: 10px 0;
+
+  &__left {
+    justify-content: start;
+  }
+
+  &__right {
+    justify-content: right;
+  }
+}

@@ -1,71 +1,112 @@
 import Button from "../../components/button";
+import Title from "../../components/title";
 import Field from "../../components/field";
-import CenteredLayout from '../../components/centeredWrapper';
+import Input from "../../components/input";
+import Label from "../../components/label";
+import CenteredLayout from "../../components/centeredWrapper";
 
 import AuthForm from "../../containers/authForm";
 
 const signUpFormContext = {
-  title: "Регистрация",
-  content: [
+  title: Title({
+    text: "Регистрация",
+    size: "l",
+  }),
+  contentItems: [
     Field({
-      id: "email",
-      type: "text",
-      label: "Почта",
-      placeholder: "Введите почту",
-      name: "login",
+      label: Label({
+        forId: "email",
+        text: "Почта",
+      }),
+      input: Input({
+        id: "email",
+        type: "text",
+        placeholder: "Введите почту",
+        name: "email",
+      }),
     }),
     Field({
-      id: "login",
-      type: "text",
-      label: "Логин",
-      placeholder: "Придумайте логин",
-      name: "login",
+      label: Label({
+        forId: "login",
+        text: "Логин",
+      }),
+      input: Input({
+        id: "name",
+        type: "text",
+        placeholder: "Введите логин",
+        name: "login",
+      }),
     }),
     Field({
-      id: "name",
-      type: "text",
-      label: "Имя",
-      placeholder: "Введите свое имя",
-      name: "name",
+      label: Label({
+        forId: "name",
+        text: "Имя",
+      }),
+      input: Input({
+        id: "name",
+        type: "text",
+        placeholder: "Введите имя",
+        name: "name",
+      }),
     }),
     Field({
-      id: "surname",
-      type: "text",
-      label: "Фамилия",
-      placeholder: "Введите свою фамилию",
-      name: "password",
+      label: Label({
+        forId: "surname",
+        text: "Фамилия",
+      }),
+      input: Input({
+        id: "surname",
+        type: "text",
+        placeholder: "Введите фамилию",
+        name: "surname",
+      }),
     }),
     Field({
-      id: "phone",
-      type: "tel",
-      label: "Телефон",
-      placeholder: "Введите свой номер",
-      name: "phone",
+      label: Label({
+        forId: "phone",
+        text: "Телефон",
+      }),
+      input: Input({
+        id: "phone",
+        type: "tel",
+        placeholder: "Введите фамилию",
+        name: "phone",
+      }),
     }),
     Field({
-      id: "password",
-      type: "password",
-      label: "Пароль",
-      placeholder: "Введите пароль",
-      name: "password",
+      label: Label({
+        forId: "password",
+        text: "Пароль",
+      }),
+      input: Input({
+        id: "password",
+        type: "password",
+        placeholder: "Введите пароль",
+        name: "password",
+      }),
     }),
     Field({
-      id: "password-repeat",
-      type: "password",
-      label: "Пароль (еще раз)",
-      placeholder: "Повтарите пароль пароль",
-      name: "password-repeat",
+      label: Label({
+        forId: "re-password",
+        text: "Повторите пароль",
+      }),
+      input: Input({
+        id: "re-password",
+        type: "password",
+        placeholder: "Повторно введите пароль",
+        name: "re-password",
+      }),
     }),
   ],
   submitBtn: Button({
     id: "login-submit-btn",
-    view: "primary",
+    variant: "primary",
     type: "submit",
     text: "Зарегистрироваться",
   }),
   redirectBtn: Button({
     id: "redirect-btn",
-    view: "link",
+    variant: "link",
     type: "button",
     text: "Уже есть аккаунт?",
   }),

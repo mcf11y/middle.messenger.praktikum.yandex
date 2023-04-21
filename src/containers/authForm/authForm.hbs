@@ -1,19 +1,21 @@
 <form
-  onsubmit="{{onSubmit}}"
+  class="auth-form"
   {{#if actionUrl}}
     action="{{actionUrl}}"
     method="post"
   {{/if}}
 >
-  <span class="{{styles.header}}">{{title}}</span>
-  <div class="{{styles.content}}">
-    {{#each content}}
+  {{{title}}}
+
+  <div class="auth-form__content">
+    {{#each contentItems}}
       {{{this}}}
     {{/each}}
   </div>
 
-  <div class="{{styles.footer}}">
+  <div class="auth-form__footer">
     {{{submitBtn}}}
     {{{redirectBtn}}}
   </div>
+
 </form>

@@ -1,0 +1,11 @@
+.chat-list {
+  overflow-y: auto;
+
+  &__hr {
+    height: 1px;
+    background: #EAEAEA;
+    border: 0;
+    margin: 0 10px;
+  }
+}
+
