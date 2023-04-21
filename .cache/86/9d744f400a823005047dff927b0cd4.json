@@ -1,0 +1,1 @@
+{"id":"../src/components/searchInput/searchInput.hbs","dependencies":[],"generated":{"html":"<div class=\"search-input\">\n  <img class=\"search-input__img\" alt=\"Поиск\">\n  \n</div>\n"},"sourceMaps":null,"error":null,"hash":"4c73d0443314c97005ee85689a58c063","cacheData":{}}

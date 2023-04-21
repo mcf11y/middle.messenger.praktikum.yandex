@@ -134,4 +134,4 @@ export const CURRENT_CHAT = {
       my: true,
     },
   ],
-},
+};

@@ -4,7 +4,6 @@ import ErrorPage from "./pages/error";
 import ProfilePage from "./pages/profile";
 import EditProfilePage from "./pages/editProfile";
 import EditPasswordPage from "./pages/editPassword";
-import SignUp from "./pages/signup";
 import HomePage from "./pages/home";
 
 // --> Test Pages <-- //
@@ -17,7 +16,6 @@ const signUpPage = SignUp();
 const profilePage = ProfilePage();
 const editProfilePage = EditProfilePage();
 const editPasswordPage = EditPasswordPage();
-
 const homePage = HomePage();
 
-document.getElementById("root").innerHTML = HomePage;
+document.getElementById("root").innerHTML = homePage;

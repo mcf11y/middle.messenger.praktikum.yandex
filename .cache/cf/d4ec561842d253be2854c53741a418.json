@@ -1,0 +1,1 @@
+{"id":"../src/containers/chat/chat.hbs","dependencies":[],"generated":{"html":"<section class=\"chat-container\">\n  <div class=\"chat-container__bar\">\n    \n  </div>\n  <div class=\"chat-container__content\">\n    \n  </div>\n</section>"},"sourceMaps":null,"error":null,"hash":"65c378b346af1d9d095a7924502f4e27","cacheData":{}}
