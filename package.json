@@ -4,7 +4,7 @@
   "description": "### Откройте pull request в ветку main из ветки, где вы разрабатывали проект, и добавьте ссылку на этот pr в README.md в ветке main.  ### ВАЖНО: pull request должен называться “Sprint i” (i — номер спринта).",
   "scripts": {
     "dev": "parcel static/index.html -p 3000 --open --no-cache",
-    "build": "npm i && parcel build static/index.html --no-cache --public-url ./",
+    "build": "npm i && parcel build static/index.html --no-cache",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
