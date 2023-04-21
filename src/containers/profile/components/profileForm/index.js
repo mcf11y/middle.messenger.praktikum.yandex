@@ -1,6 +1,6 @@
 import Title from "../../../../components/title";
 
-import template from "./ProfileForm.hbs";
+import template from "./profileForm.hbs";
 
 const ProfileForm = ({ avatar, userName, contentFields, footerFields }) =>
   template({
