@@ -1,1 +1,0 @@
-{"id":"../src/containers/chat/messageSection/components/emptyMessageSection/emptyMessage.hbs","dependencies":[],"generated":{"html":"<section class=\"empty-message-section\">\n  <span>Выбирите чат или отправьте сообщение</span>\n</section>"},"sourceMaps":null,"error":null,"hash":"f832c311a406acd77529055fecdca092","cacheData":{}}

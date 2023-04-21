@@ -1,1 +1,0 @@
-{"id":"../src/containers/authForm/authForm.hbs","dependencies":[],"generated":{"html":"<form class=\"auth-form\">\n  \n\n  <div class=\"auth-form__content\">\n  </div>\n\n  <div class=\"auth-form__footer\">\n    \n    \n  </div>\n\n</form>"},"sourceMaps":null,"error":null,"hash":"def22365610b08adfc8f3b545c043ab8","cacheData":{}}
