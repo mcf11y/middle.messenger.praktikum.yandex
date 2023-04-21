@@ -1,5 +1,5 @@
 import Divider from "../../../components/divider";
-import IconButton from "../../../components/IconButton";
+import IconButton from "../../../components/iconButton";
 
 import Header from "./components/messageSectionHeader";
 import Content from "./components/messageSectionContent";
