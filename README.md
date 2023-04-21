@@ -9,9 +9,9 @@
 #### - **npm run dev** *- to start project in browser locally*
 #### - **node ./server.js** *- to start express server*
 ## Links:
-
-#### [deploy]
+#### [app](https://deploy--bright-dango-b90d8e.netlify.app/)
 #### [figma layouts](https://www.figma.com/file/jF5fFFzgGOxQeB4CmKWTiE/Chat_external_link?node-id=1-537&t=6B2xKKWBTIxve5xS-0)
+
 ## Tech stack and environment:
 
 ### - *js / html*
