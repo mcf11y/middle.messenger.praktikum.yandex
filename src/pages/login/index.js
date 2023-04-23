@@ -38,10 +38,7 @@ const loginFormContext = {
     text: "Вход",
     size: "l",
   }),
-  contentItems: [
-    loginField,
-    passwordField,
-  ],
+  contentItems: [loginField, passwordField],
   submitBtn: Button({
     id: "login-submit-btn",
     variant: "primary",

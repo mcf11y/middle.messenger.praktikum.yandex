@@ -1,6 +1,6 @@
 import Button from "../../components/button";
 import Title from "../../components/title";
-import CenteredWrapper from '../../components/centeredWrapper';
+import CenteredWrapper from "../../components/centeredWrapper";
 
 import template from "./error.hbs";
 
@@ -17,7 +17,7 @@ const ErrorPage = ({ code, message }) =>
         variant: "link",
         text: "Вернуться к чатам",
       }),
-    })
-  })
+    }),
+  });
 
 export default ErrorPage;

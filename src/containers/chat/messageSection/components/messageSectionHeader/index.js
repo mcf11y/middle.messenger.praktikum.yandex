@@ -5,7 +5,7 @@ import template from "./messageSectionHeader.hbs";
 
 const MessageSectionHeader = ({ avatarImg, chatName }) => {
   return template({
-    avatar: Avatar({ size: "s" , image: avatarImg }),
+    avatar: Avatar({ size: "s", image: avatarImg }),
     title: Title({ text: chatName, size: "s" }),
   });
 };

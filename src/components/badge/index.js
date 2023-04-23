@@ -9,6 +9,6 @@ const Badge = ({ id, size, text }) => {
     id,
     text,
   });
-}
+};
 
 export default Badge;
