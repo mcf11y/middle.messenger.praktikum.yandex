@@ -14,7 +14,8 @@
 
 #### - **npm run dev** _- to start project in browser locally_
 
-#### - **node ./server.js** _- to start express server_
+#### - **npm run start** _- to start server on port 3000_
+
 
 ## Links:
 
