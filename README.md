@@ -9,7 +9,8 @@
 #### - **npm i** *- to install packages*
 #### - **npm run build** *- to build project*
 #### - **npm run dev** *- to start project in browser locally*
-#### - **node ./server.js** *- to start express server*
+#### - **npm run start** *- to start server on 3000 port - localhost:3000*
+
 ## Links:
 #### [app](https://deploy--bright-dango-b90d8e.netlify.app/)
 #### [figma layouts](https://www.figma.com/file/jF5fFFzgGOxQeB4CmKWTiE/Chat_external_link?node-id=1-537&t=6B2xKKWBTIxve5xS-0)
