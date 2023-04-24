@@ -31,7 +31,7 @@ const signUpFormContext = {
         text: "Логин",
       }),
       input: Input({
-        id: "name",
+        id: "login",
         type: "text",
         placeholder: "Введите логин",
         name: "login",
@@ -39,26 +39,26 @@ const signUpFormContext = {
     }),
     Field({
       label: Label({
-        forId: "name",
+        forId: "first_name",
         text: "Имя",
       }),
       input: Input({
-        id: "name",
+        id: "first_name",
         type: "text",
         placeholder: "Введите имя",
-        name: "name",
+        name: "first_name",
       }),
     }),
     Field({
       label: Label({
-        forId: "surname",
+        forId: "second_name",
         text: "Фамилия",
       }),
       input: Input({
-        id: "surname",
+        id: "second_name",
         type: "text",
         placeholder: "Введите фамилию",
-        name: "surname",
+        name: "second_name",
       }),
     }),
     Field({
@@ -94,7 +94,7 @@ const signUpFormContext = {
         id: "re-password",
         type: "password",
         placeholder: "Повторно введите пароль",
-        name: "re-password",
+        name: "password",
       }),
     }),
   ],

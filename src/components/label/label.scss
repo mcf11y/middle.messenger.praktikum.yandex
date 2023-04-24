@@ -8,4 +8,11 @@
   &__error {
     color: $text-error;
   }
+
+  &__black {
+    font-size: 13px;
+    line-height: 13px;
+
+    color: $text-black;
+  }
 }

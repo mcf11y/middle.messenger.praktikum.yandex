@@ -18,3 +18,26 @@ nav ul li a {
 .active {
   color: white;
 }
+
+html,
+body {
+  margin: 0;
+}
+
+body {
+  height: 100vh;
+
+  display: flex;
+  flex-direction: column;
+
+  font-family: "Inter";
+  font-style: normal;
+}
+
+#root {
+  flex-grow: 1;
+  min-height: 0;
+  height: 100%;
+
+  overflow-y: auto;
+}

@@ -1,6 +1,5 @@
 <input
-  class="input{{#if disabled}} disabled{{/if}}
-    {{#if reverseAlign}}input__rigth-align{{/if}}"
+  class="input{{#if disabled}} disabled{{/if}}{{#if reverseAlign}} input__right-align{{/if}}"
   {{#if placeholder}} placeholder="{{placeholder}}" {{/if}}
   {{#if type}} type="{{type}}" {{else}}type="text" {{/if}}
   {{#if id}} id="{{id}}" {{/if}}

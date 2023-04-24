@@ -1,8 +1,7 @@
 import Avatar from "../../components/avatar";
-import Title from "../../components/title";
+import Label from "../../components/label";
 import Input from "../../components/input";
 import Button from "../../components/button";
-import Link from "../../components/link";
 
 import CustomField from "../../components/customField";
 
@@ -10,68 +9,92 @@ import Profile from "../../containers/profile";
 
 const EDIT_PROFILE_FIELDS = [
   CustomField({
-    leftField: Title({
+    leftField: Label({
+      forId: "email",
       text: "Почта",
       size: "xs",
+      black: true,
     }),
     rightField: Input({
+      id: "email",
       type: "text",
       value: "andrey@mail.ru",
+      name: "email",
       reverseAlign: true,
     }),
   }),
   CustomField({
-    leftField: Title({
+    leftField: Label({
+      forId: "login",
       text: "Логин",
       size: "xs",
+      black: true,
     }),
     rightField: Input({
+      id: "login",
       type: "text",
       value: "andrey@mail.ru",
+      name: "login",
       reverseAlign: true,
     }),
   }),
   CustomField({
-    leftField: Title({
+    leftField: Label({
+      forId: "first_name",
       text: "Имя",
       size: "xs",
+      black: true,
     }),
     rightField: Input({
+      id: "first_name",
       type: "text",
       value: "Иван",
+      name: "first_name",
       reverseAlign: true,
     }),
   }),
   CustomField({
-    leftField: Title({
+    leftField: Label({
+      forId: "second_name",
       text: "Фамилия",
       size: "xs",
+      black: true,
     }),
     rightField: Input({
+      id: "second_name",
       type: "text",
       value: "Иванов",
+      name: "second_name",
       reverseAlign: true,
     }),
   }),
   CustomField({
-    leftField: Title({
+    leftField: Label({
+      forId: "display_name",
       text: "Имя в чате",
       size: "xs",
+      black: true,
     }),
     rightField: Input({
+      id: "display_name",
       type: "text",
       value: "Иван",
+      name: "display_name",
       reverseAlign: true,
     }),
   }),
   CustomField({
-    leftField: Title({
+    leftField: Label({
+      forId: "phone",
       text: "Телефон",
       size: "xs",
+      black: true,
     }),
     rightField: Input({
+      id: "phone",
       type: "tel",
       value: "+7 (909) 967 30 30",
+      name: "phone",
       reverseAlign: true,
     }),
   }),

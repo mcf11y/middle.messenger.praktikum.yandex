@@ -7,6 +7,8 @@ const MessageSectionFooter = ({ attachButton, savedMessage, submitButton }) => {
     attachButton,
     inputArea: MessageInputArea({
       savedMessage,
+      name: "message",
+      placeholder: "Сообщение",
     }),
     submitButton,
   });

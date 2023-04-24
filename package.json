@@ -12,14 +12,14 @@
   "devDependencies": {
     "parcel": "^2.8.3",
     "parcel-transformer-hbs": "^1.0.4",
-    "sass": "^1.61.0"
-  },
-  "dependencies": {
     "@parcel/transformer-sass": "^2.8.3",
     "@types/express": "^4.17.17",
+    "sass": "^1.61.0",
+    "test": "^3.3.0"
+  },
+  "dependencies": {
     "express": "^4.18.2",
     "handlebars": "^4.7.7",
-    "parcel-plugin-handlebars": "^0.4.4",
-    "test": "^3.3.0"
+    "parcel-plugin-handlebars": "^0.4.4"
   }
 }
