@@ -1,0 +1,43 @@
+nav {
+  background: #3369f3;
+}
+nav ul {
+  list-style: none;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 5px;
+  font-size: 12px;
+  font-weight: bold;
+}
+nav ul li a {
+  text-decoration: none;
+  color: white;
+}
+
+.active {
+  color: white;
+}
+
+html,
+body {
+  margin: 0;
+}
+
+body {
+  height: 100vh;
+
+  display: flex;
+  flex-direction: column;
+
+  font-family: "Inter";
+  font-style: normal;
+}
+
+#root {
+  flex-grow: 1;
+  min-height: 0;
+  height: 100%;
+
+  overflow-y: auto;
+}

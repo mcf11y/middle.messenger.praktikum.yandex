@@ -1,0 +1,29 @@
+@mixin commonContainerStyles {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.profile-form {
+  max-width: 510px;
+  @include commonContainerStyles;
+
+  &__header {
+    @include commonContainerStyles;
+
+    &__title {
+      margin-top: 21px;
+    }
+  }
+
+  &__content {
+    @include commonContainerStyles;
+    margin: 60px 0;
+  }
+
+  &__footer {
+    @include commonContainerStyles;
+  }
+}

@@ -1,0 +1,11 @@
+.message-section-footer {
+  display: flex;
+  align-items: center;
+  margin-top: 13px;
+  gap: 10px;
+
+  &__area {
+    padding-top: 4px;
+    flex: 1 1 80%;
+  }
+}

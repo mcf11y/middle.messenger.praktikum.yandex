@@ -1,0 +1,13 @@
+.search-input {
+  position: relative;
+
+  &__img {
+    width: 15px;
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translate(0, -50%);
+
+    content: url("/static/icons/search.svg");
+  }
+}

@@ -1,0 +1,21 @@
+.chat-message {
+  display: flex;
+  max-width: 45%;
+
+  border-radius: 12px;
+  padding: 11px;
+
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 15px;
+
+  &__blue {
+    background-color: $ligth-blue;
+  }
+
+  &__gray {
+    background-color: $light-gray;
+  }
+}
