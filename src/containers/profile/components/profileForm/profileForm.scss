@@ -1,4 +1,4 @@
-@mixin commonContainerStyles {
+@mixin common-container-styles {
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -8,10 +8,11 @@
 
 .profile-form {
   max-width: 510px;
-  @include commonContainerStyles;
+
+  @include common-container-styles;
 
   &__header {
-    @include commonContainerStyles;
+    @include common-container-styles;
 
     &__title {
       margin-top: 21px;
@@ -19,11 +20,12 @@
   }
 
   &__content {
-    @include commonContainerStyles;
+    @include common-container-styles;
+
     margin: 60px 0;
   }
 
   &__footer {
-    @include commonContainerStyles;
+    @include common-container-styles;
   }
 }

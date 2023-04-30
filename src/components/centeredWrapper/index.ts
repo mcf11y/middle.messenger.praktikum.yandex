@@ -1,9 +1,9 @@
 import template from "./centeredWrapper.hbs";
 
-interface Props {
-  content: HbsNode;
-}
+type Props = {
+	content: HbsNode;
+};
 
-const CenteredWrapper = ({ content }: Props) => template({ content });
+const CenteredWrapper = ({content}: Props) => template({content});
 
 export default CenteredWrapper;

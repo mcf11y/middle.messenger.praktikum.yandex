@@ -4,25 +4,24 @@ import CenteredWrapper from "../../components/centeredWrapper";
 
 import template from "./error.hbs";
 
-interface Props {
-  code: string | number;
-  message: string;
-}
+type Props = {
+	code: string | number;
+	message: string;
+};
 
-const ErrorPage = ({ code, message }: Props) =>
-  CenteredWrapper({
-    content: template({
-      title: Title({
-        text: code.toString(),
-        size: "xl",
-      }),
-      message,
-      button: Button({
-        id: "error-page-btn",
-        variant: "link",
-        text: "Вернуться к чатам",
-      }),
+const ErrorPage = ({code, message}: Props) => CenteredWrapper({
+  content: template({
+    title: Title({
+      text: code.toString(),
+      size: "xl",
     }),
-  });
+    message,
+    button: Button({
+      id: "error-page-btn",
+      variant: "link",
+      text: "Вернуться к чатам",
+    }),
+  }),
+});
 
 export default ErrorPage;

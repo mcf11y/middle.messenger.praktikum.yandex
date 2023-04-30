@@ -1,15 +1,15 @@
 import template from "./button.hbs";
 
-interface Props {
-  id?: string;
-  variant: "primary" | "secondary" | "link";
-  type?: "submit" | "reset" | "button";
-  text: string;
-  disabled?: boolean;
-  startIconSrc?: string;
-  endIconSrc?: string;
-  width?: number;
-}
+type Props = {
+	id?: string;
+	variant: "primary" | "secondary" | "link";
+	type?: "submit" | "reset" | "button";
+	text: string;
+	disabled?: boolean;
+	startIconSrc?: string;
+	endIconSrc?: string;
+	width?: number;
+};
 
 const Button = ({
   id,
@@ -20,17 +20,16 @@ const Button = ({
   startIconSrc,
   endIconSrc,
   width,
-}: Props) =>
-  template({
-    id,
-    variant,
-    type,
-    text,
-    disabled,
-    withIcon: startIconSrc || endIconSrc,
-    startIconSrc,
-    endIconSrc,
-    width,
-  });
+}: Props) => template({
+  id,
+  variant,
+  type,
+  text,
+  disabled,
+  withIcon: startIconSrc || endIconSrc,
+  startIconSrc,
+  endIconSrc,
+  width,
+});
 
 export default Button;

@@ -1,13 +1,13 @@
 import template from "./iconButton.hbs";
 
-interface Props {
+type Props = {
   id?: string;
   variant?: "primary" | "secondary";
   iconSrc: string;
   disabled?: boolean;
   btnWidth?: number;
   iconWidth?: number;
-}
+};
 
 const IconButton = ({
   id,

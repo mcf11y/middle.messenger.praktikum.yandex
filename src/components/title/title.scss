@@ -2,30 +2,32 @@
   font-weight: 600;
   font-size: 20px;
   line-height: 20px;
-
   text-align: center;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-
   color: $text-black;
 
   &__xs {
     font-size: 13px;
     line-height: 13px;
   }
+
   &__s {
     font-size: 15px;
     line-height: 15px;
   }
+
   &__m {
     font-size: 16px;
     line-height: 16px;
   }
+
   &__l {
     font-size: 20px;
     line-height: 20px;
   }
+
   &__xl {
     font-size: 40px;
     line-height: 40px;

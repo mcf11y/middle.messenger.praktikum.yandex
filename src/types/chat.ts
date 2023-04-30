@@ -1,25 +1,25 @@
 export type MessageContentType = "text" | "image" | "file" | "video";
 export type MessageContent = string | File | HTMLImageElement;
 
-export interface Message_data {
+export type MessageData = {
   contentType: MessageContentType;
   content: MessageContent;
   time: string | Date;
   my: boolean;
-}
+};
 
-export interface Chat_data {
+export type ChatData = {
   id: number | string;
   chatName: string;
-  lastMessage?: Message_data;
+  lastMessage?: MessageData;
   time: string | Date;
   missedMesssageCount?: number;
   avatarImage?: string | HTMLImageElement;
-}
+};
 
-export interface Chat_details_data {
+export type ChatDetailsData = {
   id: number;
   chatName: string;
-  messages: Message_data[];
-  myDraftMessage?: Omit<Message_data, "my" | "time">;
-}
+  messages: MessageData[];
+  myDraftMessage?: Omit<MessageData, "my" | "time">;
+};

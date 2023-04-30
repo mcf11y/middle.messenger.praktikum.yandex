@@ -54,10 +54,8 @@ const loginFormContext = {
   actionUrl: "",
 };
 
-const Login = () => {
-  return CenteredLayout({
-    content: AuthForm(loginFormContext),
-  });
-};
+const Login = () => CenteredLayout({
+  content: AuthForm(loginFormContext),
+});
 
 export default Login;

@@ -1,59 +1,33 @@
-// @ts-nocheck
-class Block {
-  static EVENTS = {
-    init: "init",
-    mount: "mount",
-    update: "update",
-    render: "render",
-  };
+// /* eslint-disable @typescript-eslint/no-unused-vars */
+// /* eslint-disable max-classes-per-file */class Block {
+//   static EVENTS = {
+//     init: "init",
+//     mount: "mount",
+//     update: "update",
+//     render: "render",
+//   };
 
-  protected props: Record<string, unknown>;
+//   protected props!: Record<string, unknown>;
 
-  private _element: HTMLElement | null = null;
-  private _meta: { tagName: string; props: any };
+//   private readonly _element: HTMLElement | null = null;
 
-  /** JSDoc
-   * @param {string} tagName
-   * @param {Object} props
-   *
-   * @return {void}
-   */
+//   private readonly _meta: { tagName: string; props: any };
 
-  constructor(tagName = "div", props: any = {}) {
-    this._meta = {
-      tagName,
-      props,
-      // ^?
-    };
-  }
-}
+//   /** JSDoc
+//    * @param {string} tagName
+//    * @param {Object} props
+//    *
+//    * @return {void}
+//    */
 
-class Circle {
-  name: string;
-  constructor() {
-    this.name = "Circle";
-  }
+//   constructor({ tagName = "div", props = {} }: { tagName?: string; props?: any; } = {}): void {
+//     // eslint-disable-next-line no-underscore-dangle
+//     this._meta = {
+//       tagName,
+//       props,
+//       // ^?
+//     };
+//   }
+// }
 
-}
-
-class Triangle {
-  name: string;
-  constructor() {
-    this.name = "Triangle";
-  }
-}
-
-class Dick {
-  name: string;
-  constructor() {
-    this.name = "Soldier";
-  }
-}
-
-
-
-const shapes = [new Circle(), new Triangle()];
-
-shapes.push(new Dick());
-shapes
 

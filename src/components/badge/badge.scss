@@ -1,10 +1,8 @@
 .badge {
   display: inline-table;
   vertical-align: middle;
-
   width: 16px;
   height: 16px;
-
   background-color: $primary-blue;
   border-radius: 50%;
 
@@ -12,7 +10,6 @@
     display: table-cell;
     vertical-align: middle;
     text-align: center;
-
     font-size: 10px;
     color: $text-white;
   }

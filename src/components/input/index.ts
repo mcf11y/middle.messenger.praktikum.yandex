@@ -1,6 +1,6 @@
 import template from "./input.hbs";
 
-interface Props {
+type Props = {
   id?: string;
   type: string;
   placeholder?: string;
@@ -8,7 +8,7 @@ interface Props {
   name?: string;
   disabled?: boolean;
   reverseAlign?: boolean;
-}
+};
 
 const Input = ({
   id,

@@ -102,12 +102,10 @@ const EDIT_PROFILE_FOOTER_FIELDS = [
   }),
 ];
 
-const EditProfilePage = () => {
-  return Profile({
-    avatar: Avatar({ size: "l" }),
-    contentFields: EDIT_PROFILE_FIELDS,
-    footerFields: EDIT_PROFILE_FOOTER_FIELDS,
-  });
-};
+const EditProfilePage = () => Profile({
+  avatar: Avatar({size: "l"}),
+  contentFields: EDIT_PROFILE_FIELDS,
+  footerFields: EDIT_PROFILE_FOOTER_FIELDS,
+});
 
 export default EditProfilePage;

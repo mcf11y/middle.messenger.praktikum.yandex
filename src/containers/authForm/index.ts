@@ -1,12 +1,12 @@
 import template from "./authForm.hbs";
 
-interface Props {
+type Props = {
   title: HbsNode;
   contentItems: HbsNode[];
   submitBtn: HbsNode;
   redirectBtn: HbsNode;
   actionUrl?: string;
-}
+};
 
 const AuthForm = ({
   title,
@@ -14,14 +14,13 @@ const AuthForm = ({
   submitBtn,
   redirectBtn,
   actionUrl,
-}: Props) => {
-  return template({
+}: Props) =>
+  template({
     title,
     contentItems,
     submitBtn,
     redirectBtn,
     actionUrl,
   });
-};
 
 export default AuthForm;

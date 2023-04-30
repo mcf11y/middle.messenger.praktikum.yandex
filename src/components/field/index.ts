@@ -1,10 +1,10 @@
 import template from "./field.hbs";
 
-interface Props {
+type Props = {
   label: HbsNode;
   input: HbsNode;
   style?: any;
-}
+};
 
 const Field = ({ label, input, style }: Props) =>
   template({

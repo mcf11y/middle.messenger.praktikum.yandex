@@ -12,11 +12,17 @@
     "strictNullChecks": true,
     "isolatedModules": true,
 
+    "allowSyntheticDefaultImports": true,
+
+    "strict": true,
+    "noFallthroughCasesInSwitch": true,
+    "useUnknownInCatchVariables": false,
+    "downlevelIteration": true,
+
     "target": "es2015",
     "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,
-    "strict": true,
 
     "noEmit": true,
 
@@ -26,7 +32,9 @@
     "jsx": "preserve",
     "incremental": true,
     "experimentalDecorators": true,
-    "emitDecoratorMetadata": true
+    "emitDecoratorMetadata": true,
+
+    "baseUrl": "src"
   },
 
   "include": ["./src/**/*.ts"],

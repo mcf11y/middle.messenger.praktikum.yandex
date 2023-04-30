@@ -1,12 +1,12 @@
-import Avatar from "../../../../../components/avatar";
-import { Chat_data } from "../../../../../types/chat";
-
+import Avatar from "components/avatar";
+import { ChatData } from "types/chat";
 import ChatItem from "../chatItem";
+
 import template from "./chatList.hbs";
 
-interface Props {
-  chats: Chat_data[];
-}
+type Props = {
+  chats: ChatData[];
+};
 
 const ChatList = ({ chats }: Props) => {
   const renderedItems = chats.map(

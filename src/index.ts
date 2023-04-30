@@ -58,26 +58,27 @@ const routes = [
 
 const root = document.getElementById("root");
 
-window.router = function (event: any) {
+
+(window as any).router = (event: any) => {
   event.preventDefault();
-  history.pushState({}, "newUrl", event.target.href);
-  let route = routes.find((route) => route.path == window.location.pathname);
-  if (root && route?.data) {
+  window.history.pushState({}, "newUrl", event.target.href);
+  const route = routes.find(r => r.path === window.location.pathname);
+  if (root != null && route?.data) {
     root.innerHTML = route.data;
   }
 };
 
-window.addEventListener("popstate", function () {
-  let route = routes.find((route) => route.path == window.location.pathname);
-  if (root && route?.data) {
+window.addEventListener("popstate", () => {
+  const route = routes.find(r => r.path === window.location.pathname);
+  if (root != null && route?.data) {
     root.innerHTML = route?.data;
   }
 });
 
-window.addEventListener("DOMContentLoaded", function () {
-  let route = routes.find((route) => route.path == window.location.pathname);
+window.addEventListener("DOMContentLoaded", () => {
+  const route = routes.find(r => r.path === window.location.pathname);
 
-  if (root && route?.data) {
+  if (root != null && route?.data) {
     root.innerHTML = route?.data;
   }
 });

@@ -60,12 +60,10 @@ const EDIT_PASSWORD_FOOTER_FIELDS = [
   }),
 ];
 
-const EditPasswordPage = () => {
-  return Profile({
-    avatar: Avatar({ size: "l" }),
-    contentFields: EDIT_PASSWORD_FIELDS,
-    footerFields: EDIT_PASSWORD_FOOTER_FIELDS,
-  });
-};
+const EditPasswordPage = () => Profile({
+  avatar: Avatar({size: "l"}),
+  contentFields: EDIT_PASSWORD_FIELDS,
+  footerFields: EDIT_PASSWORD_FOOTER_FIELDS,
+});
 
 export default EditPasswordPage;

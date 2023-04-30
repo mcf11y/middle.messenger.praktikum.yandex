@@ -1,4 +1,4 @@
-import { Chat_data, Chat_details_data } from "../../types/chat";
+import { ChatData, ChatDetailsData } from "types/chat";
 
 export const CHAT_LIST = [
   {
@@ -81,7 +81,7 @@ export const CHAT_LIST = [
     time: "10:39",
     missedMesssageCount: 2,
   },
-] as Chat_data[];
+] as ChatData[];
 
 export const CURRENT_CHAT = {
   id: 3,
@@ -106,4 +106,4 @@ export const CURRENT_CHAT = {
     content: "начал что-то писать",
     time: "13:56",
   },
-} as Chat_details_data;
+} as ChatDetailsData;

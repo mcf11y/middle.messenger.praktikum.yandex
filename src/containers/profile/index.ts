@@ -1,18 +1,17 @@
+import CenteredWrapper from "components/centeredWrapper";
 import LeftBar from "./components/leftBar";
-import ProfileForm from "./components/profileForm";
-import CenteredWrapper from "../../components/centeredWrapper";
-
 import template from "./profile.hbs";
+import ProfileForm from "./components/profileForm";
 
-interface Props {
+type Props = {
   avatar: string;
   userName?: string;
   contentFields: HbsNode[];
   footerFields: HbsNode[];
-}
+};
 
-const Profile = ({ avatar, userName, contentFields, footerFields }: Props) => {
-  return template({
+const Profile = ({ avatar, userName, contentFields, footerFields }: Props) =>
+  template({
     leftBar: LeftBar(),
 
     profileForm: CenteredWrapper({
@@ -24,6 +23,5 @@ const Profile = ({ avatar, userName, contentFields, footerFields }: Props) => {
       }),
     }),
   });
-};
 
 export default Profile;

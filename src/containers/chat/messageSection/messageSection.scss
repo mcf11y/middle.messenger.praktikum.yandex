@@ -2,13 +2,11 @@
   display: flex;
   flex-direction: column;
   height: calc(100% - 25px);
-
   overflow: hidden;
   padding: 10px 20px;
 
   &__content {
     height: 100%;
-
     padding: 20px 0;
   }
 

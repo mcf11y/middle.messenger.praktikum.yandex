@@ -1,20 +1,20 @@
-import Button from "../../../components/button";
-import Input from "../../../components/input";
-import SearchInput from "../../../components/searchInput";
+import { ChatData, ChatDetailsData } from "types/chat";
+import Button from "components/button";
+import SearchInput from "components/searchInput";
+import Input from "components/input";
 import ChatList from "./components/chatList";
-import arrowIcon from "../../../../static/icons/arrow-go-to.svg";
+
+import arrowIcon from "../../../../static/icons/arrow-left.svg";
 
 import template from "./chatBar.hbs";
-import { Chat_data } from "../../../types/chat";
-import { Chat_details_data } from "../../../types/chat";
 
-interface Props {
-  chats: Chat_data[];
-  currentChat?: Chat_details_data;
-}
+type Props = {
+  chats: ChatData[];
+  currentChat?: ChatDetailsData;
+};
 
-const ChatBar = ({ chats }: Props) => {
-  return template({
+const ChatBar = ({ chats }: Props) =>
+  template({
     toProfileButton: Button({
       variant: "secondary",
       text: "Профиль",
@@ -30,6 +30,5 @@ const ChatBar = ({ chats }: Props) => {
 
     chatList: ChatList({ chats }),
   });
-};
 
 export default ChatBar;

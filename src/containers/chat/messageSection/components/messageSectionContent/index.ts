@@ -1,15 +1,15 @@
-import ChatMessage from "../../../../../components/chatMessage";
-import { Message_data } from "../../../../../types/chat";
+import { MessageData } from "types/chat";
 
+import ChatMessage from "components/chatMessage";
 import template from "./messageSectionContent.hbs";
 
-interface Props {
+type Props = {
   id?: string;
-  messages: Message_data[];
-}
+  messages: MessageData[];
+};
 
 const MessageSectionContent = ({ messages }: Props) => {
-  const content = messages.map(({ contentType, content, time, my }) => ({
+  const messagesContent = messages.map(({ contentType, content, time, my }) => ({
     content: ChatMessage({
       message: contentType === "text" ? (content as string) : "",
       time: time.toString(),
@@ -19,7 +19,7 @@ const MessageSectionContent = ({ messages }: Props) => {
   }));
 
   return template({
-    messages: content,
+    messages: messagesContent,
   });
 };
 

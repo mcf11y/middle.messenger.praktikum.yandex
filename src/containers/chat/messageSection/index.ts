@@ -1,21 +1,20 @@
-import Divider from "../../../components/divider";
-import IconButton from "../../../components/iconButton";
-
+import { ChatDetailsData } from "types/chat";
+import IconButton from "components/iconButton";
+import Divider from "components/divider";
 import Header from "./components/messageSectionHeader";
 import Content from "./components/messageSectionContent";
 import Footer from "./components/messageSectionFooter";
 
-import AttachIcon from "./../../../../static/icons/attach-icon.svg";
-import SubmitIcon from "./../../../../static/icons/arrow-right.svg";
+import AttachIcon from "../../../../static/icons/attach-icon.svg";
+import SubmitIcon from "../../../../static/icons/arrow-right.svg";
 
 import EmptyMessage from "./components/emptyMessageSection";
 
 import template from "./messageSection.hbs";
-import { Chat_details_data } from "../../../types/chat";
 
-interface Props {
-  currentChat: Chat_details_data;
-}
+type Props = {
+  currentChat: ChatDetailsData;
+};
 
 const ChatMessages = ({ currentChat }: Props) => {
   if (!currentChat) {
@@ -39,9 +38,9 @@ const ChatMessages = ({ currentChat }: Props) => {
         iconWidth: 20,
       }),
       savedMessage:
-        myDraftMessage && myDraftMessage.contentType === "text"
+        myDraftMessage != null && myDraftMessage.contentType === "text"
           ? myDraftMessage.content.toString()
-          : null,
+          : undefined,
       submitButton: IconButton({
         iconSrc: SubmitIcon,
       }),

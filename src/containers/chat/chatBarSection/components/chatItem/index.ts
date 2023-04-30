@@ -1,16 +1,16 @@
-import Title from "../../../../../components/title";
-import Badge from "../../../../../components/badge";
+import Title from "components/title";
+import Badge from "components/badge";
 
 import template from "./chatItem.hbs";
 
-interface Props {
+type Props = {
   id: None<string | number>;
   avatar: HbsNode;
   chatName: string;
   lastMessage?: string;
   time: string;
   missedMesssageCount?: number;
-}
+};
 
 const ChatItem = ({
   avatar,
@@ -18,8 +18,8 @@ const ChatItem = ({
   lastMessage,
   time,
   missedMesssageCount,
-}: Props) => {
-  return template({
+}: Props) =>
+  template({
     avatar,
     chatName: Title({
       text: chatName,
@@ -30,10 +30,9 @@ const ChatItem = ({
     countBadge:
       missedMesssageCount !== undefined
         ? Badge({
-            text: missedMesssageCount,
-          })
+          text: missedMesssageCount,
+        })
         : null,
   });
-};
 
 export default ChatItem;

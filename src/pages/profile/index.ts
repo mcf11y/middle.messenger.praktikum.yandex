@@ -95,13 +95,11 @@ const FOOTER_FIELDS = [
   }),
 ];
 
-const ProfilePage = () => {
-  return Profile({
-    avatar: Avatar({ size: "l" }),
-    userName: "Иван",
-    contentFields: PROFILE_FIELDS,
-    footerFields: FOOTER_FIELDS,
-  });
-};
+const ProfilePage = () => Profile({
+  avatar: Avatar({size: "l"}),
+  userName: "Иван",
+  contentFields: PROFILE_FIELDS,
+  footerFields: FOOTER_FIELDS,
+});
 
 export default ProfilePage;

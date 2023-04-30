@@ -113,10 +113,8 @@ const signUpFormContext = {
   action: "",
 };
 
-const SignUp = () => {
-  return CenteredLayout({
-    content: AuthForm(signUpFormContext),
-  });
-};
+const SignUp = () => CenteredLayout({
+  content: AuthForm(signUpFormContext),
+});
 
 export default SignUp;

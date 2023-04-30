@@ -1,12 +1,11 @@
-import Divider from "../divider";
-
+import Divider from "components/divider";
 import template from "./customField.hbs";
 
-interface Props {
+type Props = {
   leftField?: HbsNode;
   rightField?: HbsNode;
   divider?: boolean;
-}
+};
 
 const CustomField = ({ leftField, rightField, divider = true }: Props) =>
   template({

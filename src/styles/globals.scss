@@ -1,6 +1,6 @@
-@import "variables";
+@import "variables.scss";
 
-// components
+/* components */
 @import "../components/input/input.scss";
 @import "../components/label/label.scss";
 @import "../components/field/field.scss";
@@ -17,12 +17,10 @@
 @import "../components/messageTextArea/messageTextArea.scss";
 @import "../components/chatMessage/chatMessage.scss";
 
-// containers
+/* containers */
 @import "../containers/authForm/authForm.scss";
-
 @import "../containers/chat/chatBarSection/components/chatItem/chatItem.scss";
 @import "../containers/chat/chatBarSection/components/chatList/chatList.scss";
-
 @import "../containers/chat/messageSection/components/emptyMessageSection/emptyMessage.scss";
 @import "../containers/chat/messageSection/components/messageSectionHeader/messageSectionHeader.scss";
 @import "../containers/chat/messageSection/components/messageSectionContent/messageSectionContent.scss";
@@ -30,10 +28,9 @@
 @import "../containers/chat/messageSection/messageSection.scss";
 @import "../containers/chat/chatBarSection/chatBar.scss";
 @import "../containers/chat/chat.scss";
-
 @import "../containers/profile/components/leftBar/leftBar.scss";
 @import "../containers/profile/components/profileForm/profileForm.scss";
 @import "../containers/profile/profile.scss";
 
-// pages
+/* pages */
 @import "../pages/error/error.scss";

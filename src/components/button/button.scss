@@ -3,11 +3,9 @@
   padding: 12px 15px;
   font-weight: 500;
   display: inline-flex;
-  justify-content: center;;
-
+  justify-content: center;
   cursor: pointer;
   border: none;
-
   border-radius: 8px;
   font-size: 13px;
   line-height: 13px;
@@ -26,6 +24,7 @@
       background-color: $button-blue-hover;
     }
   }
+
   &__link {
     color: $primary-blue;
     background-color: $primary-white;

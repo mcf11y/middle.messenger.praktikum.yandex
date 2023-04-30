@@ -1,8 +1,8 @@
 import template from "./searchInput.hbs";
 
-interface Props {
+type Props = {
   input: HbsNode;
-}
+};
 
 const SearchInput = ({ input }: Props) =>
   template({
