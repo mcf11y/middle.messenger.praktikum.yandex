@@ -4,5 +4,10 @@
     "*.hbs": [
       "parcel-transformer-hbs"
     ]
+  },
+  "validators": {
+    "*.ts": [
+      "@parcel/validator-typescript"
+    ]
   }
 }

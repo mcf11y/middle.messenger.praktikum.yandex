@@ -8,7 +8,11 @@
     </div>
 
     <div class="bar-item__content__subtitle">
-      <span class="bar-item__content__subtitle__message">{{lastMessage}}</span>
+      {{#if lastMessage}}
+        <span
+          class="bar-item__content__subtitle__message"
+        >{{lastMessage}}</span>
+      {{/if}}
       {{{countBadge}}}
     </div>
   </div>

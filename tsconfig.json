@@ -1,0 +1,35 @@
+{
+  "compilerOptions": {
+    /* Visit https://aka.ms/tsconfig to read more about this file */
+    "module": "commonjs" /* Specify what module code is generated. */,
+    "esModuleInterop": true /* Emit additional JavaScript to ease support for importing CommonJS modules. This enables 'allowSyntheticDefaultImports' for type compatibility. */,
+    "forceConsistentCasingInFileNames": true /* Ensure that casing is correct in imports. */,
+
+    "noImplicitAny": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "sourceMap": true,
+    "strictNullChecks": true,
+    "isolatedModules": true,
+
+    "target": "es2015",
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "allowJs": true,
+    "skipLibCheck": true,
+    "strict": true,
+
+    "noEmit": true,
+
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+
+    "jsx": "preserve",
+    "incremental": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true
+  },
+
+  "include": ["./src/**/*.ts"],
+
+  "exclude": ["node_modules"]
+}
