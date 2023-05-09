@@ -25,9 +25,11 @@
 
     &__left {
       text-align: left;
+      align-items: start;
     }
 
     &__right {
+      align-items: end;
       text-align: right;
     }
   }
