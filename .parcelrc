@@ -1,6 +1,5 @@
 {
   "extends": "@parcel/config-default",
-  "resolvers": ["parcel-resolver-ts-base-url", "..."],
   "transformers": {
     "*.hbs": [
       "parcel-transformer-hbs"
@@ -10,5 +9,9 @@
     "*.ts": [
       "@parcel/validator-typescript"
     ]
-  }
+  },
+  "resolvers": [
+    "parcel-resolver-ts-base-url",
+    "..."
+  ]
 }

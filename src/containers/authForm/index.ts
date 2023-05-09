@@ -1,26 +1,34 @@
+import Block from "utils/Block";
 import template from "./authForm.hbs";
 
 type Props = {
-  title: HbsNode;
-  contentItems: HbsNode[];
-  submitBtn: HbsNode;
-  redirectBtn: HbsNode;
+  title: Block;
+  contentItems: Block[];
+  submitBtn: Block;
+  redirectBtn: Block;
   actionUrl?: string;
+  onSubmit?: () => void;
 };
 
-const AuthForm = ({
-  title,
-  contentItems,
-  submitBtn,
-  redirectBtn,
-  actionUrl,
-}: Props) =>
-  template({
-    title,
-    contentItems,
-    submitBtn,
-    redirectBtn,
-    actionUrl,
-  });
+class AuthForm extends Block {
+  constructor(props: Props) {
+    super({
+      ...props,
+    });
+  }
+
+  protected init(): void {
+    this.props.events = {
+      submit: (e: any) => {
+        e.preventDefault();
+        this.props?.onSubmit();
+      },
+    };
+  }
+
+  protected render(): DocumentFragment {
+    return this.compile(template, this.props);
+  }
+}
 
 export default AuthForm;

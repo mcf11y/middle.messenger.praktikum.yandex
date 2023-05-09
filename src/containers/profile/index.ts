@@ -1,27 +1,34 @@
 import CenteredWrapper from "components/centeredWrapper";
+import Block from "utils/Block";
 import LeftBar from "./components/leftBar";
 import template from "./profile.hbs";
 import ProfileForm from "./components/profileForm";
 
 type Props = {
-  avatar: string;
+  avatar: Block;
   userName?: string;
-  contentFields: HbsNode[];
-  footerFields: HbsNode[];
+  contentFields: Block[];
+  footerFields: Block[];
 };
 
-const Profile = ({ avatar, userName, contentFields, footerFields }: Props) =>
-  template({
-    leftBar: LeftBar(),
-
-    profileForm: CenteredWrapper({
-      content: ProfileForm({
+class Profile extends Block {
+  constructor({ avatar, userName, contentFields, footerFields }: Props) {
+    const leftBar = new LeftBar();
+    const profileForm = new CenteredWrapper({
+      content: new ProfileForm({
         avatar,
         userName,
         contentFields,
         footerFields,
       }),
-    }),
-  });
+    });
+
+    super({ leftBar, profileForm });
+  }
+
+  protected render(): DocumentFragment {
+    return this.compile(template, this.props);
+  }
+}
 
 export default Profile;

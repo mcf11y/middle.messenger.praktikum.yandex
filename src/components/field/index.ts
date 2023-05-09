@@ -1,16 +1,20 @@
+import Block from "utils/Block";
 import template from "./field.hbs";
 
 type Props = {
-  label: HbsNode;
-  input: HbsNode;
+  label: Block;
+  input: Block;
   style?: any;
 };
 
-const Field = ({ label, input, style }: Props) =>
-  template({
-    label,
-    input,
-    style,
-  });
+class Field extends Block {
+  constructor(props: Props) {
+    super({ ...props });
+  }
+
+  protected render(): DocumentFragment {
+    return this.compile(template, this.props);
+  }
+}
 
 export default Field;

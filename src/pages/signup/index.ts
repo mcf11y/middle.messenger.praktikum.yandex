@@ -1,96 +1,96 @@
-import Button from "../../components/button";
-import Title from "../../components/title";
-import Field from "../../components/field";
-import Input from "../../components/input";
-import Label from "../../components/label";
-import CenteredLayout from "../../components/centeredWrapper";
+import Button from "components/button";
+import Title from "components/title";
+import Field from "components/field";
+import Input from "components/input";
+import Label from "components/label";
+import CenteredLayout from "components/centeredWrapper";
 
-import AuthForm from "../../containers/authForm";
+import AuthForm from "containers/authForm";
 
 const signUpFormContext = {
-  title: Title({
+  title: new Title({
     text: "Регистрация",
     size: "l",
   }),
   contentItems: [
-    Field({
-      label: Label({
+    new Field({
+      label: new Label({
         forId: "email",
         text: "Почта",
       }),
-      input: Input({
+      input: new Input({
         id: "email",
         type: "text",
         placeholder: "Введите почту",
         name: "email",
       }),
     }),
-    Field({
-      label: Label({
+    new Field({
+      label: new Label({
         forId: "login",
         text: "Логин",
       }),
-      input: Input({
+      input: new Input({
         id: "login",
         type: "text",
         placeholder: "Введите логин",
         name: "login",
       }),
     }),
-    Field({
-      label: Label({
+    new Field({
+      label: new Label({
         forId: "first_name",
         text: "Имя",
       }),
-      input: Input({
+      input: new Input({
         id: "first_name",
         type: "text",
         placeholder: "Введите имя",
         name: "first_name",
       }),
     }),
-    Field({
-      label: Label({
+    new Field({
+      label: new Label({
         forId: "second_name",
         text: "Фамилия",
       }),
-      input: Input({
+      input: new Input({
         id: "second_name",
         type: "text",
         placeholder: "Введите фамилию",
         name: "second_name",
       }),
     }),
-    Field({
-      label: Label({
+    new Field({
+      label: new Label({
         forId: "phone",
         text: "Телефон",
       }),
-      input: Input({
+      input: new Input({
         id: "phone",
         type: "tel",
         placeholder: "Введите фамилию",
         name: "phone",
       }),
     }),
-    Field({
-      label: Label({
+    new Field({
+      label: new Label({
         forId: "password",
         text: "Пароль",
       }),
-      input: Input({
+      input: new Input({
         id: "password",
         type: "password",
         placeholder: "Введите пароль",
         name: "password",
       }),
     }),
-    Field({
-      label: Label({
+    new Field({
+      label: new Label({
         forId: "re-password",
         text: "Повторите пароль",
       }),
-      input: Input({
+      input: new Input({
         id: "re-password",
         type: "password",
         placeholder: "Повторно введите пароль",
@@ -98,13 +98,13 @@ const signUpFormContext = {
       }),
     }),
   ],
-  submitBtn: Button({
+  submitBtn: new Button({
     id: "login-submit-btn",
     variant: "primary",
     type: "submit",
     text: "Зарегистрироваться",
   }),
-  redirectBtn: Button({
+  redirectBtn: new Button({
     id: "redirect-btn",
     variant: "link",
     type: "button",
@@ -113,8 +113,9 @@ const signUpFormContext = {
   action: "",
 };
 
-const SignUp = () => CenteredLayout({
-  content: AuthForm(signUpFormContext),
-});
+const SignUp = () =>
+  new CenteredLayout({
+    content: new AuthForm(signUpFormContext),
+  });
 
 export default SignUp;

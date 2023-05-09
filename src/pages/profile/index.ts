@@ -1,73 +1,73 @@
-import Avatar from "../../components/avatar";
-import Title from "../../components/title";
-import Link from "../../components/link";
+import Avatar from "components/avatar";
+import Title from "components/title";
+import Link from "components/link";
 
-import CustomField from "../../components/customField";
+import CustomField from "components/customField";
 
-import Profile from "../../containers/profile";
+import Profile from "containers/profile";
 
 const PROFILE_FIELDS = [
-  CustomField({
-    leftField: Title({
+  new CustomField({
+    leftField: new Title({
       text: "Почта",
       size: "xs",
     }),
-    rightField: Title({
+    rightField: new Title({
       text: "andrey@mail.ru",
       size: "xs",
       color: "gray",
     }),
   }),
-  CustomField({
-    leftField: Title({
+  new CustomField({
+    leftField: new Title({
       text: "Логин",
       size: "xs",
     }),
-    rightField: Title({
+    rightField: new Title({
       text: "andrey@mail.ru",
       size: "xs",
       color: "gray",
     }),
   }),
-  CustomField({
-    leftField: Title({
+  new CustomField({
+    leftField: new Title({
       text: "Имя",
       size: "xs",
     }),
-    rightField: Title({
+    rightField: new Title({
       text: "Иван",
       size: "xs",
       color: "gray",
     }),
   }),
-  CustomField({
-    leftField: Title({
+  new CustomField({
+    leftField: new Title({
       text: "Фамилия",
       size: "xs",
     }),
-    rightField: Title({
+    rightField: new Title({
       text: "Иванов",
       size: "xs",
       color: "gray",
     }),
   }),
-  CustomField({
-    leftField: Title({
+  new CustomField({
+    leftField: new Title({
       text: "Имя в чате",
       size: "xs",
     }),
-    rightField: Title({
+    rightField: new Title({
       text: "Иван",
       size: "xs",
       color: "gray",
     }),
   }),
-  CustomField({
-    leftField: Title({
+  new CustomField({
+    leftField: new Title({
       text: "Телефон",
       size: "xs",
     }),
-    rightField: Title({
+    rightField: new Title({
       text: "+7 (909) 967 30 30",
       size: "xs",
       color: "gray",
@@ -76,18 +76,18 @@ const PROFILE_FIELDS = [
 ];
 
 const FOOTER_FIELDS = [
-  CustomField({
-    leftField: Link({
+  new CustomField({
+    leftField: new Link({
       text: "Изменить данные",
     }),
   }),
-  CustomField({
-    leftField: Link({
+  new CustomField({
+    leftField: new Link({
       text: "Изменить пароль",
     }),
   }),
-  CustomField({
-    leftField: Link({
+  new CustomField({
+    leftField: new Link({
       text: "Выйти",
       color: "red",
     }),
@@ -95,11 +95,12 @@ const FOOTER_FIELDS = [
   }),
 ];
 
-const ProfilePage = () => Profile({
-  avatar: Avatar({size: "l"}),
-  userName: "Иван",
-  contentFields: PROFILE_FIELDS,
-  footerFields: FOOTER_FIELDS,
-});
+const ProfilePage = () =>
+  new Profile({
+    avatar: new Avatar({ size: "l" }),
+    userName: "Иван",
+    contentFields: PROFILE_FIELDS,
+    footerFields: FOOTER_FIELDS,
+  });
 
 export default ProfilePage;

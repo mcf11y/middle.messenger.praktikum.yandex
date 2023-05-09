@@ -58,27 +58,29 @@ const routes = [
 
 const root = document.getElementById("root");
 
-
 (window as any).router = (event: any) => {
   event.preventDefault();
   window.history.pushState({}, "newUrl", event.target.href);
-  const route = routes.find(r => r.path === window.location.pathname);
+  const route = routes.find((r) => r.path === window.location.pathname);
   if (root != null && route?.data) {
-    root.innerHTML = route.data;
+    root.innerHTML = "";
+    root!.append(route.data.getContent()!);
   }
 };
 
 window.addEventListener("popstate", () => {
-  const route = routes.find(r => r.path === window.location.pathname);
+  const route = routes.find((r) => r.path === window.location.pathname);
   if (root != null && route?.data) {
-    root.innerHTML = route?.data;
+    root.innerHTML = "";
+    root!.append(route.data.getContent()!);
   }
 });
 
 window.addEventListener("DOMContentLoaded", () => {
-  const route = routes.find(r => r.path === window.location.pathname);
+  const route = routes.find((r) => r.path === window.location.pathname);
 
   if (root != null && route?.data) {
-    root.innerHTML = route?.data;
+    root.innerHTML = "";
+    root!.append(route.data.getContent()!);
   }
 });

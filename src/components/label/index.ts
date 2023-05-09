@@ -1,19 +1,26 @@
+import Block from "utils/Block";
 import template from "./label.hbs";
 
 type Props = {
-	id?: string;
-	forId?: string;
-	text: string;
-	isBlack?: boolean;
+  id?: string;
+  forId?: string;
+  text: string;
+  isBlack?: boolean;
 };
 
-const Label = ({
-  id, forId, text, isBlack = false,
-}: Props) => template({
-  id,
-  forId,
-  text,
-  isBlack,
-});
+class Label extends Block {
+  constructor({ id, forId, text, isBlack = false }: Props) {
+    super({
+      id,
+      forId,
+      text,
+      isBlack,
+    });
+  }
+
+  protected render(): DocumentFragment {
+    return this.compile(template, this.props);
+  }
+}
 
 export default Label;

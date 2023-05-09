@@ -1,38 +1,39 @@
 import Title from "components/title";
 import Badge from "components/badge";
 
+import Block from "utils/Block";
 import template from "./chatItem.hbs";
 
 type Props = {
-  id: None<string | number>;
-  avatar: HbsNode;
+  id?: string | number;
+  avatar: Block;
   chatName: string;
   lastMessage?: string;
   time: string;
   missedMesssageCount?: number;
 };
 
-const ChatItem = ({
-  avatar,
-  chatName,
-  lastMessage,
-  time,
-  missedMesssageCount,
-}: Props) =>
-  template({
-    avatar,
-    chatName: Title({
-      text: chatName,
+class ChatItem extends Block {
+  constructor(props: Props) {
+    super({
+      ...props,
+    });
+  }
+
+  protected init() {
+    this.children.chatTitle = new Title({
+      text: this.props.chatName,
       size: "xs",
-    }),
-    lastMessage,
-    time,
-    countBadge:
-      missedMesssageCount !== undefined
-        ? Badge({
-          text: missedMesssageCount,
-        })
-        : null,
-  });
+    });
+
+    if (this.props.missedMesssageCount) {
+      this.children.countBadge = new Badge({ text: this.props.missedMesssageCount });
+    }
+  }
+
+  protected render(): DocumentFragment {
+    return this.compile(template, this.props);
+  }
+}
 
 export default ChatItem;

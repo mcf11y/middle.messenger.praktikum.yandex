@@ -1,6 +1,7 @@
 import { ChatDetailsData } from "types/chat";
 import IconButton from "components/iconButton";
 import Divider from "components/divider";
+import Block from "utils/Block";
 import Header from "./components/messageSectionHeader";
 import Content from "./components/messageSectionContent";
 import Footer from "./components/messageSectionFooter";
@@ -8,30 +9,26 @@ import Footer from "./components/messageSectionFooter";
 import AttachIcon from "../../../../static/icons/attach-icon.svg";
 import SubmitIcon from "../../../../static/icons/arrow-right.svg";
 
-import EmptyMessage from "./components/emptyMessageSection";
-
 import template from "./messageSection.hbs";
 
 type Props = {
   currentChat: ChatDetailsData;
 };
 
-const ChatMessages = ({ currentChat }: Props) => {
-  if (!currentChat) {
-    return EmptyMessage();
+class ChatMessages extends Block {
+  constructor(props: Props) {
+    super({ ...props });
   }
 
-  const { chatName, messages, myDraftMessage } = currentChat;
+  protected init() {
+    const { chatName, messages, myDraftMessage } = this.props.currentChat;
 
-  return template({
-    header: Header({
-      chatName,
-    }),
-    content: Content({
-      messages,
-    }),
-    footer: Footer({
-      attachButton: IconButton({
+    this.children.header = new Header({ chatName });
+    this.children.topDivider = new Divider();
+    this.children.content = new Content({ messages });
+    this.children.bottomDivider = new Divider();
+    this.children.footer = new Footer({
+      attachButton: new IconButton({
         iconSrc: AttachIcon,
         variant: "secondary",
         btnWidth: 35,
@@ -41,12 +38,15 @@ const ChatMessages = ({ currentChat }: Props) => {
         myDraftMessage != null && myDraftMessage.contentType === "text"
           ? myDraftMessage.content.toString()
           : undefined,
-      submitButton: IconButton({
+      submitButton: new IconButton({
         iconSrc: SubmitIcon,
       }),
-    }),
-    divider: Divider(),
-  });
-};
+    });
+  }
+
+  protected render(): DocumentFragment {
+    return this.compile(template, this.props);
+  }
+}
 
 export default ChatMessages;

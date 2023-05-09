@@ -1,20 +1,20 @@
-import Avatar from "../../components/avatar";
-import Label from "../../components/label";
-import Input from "../../components/input";
-import Button from "../../components/button";
+import Avatar from "components/avatar";
+import Label from "components/label";
+import Input from "components/input";
+import Button from "components/button";
 
-import CustomField from "../../components/customField";
+import CustomField from "components/customField";
 
-import Profile from "../../containers/profile";
+import Profile from "containers/profile";
 
 const EDIT_PROFILE_FIELDS = [
-  CustomField({
-    leftField: Label({
+  new CustomField({
+    leftField: new Label({
       forId: "email",
       text: "Почта",
       isBlack: true,
     }),
-    rightField: Input({
+    rightField: new Input({
       id: "email",
       type: "text",
       value: "andrey@mail.ru",
@@ -22,13 +22,13 @@ const EDIT_PROFILE_FIELDS = [
       reverseAlign: true,
     }),
   }),
-  CustomField({
-    leftField: Label({
+  new CustomField({
+    leftField: new Label({
       forId: "login",
       text: "Логин",
       isBlack: true,
     }),
-    rightField: Input({
+    rightField: new Input({
       id: "login",
       type: "text",
       value: "andrey@mail.ru",
@@ -36,13 +36,13 @@ const EDIT_PROFILE_FIELDS = [
       reverseAlign: true,
     }),
   }),
-  CustomField({
-    leftField: Label({
+  new CustomField({
+    leftField: new Label({
       forId: "first_name",
       text: "Имя",
       isBlack: true,
     }),
-    rightField: Input({
+    rightField: new Input({
       id: "first_name",
       type: "text",
       value: "Иван",
@@ -50,13 +50,13 @@ const EDIT_PROFILE_FIELDS = [
       reverseAlign: true,
     }),
   }),
-  CustomField({
-    leftField: Label({
+  new CustomField({
+    leftField: new Label({
       forId: "second_name",
       text: "Фамилия",
       isBlack: true,
     }),
-    rightField: Input({
+    rightField: new Input({
       id: "second_name",
       type: "text",
       value: "Иванов",
@@ -64,13 +64,13 @@ const EDIT_PROFILE_FIELDS = [
       reverseAlign: true,
     }),
   }),
-  CustomField({
-    leftField: Label({
+  new CustomField({
+    leftField: new Label({
       forId: "display_name",
       text: "Имя в чате",
       isBlack: true,
     }),
-    rightField: Input({
+    rightField: new Input({
       id: "display_name",
       type: "text",
       value: "Иван",
@@ -78,13 +78,13 @@ const EDIT_PROFILE_FIELDS = [
       reverseAlign: true,
     }),
   }),
-  CustomField({
-    leftField: Label({
+  new CustomField({
+    leftField: new Label({
       forId: "phone",
       text: "Телефон",
       isBlack: true,
     }),
-    rightField: Input({
+    rightField: new Input({
       id: "phone",
       type: "tel",
       value: "+7 (909) 967 30 30",
@@ -95,17 +95,18 @@ const EDIT_PROFILE_FIELDS = [
 ];
 
 const EDIT_PROFILE_FOOTER_FIELDS = [
-  Button({
+  new Button({
     variant: "primary",
     text: "Сохранить",
     width: 280,
   }),
 ];
 
-const EditProfilePage = () => Profile({
-  avatar: Avatar({size: "l"}),
-  contentFields: EDIT_PROFILE_FIELDS,
-  footerFields: EDIT_PROFILE_FOOTER_FIELDS,
-});
+const EditProfilePage = () =>
+  new Profile({
+    avatar: new Avatar({ size: "l" }),
+    contentFields: EDIT_PROFILE_FIELDS,
+    footerFields: EDIT_PROFILE_FOOTER_FIELDS,
+  });
 
 export default EditProfilePage;

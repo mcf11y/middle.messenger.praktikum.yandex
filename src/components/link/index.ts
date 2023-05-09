@@ -1,3 +1,4 @@
+import Block from "utils/Block";
 import template from "./link.hbs";
 
 type Props = {
@@ -8,13 +9,20 @@ type Props = {
   color?: string;
 };
 
-const Link = ({ id, text, href, disabled = false, color }: Props) =>
-  template({
-    id,
-    text,
-    href,
-    disabled,
-    color,
-  });
+class Link extends Block {
+  constructor({ id, text, href, disabled = false, color }: Props) {
+    super({
+      id,
+      text,
+      href,
+      disabled,
+      color,
+    });
+  }
+
+  protected render(): DocumentFragment {
+    return this.compile(template, this.props);
+  }
+}
 
 export default Link;

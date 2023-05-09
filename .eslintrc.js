@@ -3,7 +3,6 @@ module.exports = {
   env: {
     browser: true,
     es2021: true,
-    jest: true,
   },
   extends: [
     "eslint:recommended",
@@ -27,7 +26,7 @@ module.exports = {
         ignoreStrings: true,
       },
     ],
-    "arrow-parens": ["error", "as-needed"],
+    "arrow-parens": ["error", "always"],
     "prefer-destructuring": 0,
     "operator-linebreak": 0,
     "implicit-arrow-linebreak": "off",
@@ -35,20 +34,25 @@ module.exports = {
     "object-curly-newline": "off",
     "newline-per-chained-call": "off",
     "no-console": 0,
-
+    "no-restricted-syntax": 0,
+    eqeqeq: 0,
     "consistent-return": 1,
     "no-await-in-loop": 1,
-    "no-debugger": process.env.NODE_ENV === "production" ? 2 : 0,
+    "no-param-reassign": 0,
     "linebreak-style": 0,
-    "no-plusplus": ["error", { allowForLoopAfterthoughts: true }],
 
     "default-param-last": "off",
     "no-plusplus": "off",
+    "lines-between-class-members": "off",
+    "class-methods-use-this": "off",
+
+    "no-underscore-dangle": "off",
     // Conflict with Typescript
     "import/extensions": 0,
     "import/no-unresolved": 0,
     "no-use-before-define": 0,
     "import/no-extraneous-dependencies": 0,
+    "@typescript-eslint/lines-between-class-members": "off",
 
     "@typescript-eslint/default-param-last": "off",
     "@typescript-eslint/no-plusplus": "off",

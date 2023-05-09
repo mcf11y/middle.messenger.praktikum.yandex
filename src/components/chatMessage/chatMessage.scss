@@ -1,6 +1,14 @@
 .chat-message {
   display: flex;
+  flex-direction: column;
+  max-width: 100%;
+}
+
+.chat-message-item {
+  display: flex;
+  flex-direction: column;
   max-width: 45%;
+
   border-radius: 12px;
   padding: 11px;
   font-family: Inter;
@@ -9,11 +17,17 @@
   font-size: 12px;
   line-height: 15px;
 
-  &__blue {
-    background-color: $ligth-blue;
+  &__left {
+    justify-content: left;
+    align-self: flex-start;
+
+    background-color: $light-gray;
   }
 
-  &__gray {
-    background-color: $light-gray;
+  &__right {
+    align-self: flex-end;
+    justify-content: right;
+
+    background-color: $ligth-blue;
   }
 }

@@ -81,6 +81,123 @@ export const CHAT_LIST = [
     time: "10:39",
     missedMesssageCount: 2,
   },
+  {
+    id: 5,
+    chatName: "Андрей",
+    lastMessage: {
+      contentType: "text",
+      content:
+        "Друзья, у меня для вас особенный выпуск новостей! Друзья, у меня для вас особенный выпуск новостей!",
+    },
+    time: "15:12",
+    missedMesssageCount: 4,
+  },
+  {
+    id: 6,
+    chatName: "Андрей",
+    lastMessage: {
+      contentType: "text",
+      content:
+        "Друзья, у меня для вас особенный выпуск новостей! Друзья, у меня для вас особенный выпуск новостей!",
+    },
+    time: "15:12",
+    missedMesssageCount: 4,
+  },
+  {
+    id: 7,
+    chatName: "Андрей",
+    lastMessage: {
+      contentType: "text",
+      content:
+        "Друзья, у меня для вас особенный выпуск новостей! Друзья, у меня для вас особенный выпуск новостей!",
+    },
+    time: "15:12",
+    missedMesssageCount: 4,
+  },
+  {
+    id: 8,
+    chatName: "Андрей",
+    time: "10:39",
+    missedMesssageCount: 2,
+  },
+  {
+    id: 5,
+    chatName: "Андрей",
+    lastMessage: {
+      contentType: "text",
+      content:
+        "Друзья, у меня для вас особенный выпуск новостей! Друзья, у меня для вас особенный выпуск новостей!",
+    },
+    time: "15:12",
+    missedMesssageCount: 4,
+  },
+  {
+    id: 6,
+    chatName: "Андрей",
+    lastMessage: {
+      contentType: "text",
+      content:
+        "Друзья, у меня для вас особенный выпуск новостей! Друзья, у меня для вас особенный выпуск новостей!",
+    },
+    time: "15:12",
+    missedMesssageCount: 4,
+  },
+  {
+    id: 7,
+    chatName: "Андрей",
+    lastMessage: {
+      contentType: "text",
+      content:
+        "Друзья, у меня для вас особенный выпуск новостей! Друзья, у меня для вас особенный выпуск новостей!",
+    },
+    time: "15:12",
+    missedMesssageCount: 4,
+  },
+  {
+    id: 8,
+    chatName: "Андрей",
+    time: "10:39",
+    missedMesssageCount: 2,
+  },
+  {
+    id: 5,
+    chatName: "Андрей",
+    lastMessage: {
+      contentType: "text",
+      content:
+        "Друзья, у меня для вас особенный выпуск новостей! Друзья, у меня для вас особенный выпуск новостей!",
+    },
+    time: "15:12",
+    missedMesssageCount: 4,
+  },
+  {
+    id: 6,
+    chatName: "Андрей",
+    lastMessage: {
+      contentType: "text",
+      content:
+        "Друзья, у меня для вас особенный выпуск новостей! Друзья, у меня для вас особенный выпуск новостей!",
+    },
+    time: "15:12",
+    missedMesssageCount: 4,
+  },
+  {
+    id: 7,
+    chatName: "Андрей",
+    lastMessage: {
+      contentType: "text",
+      content:
+        "Друзья, у меня для вас особенный выпуск новостей! Друзья, у меня для вас особенный выпуск новостей!",
+    },
+    time: "15:12",
+    missedMesssageCount: 4,
+  },
+  {
+    id: 8,
+    chatName: "Андрей",
+    time: "10:39",
+    missedMesssageCount: 2,
+  },
 ] as ChatData[];
 
 export const CURRENT_CHAT = {

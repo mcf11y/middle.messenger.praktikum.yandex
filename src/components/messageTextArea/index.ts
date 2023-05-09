@@ -1,16 +1,24 @@
+import Block from "utils/Block";
 import template from "./messageTextArea.hbs";
 
 type Props = {
-  savedMessage: None<string>;
+  savedMessage?: Nullable<string>;
   name: string;
   placeholder: string;
 };
 
-const MessageInputArea = ({ savedMessage, name, placeholder = "" }: Props) =>
-  template({
-    savedMessage,
-    name,
-    placeholder,
-  });
+class MessageInputArea extends Block {
+  constructor({ savedMessage, name, placeholder = "" }: Props) {
+    super({
+      savedMessage,
+      name,
+      placeholder,
+    });
+  }
+
+  protected render(): DocumentFragment {
+    return this.compile(template, this.props);
+  }
+}
 
 export default MessageInputArea;

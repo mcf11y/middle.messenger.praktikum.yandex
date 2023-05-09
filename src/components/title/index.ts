@@ -1,3 +1,4 @@
+import Block from "utils/Block";
 import template from "./title.hbs";
 
 type Props = {
@@ -7,12 +8,19 @@ type Props = {
   color?: "gray";
 };
 
-const Title = ({ id, text, size, color }: Props) =>
-  template({
-    id,
-    text,
-    size,
-    color,
-  });
+class Title extends Block {
+  constructor({ id, text, size, color }: Props) {
+    super({
+      id,
+      text,
+      size,
+      color,
+    });
+  }
+
+  protected render(): DocumentFragment {
+    return this.compile(template, this.props);
+  }
+}
 
 export default Title;

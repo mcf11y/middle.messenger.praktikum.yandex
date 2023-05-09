@@ -1,15 +1,20 @@
+import Block from "utils/Block";
 import template from "./avatar.hbs";
 
 type Props = {
-	id?: string;
-	size?: "s" | "m" | "l";
-	imageSrc?: string | HTMLImageElement;
+  id?: string;
+  size?: "s" | "m" | "l";
+  imageSrc?: string | HTMLImageElement;
 };
 
-const Avatar = ({id, size, imageSrc}: Props) => template({
-  id,
-  size,
-  imageSrc,
-});
+class Avatar extends Block<Props> {
+  constructor(props: Props) {
+    super({ ...props });
+  }
+
+  protected render(): DocumentFragment {
+    return this.compile(template, this.props);
+  }
+}
 
 export default Avatar;

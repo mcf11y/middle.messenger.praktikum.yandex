@@ -1,3 +1,4 @@
+import Block from "utils/Block";
 import template from "./iconButton.hbs";
 
 type Props = {
@@ -9,21 +10,28 @@ type Props = {
   iconWidth?: number;
 };
 
-const IconButton = ({
-  id,
-  variant = "primary",
-  iconSrc,
-  disabled = false,
-  btnWidth,
-  iconWidth,
-}: Props) =>
-  template({
+class IconButton extends Block {
+  constructor({
     id,
+    variant = "primary",
     iconSrc,
-    variant,
+    disabled = false,
     btnWidth,
     iconWidth,
-    disabled,
-  });
+  }: Props) {
+    super({
+      id,
+      iconSrc,
+      variant,
+      btnWidth,
+      iconWidth,
+      disabled,
+    });
+  }
+
+  protected render(): DocumentFragment {
+    return this.compile(template, this.props);
+  }
+}
 
 export default IconButton;

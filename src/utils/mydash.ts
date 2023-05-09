@@ -1,4 +1,4 @@
-import {isBuffer, isTypedArray} from "lodash";
+import { isBuffer, isTypedArray } from "lodash";
 
 export function identity<T>(arg: T): T {
   return arg;
@@ -53,10 +53,10 @@ export function rangeRight(start: number, end: number, step: number) {
 
 function isLength<T>(value: T) {
   return (
-    typeof value === "number"
-    && value > -1
-    && value % 1 === 0
-    && value <= Number.MAX_SAFE_INTEGER
+    typeof value === "number" &&
+    value > -1 &&
+    value % 1 === 0 &&
+    value <= Number.MAX_SAFE_INTEGER
   );
 }
 
@@ -67,10 +67,10 @@ export function isNil(value: unknown): value is undefined | null {
 export function isArrayLike<T>(value: T) {
   if (typeof value === "object") {
     return (
-      !isNil(value)
-      && typeof value !== "function"
-      && "length" in value
-      && isLength(value.length)
+      !isNil(value) &&
+      typeof value !== "function" &&
+      "length" in value &&
+      isLength(value.length)
     );
   }
 
@@ -108,13 +108,13 @@ export function isEmpty(value: any) {
   }
 
   if (
-    isArrayLike(value)
-    && (Array.isArray(value)
-      || typeof value === "string"
-      || typeof value.splice === "function"
-      || isBuffer(value)
-      || isTypedArray(value)
-      || isArguments(value))
+    isArrayLike(value) &&
+    (Array.isArray(value) ||
+      typeof value === "string" ||
+      typeof value.splice === "function" ||
+      isBuffer(value) ||
+      isTypedArray(value) ||
+      isArguments(value))
   ) {
     return !value.length;
   }
@@ -142,36 +142,36 @@ type NestedArray<T = unknown> = T | Array<NestedArray<T>>;
 
 // Too infinity deep
 export type FlatArray<Arr, Depth extends number> = {
-	done: Arr;
-	recur: Arr extends ReadonlyArray<infer InnerArr>
-		? FlatArray<
-		InnerArr,
-		[
-			-1,
-			0,
-			1,
-			2,
-			3,
-			4,
-			5,
-			6,
-			7,
-			8,
-			9,
-			10,
-			11,
-			12,
-			13,
-			14,
-			15,
-			16,
-			17,
-			18,
-			19,
-			20,
-		][Depth]
-		>
-		: Arr;
+  done: Arr;
+  recur: Arr extends ReadonlyArray<infer InnerArr>
+    ? FlatArray<
+        InnerArr,
+        [
+          -1,
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20
+        ][Depth]
+      >
+    : Arr;
 }[Depth extends -1 ? "done" : "recur"];
 
 export function flatten<T>(array: Array<NestedArray<T>>): T[] {
@@ -189,4 +189,56 @@ export function flatten<T>(array: Array<NestedArray<T>>): T[] {
   }
 
   return result;
+}
+
+export function isEqualObjDeep(
+  obj1: Record<string, unknown>,
+  obj2: Record<string, unknown>
+): boolean {
+  const keys1 = Object.keys(obj1).sort();
+  const keys2 = Object.keys(obj2).sort();
+
+  if (keys1.length !== keys2.length) {
+    return false;
+  }
+
+  for (let i = 0; i < keys1.length; i++) {
+    if (keys1[i] !== keys2[i]) {
+      return false;
+    }
+
+    const val1 = obj1[keys1[i]];
+    const val2 = obj2[keys2[i]];
+    if (typeof val1 !== typeof val2) {
+      return false;
+    }
+
+    if (isObjectLike(val1) && isObjectLike(val2)) {
+      if (Array.isArray(val1)) {
+        if (val1.length !== (val2 as any[]).length) {
+          return false;
+        }
+        val1.forEach((item, index) => {
+          if (item !== (val2 as any[])[index]) {
+            return false;
+          }
+        });
+      } else if (
+        val1 instanceof Set ||
+        val1 instanceof Map ||
+        val1 instanceof Function ||
+        val2 instanceof Set ||
+        val2 instanceof Map ||
+        val2 instanceof Function
+      ) {
+        return false;
+      } else {
+        isEqualObjDeep(val1 as any, val2 as any);
+      }
+    } else if (val1 !== val2) {
+      return false;
+    }
+  }
+
+  return true;
 }

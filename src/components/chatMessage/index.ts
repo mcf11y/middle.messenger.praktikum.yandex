@@ -1,15 +1,25 @@
+import Block from "utils/Block";
 import template from "./chatMessage.hbs";
 
 type Props = {
-	message: string;
-	time: string;
-	my: boolean;
+  message: string;
+  time: string;
+  my: boolean;
 };
 
-const ChatMessage = ({message, time, my}: Props) => template({
-  message,
-  time,
-  color: my ? "blue" : "gray",
-});
+class ChatMessage extends Block {
+  constructor({ message, time, my }: Props) {
+    super({
+      message,
+      time,
+      color: my ? "blue" : "gray",
+      position: my ? "right" : "left",
+    });
+  }
+
+  protected render(): DocumentFragment {
+    return this.compile(template, this.props);
+  }
+}
 
 export default ChatMessage;

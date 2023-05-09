@@ -37,7 +37,7 @@
     "baseUrl": "src"
   },
 
-  "include": ["./src/**/*.ts"],
+  "include": ["./src/**/*.ts", "src/**/*.hbs", "src/utils/test.js", "src/utils/EventBus.ts", "src/utils/Block.js"],
 
   "exclude": ["node_modules"]
 }
