@@ -1,11 +1,69 @@
 import Button from "components/button";
 import Title from "components/title";
 import Field from "components/field";
-import Input from "components/input";
-import Label from "components/label";
 import CenteredLayout from "components/centeredWrapper";
 
 import AuthForm from "containers/authForm";
+
+const emailField = new Field({
+  id: "email",
+  type: "text",
+  fieldName: "Почта",
+  placeholder: "Введите почту",
+  inputName: "email",
+});
+
+const loginField = new Field({
+  id: "login",
+  type: "text",
+  fieldName: "Логин",
+  placeholder: "Введите логин",
+  inputName: "login",
+});
+
+const firstNameField = new Field({
+  id: "first_name",
+  type: "text",
+  fieldName: "Имя",
+  placeholder: "Введите имя",
+  inputName: "first_name",
+});
+
+const secondNameField = new Field({
+  id: "second_name",
+  type: "text",
+  fieldName: "Фамилия",
+  placeholder: "Введите фамилию",
+  inputName: "second_name",
+});
+
+const phoneField = new Field({
+  id: "phone",
+  type: "tel",
+  fieldName: "Телефон",
+  placeholder: "Введите телефон",
+  inputName: "phone",
+});
+
+const passwordField = new Field({
+  id: "password",
+  type: "password",
+  fieldName: "Пароль",
+  placeholder: "Введите пароль",
+  inputName: "password",
+});
+
+const rePasswordField = new Field({
+  id: "re-password",
+  type: "password",
+  fieldName: "Повторите пароль",
+  placeholder: "Повторно введите пароль",
+  inputName: "password",
+});
+
+const onAuthFormSubmit = (data: any) => {
+  console.log(data);
+};
 
 const signUpFormContext = {
   title: new Title({
@@ -13,90 +71,13 @@ const signUpFormContext = {
     size: "l",
   }),
   contentItems: [
-    new Field({
-      label: new Label({
-        forId: "email",
-        text: "Почта",
-      }),
-      input: new Input({
-        id: "email",
-        type: "text",
-        placeholder: "Введите почту",
-        name: "email",
-      }),
-    }),
-    new Field({
-      label: new Label({
-        forId: "login",
-        text: "Логин",
-      }),
-      input: new Input({
-        id: "login",
-        type: "text",
-        placeholder: "Введите логин",
-        name: "login",
-      }),
-    }),
-    new Field({
-      label: new Label({
-        forId: "first_name",
-        text: "Имя",
-      }),
-      input: new Input({
-        id: "first_name",
-        type: "text",
-        placeholder: "Введите имя",
-        name: "first_name",
-      }),
-    }),
-    new Field({
-      label: new Label({
-        forId: "second_name",
-        text: "Фамилия",
-      }),
-      input: new Input({
-        id: "second_name",
-        type: "text",
-        placeholder: "Введите фамилию",
-        name: "second_name",
-      }),
-    }),
-    new Field({
-      label: new Label({
-        forId: "phone",
-        text: "Телефон",
-      }),
-      input: new Input({
-        id: "phone",
-        type: "tel",
-        placeholder: "Введите фамилию",
-        name: "phone",
-      }),
-    }),
-    new Field({
-      label: new Label({
-        forId: "password",
-        text: "Пароль",
-      }),
-      input: new Input({
-        id: "password",
-        type: "password",
-        placeholder: "Введите пароль",
-        name: "password",
-      }),
-    }),
-    new Field({
-      label: new Label({
-        forId: "re-password",
-        text: "Повторите пароль",
-      }),
-      input: new Input({
-        id: "re-password",
-        type: "password",
-        placeholder: "Повторно введите пароль",
-        name: "password",
-      }),
-    }),
+    emailField,
+    loginField,
+    firstNameField,
+    secondNameField,
+    phoneField,
+    passwordField,
+    rePasswordField,
   ],
   submitBtn: new Button({
     id: "login-submit-btn",
@@ -111,6 +92,7 @@ const signUpFormContext = {
     text: "Уже есть аккаунт?",
   }),
   action: "",
+  onSubmit: onAuthFormSubmit,
 };
 
 const SignUp = () =>

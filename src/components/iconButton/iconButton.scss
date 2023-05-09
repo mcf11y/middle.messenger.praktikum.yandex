@@ -28,4 +28,13 @@
       background-color: $gray-light-background;
     }
   }
+
+  &__disabled {
+    opacity: 0.7;
+    background-color: $primary-blue;
+
+    &:hover {
+      background-color: $primary-blue;
+    }
+  }
 }

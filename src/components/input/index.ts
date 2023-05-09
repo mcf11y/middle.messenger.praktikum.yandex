@@ -9,6 +9,9 @@ type Props = {
   name?: string;
   disabled?: boolean;
   reverseAlign?: boolean;
+  onFocus?: (e: any) => void;
+  onBlur?: (e: any) => void;
+  onChange?: (e: any) => void;
 };
 
 class Input extends Block {
@@ -20,6 +23,9 @@ class Input extends Block {
     name,
     disabled = false,
     reverseAlign = false,
+    onFocus,
+    onBlur,
+    onChange,
   }: Props) {
     super({
       id,
@@ -29,12 +35,23 @@ class Input extends Block {
       value,
       disabled,
       reverseAlign,
+      onFocus,
+      onBlur,
+      onChange,
     });
+  }
+
+  protected init(): void {
+    this.props.events = {
+      focus: (e: any) => this.props?.onFocus?.(e),
+      blur: (e: any) => this.props?.onBlur?.(e),
+      change: (e: any) => this.props.onChange?.(e),
+    };
   }
 
   public setValue(value: string) {
     // eslint-disable-next-line no-return-assign
-    return (this.element as HTMLInputElement).value = value;
+    return ((this.element as HTMLInputElement).value = value);
   }
 
   public getName() {

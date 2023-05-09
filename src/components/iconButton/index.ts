@@ -8,6 +8,7 @@ type Props = {
   disabled?: boolean;
   btnWidth?: number;
   iconWidth?: number;
+  onClick?: () => void;
 };
 
 class IconButton extends Block {
@@ -18,6 +19,7 @@ class IconButton extends Block {
     disabled = false,
     btnWidth,
     iconWidth,
+    onClick,
   }: Props) {
     super({
       id,
@@ -26,7 +28,22 @@ class IconButton extends Block {
       btnWidth,
       iconWidth,
       disabled,
+      onClick,
     });
+  }
+
+  protected init (): void {
+    this.props.events = {
+      click: this.props?.onClick?.bind(this),
+    }
+  }
+
+  public disabled (): void {
+    this.props.disabled = true;
+  }
+
+  public enabled (): void {
+    this.props.disabled = false;
   }
 
   protected render(): DocumentFragment {

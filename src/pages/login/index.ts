@@ -1,37 +1,29 @@
 import Button from "components/button";
 import Title from "components/title";
 import Field from "components/field";
-import Input from "components/input";
-import Label from "components/label";
 import CenteredLayout from "components/centeredWrapper";
 
 import AuthForm from "containers/authForm";
 
 const loginField = new Field({
-  label: new Label({
-    forId: "login",
-    text: "Логин",
-  }),
-  input: new Input({
-    id: "login",
-    type: "text",
-    placeholder: "Введите логин",
-    name: "login",
-  }),
+  id: "login",
+  type: "text",
+  fieldName: "Логин",
+  placeholder: "Введите логин",
+  inputName: "login",
 });
 
 const passwordField = new Field({
-  label: new Label({
-    id: "login",
-    text: "Пароль",
-  }),
-  input: new Input({
-    id: "password",
-    type: "password",
-    placeholder: "Введите пароль",
-    name: "password",
-  }),
+  id: "password",
+  type: "password",
+  fieldName: "Пароль",
+  placeholder: "Введите пароль",
+  inputName: "password",
 });
+
+const onAuthFormSubmit = (data: any) => {
+  console.log(data);
+};
 
 const loginFormContext = {
   title: new Title({
@@ -52,6 +44,7 @@ const loginFormContext = {
     text: "Нет аккаунта?",
   }),
   actionUrl: "",
+  onSubmit: onAuthFormSubmit,
 };
 
 const Login = () =>

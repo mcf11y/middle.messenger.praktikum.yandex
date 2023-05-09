@@ -5,48 +5,64 @@ const NOT_EMPTY_REGEX = /.+/;
 
 const NAME_REGEX = /^[A-ZА-Я]+[a-zA-Zа-яА-Я-]*$/;
 
-const EMAIL_REGEX =
-  /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@(\.)[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+const EMAIL_REGEX = /^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/;
 
 const LOGIN_REGEX = /(?!^\d+$)^[a-zA-Z0-9_-]{3,20}$/;
 
-const PHONE_REGEX = /^(\+)?\d{10,15}$/g;
+const PHONE_REGEX = /^\+?\d{1,3}[- ]?\d{2,3}[- ]?\d{2,3}[- ]?\d{2,3}$/;
 
-export enum InputValidateType {
-  PASSWORD,
-  NAME,
-  EMAIL,
-  LOGIN,
-  NOT_EMPTY,
-  PHONE,
+export enum InputValidateEnum {
+  PASSWORD = "password",
+  NAME = "name",
+  EMAIL = "email",
+  LOGIN = "login",
+  NOT_EMPTY = "not-empty",
+  PHONE = "phone",
 }
 
-export const validateInput = (value: string, type: InputValidateType) => {
-  let isValid = true;
+export const validateInput = (
+  value: string,
+  type: InputValidateEnum | string
+): string => {
+  let errorMessage = "";
 
   switch (type) {
-    case InputValidateType.PASSWORD:
-      isValid = PASSWORD_REGEX.test(value);
+    case InputValidateEnum.PASSWORD:
+      if (!PASSWORD_REGEX.test(value)) {
+        errorMessage = "Invalid password";
+      }
       break;
-    case InputValidateType.NAME:
-      isValid = NAME_REGEX.test(value);
+    case InputValidateEnum.NAME:
+      if (!NAME_REGEX.test(value)) {
+        errorMessage = "Invalid name";
+      }
       break;
-    case InputValidateType.EMAIL:
-      isValid = EMAIL_REGEX.test(value);
+    case InputValidateEnum.EMAIL:
+      if (!EMAIL_REGEX.test(value)) {
+        errorMessage = "Invalid email";
+      }
       break;
-    case InputValidateType.LOGIN:
-      isValid = LOGIN_REGEX.test(value);
+    case InputValidateEnum.LOGIN:
+      if (!LOGIN_REGEX.test(value)) {
+        errorMessage = "Invalid login";
+      }
       break;
-    case InputValidateType.NOT_EMPTY:
-      isValid = NOT_EMPTY_REGEX.test(value);
+    case InputValidateEnum.NOT_EMPTY:
+      if (!NOT_EMPTY_REGEX.test(value)) {
+        errorMessage = "The field cannot be empty";
+      }
       break;
-    case InputValidateType.PHONE:
-      isValid = PHONE_REGEX.test(value);
+    case InputValidateEnum.PHONE:
+      if (!PHONE_REGEX.test(value)) {
+        errorMessage = "Invalid phone";
+      }
       break;
     default:
-      isValid = false;
+      if (!NAME_REGEX.test(value)) {
+        errorMessage = "Invalid name";
+      }
       break;
   }
 
-  return isValid;
+  return errorMessage;
 };

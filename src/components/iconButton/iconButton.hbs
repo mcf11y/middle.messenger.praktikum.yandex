@@ -1,5 +1,6 @@
 <button
-  class="icon-button{{#if disabled}} disabled{{/if}} icon-button__{{variant}}"
+  class="icon-button icon-button__{{variant}} {{#if disabled}} icon-button__disabled{{/if}}"
+  {{#if disabled}} disabled{{/if}}
   {{#if btnWidth}}
     style="width: {{btnWidth}}px; height: {{btnWidth}}px;"
   {{/if}}

@@ -47,7 +47,6 @@ module.exports = {
     "class-methods-use-this": "off",
 
     "no-underscore-dangle": "off",
-    // Conflict with Typescript
     "import/extensions": 0,
     "import/no-unresolved": 0,
     "no-use-before-define": 0,

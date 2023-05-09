@@ -4,5 +4,15 @@
   flex-direction: column;
   border: none;
   margin-bottom: 16px;
-  border-bottom: 1px solid $primary-blue;
+
+  &__content {
+    border-bottom: 1px solid $primary-blue;
+  }
+
+  &__error {
+    margin-top: 7px;
+    font-size: 8px;
+    line-height: 8px;
+    color: #ff2f2f;
+  }
 }
