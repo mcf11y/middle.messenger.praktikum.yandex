@@ -22,7 +22,7 @@ const passwordField = new Field({
 });
 
 const onAuthFormSubmit = (data: any) => {
-  console.log(data);
+  console.log("FORM DATA", data);
 };
 
 const loginFormContext = {

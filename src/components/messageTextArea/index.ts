@@ -8,7 +8,7 @@ type Props = {
   placeholder: string;
   onFocus?: (e: any) => void;
   onBlur?: (e: any) => void;
-  onChange?: (e: any) => void;
+  onInput?: (e: any) => void;
 };
 
 class MessageInputArea extends Block {
@@ -18,7 +18,7 @@ class MessageInputArea extends Block {
     placeholder = "",
     onBlur,
     onFocus,
-    onChange,
+    onInput,
   }: Props) {
     super({
       savedMessage,
@@ -26,7 +26,7 @@ class MessageInputArea extends Block {
       placeholder,
       onFocus,
       onBlur,
-      onChange,
+      onInput,
     });
   }
 
@@ -34,7 +34,7 @@ class MessageInputArea extends Block {
     this.props.events = {
       focus: this.props?.onFocus?.bind(this),
       blur: this.props?.onBlur?.bind(this),
-      change: this.props?.onChange?.bind(this),
+      input: this.props?.onInput?.bind(this),
     };
   }
 

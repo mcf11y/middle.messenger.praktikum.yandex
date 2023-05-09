@@ -7,19 +7,37 @@ import CustomField from "components/customField";
 
 import Profile from "containers/profile";
 
+const oldPasswordInput = new Input({
+  id: "oldPassword",
+  type: "password",
+  placeholder: "********",
+  name: "oldPassword",
+  reverseAlign: true,
+});
+
+const newPasswordInput = new Input({
+  id: "newPassword",
+  type: "password",
+  placeholder: "********",
+  name: "newPassword",
+  reverseAlign: true,
+});
+
+const newPasswordInput2 = new Input({
+  id: "newPassword_2",
+  type: "password",
+  placeholder: "********",
+  name: "newPassword",
+  reverseAlign: true,
+});
+
 const oldPasswordField = new CustomField({
   leftField: new Label({
     forId: "oldPassword",
     text: "Текущий пароль",
     isBlack: true,
   }),
-  rightField: new Input({
-    id: "oldPassword",
-    type: "password",
-    placeholder: "********",
-    name: "oldPassword",
-    reverseAlign: true,
-  }),
+  rightField: oldPasswordInput,
 });
 
 const newPasswordField = new CustomField({
@@ -28,13 +46,7 @@ const newPasswordField = new CustomField({
     text: "Новый пароль",
     isBlack: true,
   }),
-  rightField: new Input({
-    id: "newPassword",
-    type: "password",
-    placeholder: "********",
-    name: "newPassword",
-    reverseAlign: true,
-  }),
+  rightField: newPasswordInput,
 });
 
 const newPasswordField2 = new CustomField({
@@ -43,13 +55,8 @@ const newPasswordField2 = new CustomField({
     text: "Повторите новый пароль",
     isBlack: true,
   }),
-  rightField: new Input({
-    id: "newPassword_2",
-    type: "password",
-    placeholder: "********",
-    name: "newPassword",
-    reverseAlign: true,
-  }),
+  rightField: newPasswordInput2,
+  divider: false,
 });
 
 const submitButton = new Button({

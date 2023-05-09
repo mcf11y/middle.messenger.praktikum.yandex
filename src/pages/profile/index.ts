@@ -72,6 +72,7 @@ const PROFILE_FIELDS = [
       size: "xs",
       color: "gray",
     }),
+    divider: false,
   }),
 ];
 

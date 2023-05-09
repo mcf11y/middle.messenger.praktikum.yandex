@@ -8,6 +8,9 @@
     {{#if rightField}}
       <div class="custom-field__content__right">
         {{{rightField}}}
+        {{#if error}}
+          <label class="custom-field__content__right__error">{{{error}}}</label>
+        {{/if}}
       </div>
     {{/if}}
   </div>

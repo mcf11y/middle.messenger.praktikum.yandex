@@ -5,12 +5,13 @@ import template from "./customField.hbs";
 type Props = {
   leftField?: Block;
   rightField?: Block;
+  error?: string;
   divider?: boolean;
 };
 
 class CustomField extends Block {
-  constructor(props: Props) {
-    super({ ...props });
+  constructor({leftField, rightField, divider = true, error=""}: Props) {
+    super({ leftField, rightField, divider, error});
   }
 
   protected init() {

@@ -11,7 +11,16 @@
 
     &__left,
     &__right {
+      display: flex;
+      flex-direction: column;
       flex: 0.5;
+
+      &__error {
+        margin-top: 7px;
+        font-size: 8px;
+        line-height: 8px;
+        color: #ff2f2f;
+      }
     }
 
     &__left {

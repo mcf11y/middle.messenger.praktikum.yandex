@@ -91,6 +91,7 @@ const EDIT_PROFILE_FIELDS = [
       name: "phone",
       reverseAlign: true,
     }),
+    divider: false,
   }),
 ];
 

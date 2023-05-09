@@ -29,7 +29,7 @@ class MessageSectionFooter extends Block {
       placeholder: "Сообщение",
       onBlur: this.validateMessageArea.bind(this),
       onFocus: this.validateMessageArea.bind(this),
-      onChange: this.validateMessageArea.bind(this),
+      onInput: this.validateMessageArea.bind(this),
     });
     this.children.submitButton = new IconButton({
       iconSrc: SubmitIcon,
