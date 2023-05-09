@@ -2,7 +2,7 @@
 
 ## Architecture
 
-#### Using [atomic desing](https://bradfrost.com/blog/post/atomic-web-design/)
+#### Using [atomic design](https://bradfrost.com/blog/post/atomic-web-design/)
 
 #### Using [БЭМ](https://ru.bem.info/methodology/) for naming css
 
@@ -15,6 +15,12 @@
 #### - **npm run dev** _- to start project in browser locally_
 
 #### - **npm run start** _- to start server on port 3000_
+
+#### - **npm run eslint** _- to start eslint and fix linting_
+
+#### - **npm run lint:style** _- to start stylelint and fix linting in scss_
+
+#### - **npm run ts-check** _- to start typescript validate_
 
 ## Links:
 
