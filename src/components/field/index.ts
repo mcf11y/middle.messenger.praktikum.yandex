@@ -50,7 +50,7 @@ class Field extends Block {
     const value = this.getValue();
     const name = this.getName();
     const error = validateInput(value, name);
-    console.log(error);
+
     this.setProps({ error });
 
     return error;

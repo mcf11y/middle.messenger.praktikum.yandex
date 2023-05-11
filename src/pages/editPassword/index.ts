@@ -1,61 +1,56 @@
 import Avatar from "components/avatar";
-import Label from "components/label";
-import Input from "components/input";
 import Button from "components/button";
 
-import CustomField from "components/customField";
+import ProfileField from "components/profileField";
 
 import Profile from "containers/profile";
 
-const oldPasswordInput = new Input({
-  id: "oldPassword",
-  type: "password",
-  placeholder: "********",
-  name: "oldPassword",
-  reverseAlign: true,
-});
-
-const newPasswordInput = new Input({
-  id: "newPassword",
-  type: "password",
-  placeholder: "********",
-  name: "newPassword",
-  reverseAlign: true,
-});
-
-const newPasswordInput2 = new Input({
-  id: "newPassword_2",
-  type: "password",
-  placeholder: "********",
-  name: "newPassword",
-  reverseAlign: true,
-});
-
-const oldPasswordField = new CustomField({
-  leftField: new Label({
-    forId: "oldPassword",
+const oldPasswordField = new ProfileField({
+  leftContent: {
+    id: "oldPassordLabel",
+    type: "label",
     text: "Текущий пароль",
-    isBlack: true,
-  }),
-  rightField: oldPasswordInput,
+  },
+
+  rightContent: {
+    id: "oldPassword",
+    type: "input",
+    inputType: "password",
+    text: "********",
+    inputName: "oldPassword",
+  },
 });
 
-const newPasswordField = new CustomField({
-  leftField: new Label({
-    forId: "newPassword",
+const newPasswordField = new ProfileField({
+  leftContent: {
+    id: "newPassordLabel",
+    type: "label",
     text: "Новый пароль",
-    isBlack: true,
-  }),
-  rightField: newPasswordInput,
+  },
+
+  rightContent: {
+    id: "newPassword",
+    type: "input",
+    inputType: "password",
+    text: "********",
+    inputName: "newPassword",
+  },
 });
 
-const newPasswordField2 = new CustomField({
-  leftField: new Label({
-    forId: "newPassword_2",
-    text: "Повторите новый пароль",
-    isBlack: true,
-  }),
-  rightField: newPasswordInput2,
+const newPasswordField2 = new ProfileField({
+  leftContent: {
+    id: "newPasswordLabel_2",
+    type: "label",
+    text: "Повторите пароль",
+  },
+
+  rightContent: {
+    id: "newPassword_2",
+    type: "input",
+    inputType: "password",
+    text: "********",
+    inputName: "newPassword",
+  },
   divider: false,
 });
 

@@ -68,6 +68,22 @@ class Block<P extends Record<string, any> = any> {
     });
   }
 
+  _removeEvents() {
+    const { events = {} } = this.props as P & { events: Record<string, () => void> };
+
+    Object.keys(events).forEach((eventName) => {
+      this._element?.removeEventListener(eventName, events[eventName]);
+    });
+  }
+
+  private _addAttribute() {
+    const { attrs = {} } = this.props as P & { attrs: Record<string, string> };
+
+    Object.entries(attrs).forEach(([key, value]) => {
+      this._element!.setAttribute(key, value);
+    });
+  }
+
   _registerEvents(eventBus: EventBus) {
     eventBus.on(Block.EVENTS.INIT, this._init.bind(this));
     eventBus.on(Block.EVENTS.FLOW_CDM, this._componentDidMount.bind(this));
@@ -126,6 +142,7 @@ class Block<P extends Record<string, any> = any> {
 
   private _render() {
     const fragment = this.render();
+    this._removeEvents();
 
     const newElement = fragment.firstElementChild as HTMLElement;
 
@@ -136,6 +153,7 @@ class Block<P extends Record<string, any> = any> {
     this._element = newElement;
 
     this._addEvents();
+    this._addAttribute();
   }
 
   protected compile(template: (context: any) => string, context: any) {

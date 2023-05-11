@@ -1,96 +1,94 @@
 import Avatar from "components/avatar";
-import Label from "components/label";
-import Input from "components/input";
 import Button from "components/button";
 
-import CustomField from "components/customField";
+import CustomField from "components/profileField";
 
 import Profile from "containers/profile";
 
 const EDIT_PROFILE_FIELDS = [
   new CustomField({
-    leftField: new Label({
-      forId: "email",
+    leftContent: {
+      id: "emailLabel",
+      type: "label",
       text: "Почта",
-      isBlack: true,
-    }),
-    rightField: new Input({
+    },
+    rightContent: {
       id: "email",
-      type: "text",
-      value: "andrey@mail.ru",
-      name: "email",
-      reverseAlign: true,
-    }),
+      type: "input",
+      text: "andrey@mail.ru",
+      inputType: "text",
+      inputName: "email",
+    },
   }),
   new CustomField({
-    leftField: new Label({
-      forId: "login",
+    leftContent: {
+      id: "loginLabel",
+      type: "label",
       text: "Логин",
-      isBlack: true,
-    }),
-    rightField: new Input({
+    },
+    rightContent: {
       id: "login",
-      type: "text",
-      value: "andrey@mail.ru",
-      name: "login",
-      reverseAlign: true,
-    }),
+      type: "input",
+      text: "andrey@mail.ru",
+      inputType: "text",
+      inputName: "login",
+    },
   }),
   new CustomField({
-    leftField: new Label({
-      forId: "first_name",
+    leftContent: {
+      id: "nameLabel",
+      type: "label",
       text: "Имя",
-      isBlack: true,
-    }),
-    rightField: new Input({
-      id: "first_name",
-      type: "text",
-      value: "Иван",
-      name: "first_name",
-      reverseAlign: true,
-    }),
+    },
+    rightContent: {
+      id: "login",
+      type: "input",
+      text: "Иван",
+      inputType: "text",
+      inputName: "first_name",
+    },
   }),
   new CustomField({
-    leftField: new Label({
-      forId: "second_name",
+    leftContent: {
+      id: "surnameLabel",
+      type: "label",
       text: "Фамилия",
-      isBlack: true,
-    }),
-    rightField: new Input({
+    },
+    rightContent: {
       id: "second_name",
-      type: "text",
-      value: "Иванов",
-      name: "second_name",
-      reverseAlign: true,
-    }),
+      type: "input",
+      text: "Иванов",
+      inputType: "text",
+      inputName: "second_name",
+    },
   }),
   new CustomField({
-    leftField: new Label({
-      forId: "display_name",
+    leftContent: {
+      id: "chatNameLabel",
+      type: "label",
       text: "Имя в чате",
-      isBlack: true,
-    }),
-    rightField: new Input({
+    },
+    rightContent: {
       id: "display_name",
-      type: "text",
-      value: "Иван",
-      name: "display_name",
-      reverseAlign: true,
-    }),
+      type: "input",
+      text: "Иван",
+      inputType: "text",
+      inputName: "display_name",
+    },
   }),
   new CustomField({
-    leftField: new Label({
-      forId: "phone",
+    leftContent: {
+      id: "phoneLabel",
+      type: "label",
       text: "Телефон",
-      isBlack: true,
-    }),
-    rightField: new Input({
+    },
+    rightContent: {
       id: "phone",
-      type: "tel",
-      value: "+7 (909) 967 30 30",
-      name: "phone",
-      reverseAlign: true,
-    }),
+      type: "input",
+      text: "+7 (909) 967 30 30",
+      inputType: "tel",
+      inputName: "phone",
+    },
     divider: false,
   }),
 ];

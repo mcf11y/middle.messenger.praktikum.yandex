@@ -15,6 +15,11 @@ type OptionsType = {
 
 type OptionsWithoutMethod = Omit<OptionsType, "method">;
 
+type HTTPMethod = (
+  url: string,
+  options?: OptionsWithoutMethod
+) => Promise<XMLHttpRequest>;
+
 const queryStringify = (queryObj: Record<string, unknown>): string => {
   const keys = Object.keys(queryObj);
 
@@ -30,33 +35,17 @@ const queryStringify = (queryObj: Record<string, unknown>): string => {
 };
 
 class HTTPTransport {
-  public get(
-    url: string,
-    options: OptionsWithoutMethod = {}
-  ): Promise<XMLHttpRequest> {
-    return this.request(url, { ...options, method: METHOD.GET }, options.timeout);
-  }
+  get: HTTPMethod = (url, options = {}) =>
+    this.request(url, { ...options, method: METHOD.GET }, options.timeout);
 
-  public post(
-    url: string,
-    options: OptionsWithoutMethod = {}
-  ): Promise<XMLHttpRequest> {
-    return this.request(url, { ...options, method: METHOD.POST });
-  }
+  put: HTTPMethod = (url, options = {}) =>
+    this.request(url, { ...options, method: METHOD.PUT }, options.timeout);
 
-  public put(
-    url: string,
-    options: OptionsWithoutMethod = {}
-  ): Promise<XMLHttpRequest> {
-    return this.request(url, { ...options, method: METHOD.PUT });
-  }
+  post: HTTPMethod = (url, options = {}) =>
+    this.request(url, { ...options, method: METHOD.POST }, options.timeout);
 
-  public delete(
-    url: string,
-    options: OptionsWithoutMethod = {}
-  ): Promise<XMLHttpRequest> {
-    return this.request(url, { ...options, method: METHOD.DELETE });
-  }
+  delete: HTTPMethod = (url, options = {}) =>
+    this.request(url, { ...options, method: METHOD.DELETE }, options.timeout);
 
   public request = (
     url: string,
