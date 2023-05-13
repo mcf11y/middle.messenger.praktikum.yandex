@@ -1,0 +1,16 @@
+{
+  "extends": "stylelint-config-standard-scss",
+  "plugins": ["stylelint-scss"],
+  "rules": {
+    "at-rule-no-unknown": null,
+    "scss/at-rule-no-unknown": true,
+    "scss/dollar-variable-pattern": "^",
+    "scss/selector-no-redundant-nesting-selector": true,
+    "scss/at-import-partial-extension": "always",
+    "scss/at-mixin-argumentless-call-parentheses": "never",
+    "length-zero-no-unit": null,
+    "selector-class-pattern": null,
+    "font-family-no-missing-generic-family-keyword": null
+  },
+  "ignoreFiles": ["dist/*"]
+}

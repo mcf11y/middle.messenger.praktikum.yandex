@@ -3,7 +3,6 @@
   height: 47px;
   position: relative;
   box-sizing: border-box;
-
   background: $primary-gray;
   border-radius: 50%;
 
@@ -11,10 +10,12 @@
     width: 34px;
     height: 34px;
   }
+
   &__m {
     width: 47px;
     height: 47px;
   }
+
   &__l {
     width: 130px;
     height: 130px;
