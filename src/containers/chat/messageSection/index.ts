@@ -1,6 +1,6 @@
 import { ChatDetailsData } from "types/chat";
 import Divider from "components/divider";
-import Block from "utils/Block";
+import Block from "base-component";
 import Header from "./components/messageSectionHeader";
 import Content from "./components/messageSectionContent";
 import Footer from "./components/messageSectionFooter";

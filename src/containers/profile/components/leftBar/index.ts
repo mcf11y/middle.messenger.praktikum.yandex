@@ -1,6 +1,7 @@
 import IconButton from "components/iconButton";
-import Block from "utils/Block";
-import BackIcon from "../../../../../static/icons/arrow-left.svg";
+import Block from "base-component";
+import Router from "router";
+import BackIcon from "../static/icons/arrow-left.svg";
 
 import template from "./leftBar.hbs";
 
@@ -10,7 +11,12 @@ class LeftBar extends Block {
   }
 
   protected init(): void {
-    this.children.backButton = new IconButton({ iconSrc: BackIcon });
+    this.children.backButton = new IconButton({
+      iconSrc: BackIcon,
+      onClick: () => {
+        Router.back();
+      },
+    });
   }
 
   protected render(): DocumentFragment {

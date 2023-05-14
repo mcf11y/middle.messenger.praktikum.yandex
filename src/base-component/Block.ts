@@ -1,5 +1,5 @@
 import { nanoid } from "nanoid";
-import { EventBus } from "./EventBus";
+import EventBus from "utils/EventBus";
 
 class Block<P extends Record<string, any> = any> {
   static EVENTS = {
@@ -10,9 +10,11 @@ class Block<P extends Record<string, any> = any> {
   } as const;
 
   public id = nanoid(6);
+
   protected props: P;
   public children: Record<string, Block | Block[]>;
-  private eventBus: () => EventBus;
+
+  private _eventBus: () => EventBus;
   private _element: HTMLElement | null = null;
 
   /** JSDoc
@@ -29,7 +31,7 @@ class Block<P extends Record<string, any> = any> {
     this.children = children;
     this.props = this._makePropsProxy(props);
 
-    this.eventBus = () => eventBus;
+    this._eventBus = () => eventBus;
 
     this._registerEvents(eventBus);
 
@@ -84,17 +86,17 @@ class Block<P extends Record<string, any> = any> {
     });
   }
 
-  _registerEvents(eventBus: EventBus) {
-    eventBus.on(Block.EVENTS.INIT, this._init.bind(this));
-    eventBus.on(Block.EVENTS.FLOW_CDM, this._componentDidMount.bind(this));
-    eventBus.on(Block.EVENTS.FLOW_CDU, this._componentDidUpdate.bind(this));
-    eventBus.on(Block.EVENTS.FLOW_RENDER, this._render.bind(this));
+  _registerEvents(_eventBus: EventBus) {
+    _eventBus.on(Block.EVENTS.INIT, this._init.bind(this));
+    _eventBus.on(Block.EVENTS.FLOW_CDM, this._componentDidMount.bind(this));
+    _eventBus.on(Block.EVENTS.FLOW_CDU, this._componentDidUpdate.bind(this));
+    _eventBus.on(Block.EVENTS.FLOW_RENDER, this._render.bind(this));
   }
 
   private _init() {
     this.init();
 
-    this.eventBus().emit(Block.EVENTS.FLOW_RENDER);
+    this._eventBus().emit(Block.EVENTS.FLOW_RENDER);
   }
 
   protected init() {}
@@ -106,7 +108,7 @@ class Block<P extends Record<string, any> = any> {
   componentDidMount() {}
 
   public dispatchComponentDidMount() {
-    this.eventBus().emit(Block.EVENTS.FLOW_CDM);
+    this._eventBus().emit(Block.EVENTS.FLOW_CDM);
 
     Object.values(this.children).forEach((child) => {
       if (Array.isArray(child)) {
@@ -119,7 +121,7 @@ class Block<P extends Record<string, any> = any> {
 
   private _componentDidUpdate(oldProps: P, newProps: P) {
     if (this.componentDidUpdate(oldProps, newProps)) {
-      this.eventBus().emit(Block.EVENTS.FLOW_RENDER);
+      this._eventBus().emit(Block.EVENTS.FLOW_RENDER);
     }
   }
 
@@ -220,13 +222,21 @@ class Block<P extends Record<string, any> = any> {
 
         target[prop as keyof P] = value;
 
-        self.eventBus().emit(Block.EVENTS.FLOW_CDU, oldTarget, target);
+        self._eventBus().emit(Block.EVENTS.FLOW_CDU, oldTarget, target);
         return true;
       },
       deleteProperty() {
         throw new Error("Нет доступа");
       },
     });
+  }
+
+  public hide() {
+    this.getContent()!.style.display = "none";
+  }
+
+  public show() {
+    this.getContent()!.style.display = "block";
   }
 }
 

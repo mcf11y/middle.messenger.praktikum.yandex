@@ -1,7 +1,7 @@
 import Title from "components/title";
 import Badge from "components/badge";
 
-import Block from "utils/Block";
+import Block from "base-component";
 import template from "./chatItem.hbs";
 
 type Props = {

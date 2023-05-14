@@ -1,3 +1,5 @@
+import Router from "router";
+import { ROUTES } from "utils/pageRoutes";
 import Login from "./pages/login";
 import SignUp from "./pages/signup";
 import ErrorPage from "./pages/error";
@@ -21,66 +23,53 @@ const editProfilePage = EditProfilePage();
 const editPasswordPage = EditPasswordPage();
 const homePage = HomePage();
 
-const routes = [
+const routesPath = [
   {
-    path: "/",
-    data: homePage,
+    path: ROUTES.INDEX,
+    page: homePage,
   },
   {
-    path: "/login",
-    data: loginPage,
+    path: ROUTES.LOGIN,
+    page: loginPage,
   },
   {
-    path: "/signup",
-    data: signUpPage,
+    path: ROUTES.SIGN_UP,
+    page: signUpPage,
   },
   {
-    path: "/profile",
-    data: profilePage,
+    path: ROUTES.PROFILE,
+    page: profilePage,
   },
   {
-    path: "/editpassword",
-    data: editPasswordPage,
+    path: ROUTES.EDIT_PASSWORD,
+    page: editPasswordPage,
   },
   {
-    path: "/editprofile",
-    data: editProfilePage,
+    path: ROUTES.EDIT_PROFILE,
+    page: editProfilePage,
   },
   {
-    path: "/404",
-    data: error404,
+    path: ROUTES.NOT_FOUND,
+    page: error404,
   },
   {
-    path: "/500",
-    data: error500,
+    path: ROUTES.SERVER_ERROR,
+    page: error500,
   },
 ];
 
-const root = document.getElementById("root");
-
-(window as any).router = (event: any) => {
-  event.preventDefault();
-  window.history.pushState({}, "newUrl", event.target.href);
-  const route = routes.find((r) => r.path === window.location.pathname);
-  if (root != null && route?.data) {
-    root.innerHTML = "";
-    root!.append(route.data.getContent()!);
-  }
-};
-
-window.addEventListener("popstate", () => {
-  const route = routes.find((r) => r.path === window.location.pathname);
-  if (root != null && route?.data) {
-    root.innerHTML = "";
-    root!.append(route.data.getContent()!);
-  }
-});
-
 window.addEventListener("DOMContentLoaded", () => {
-  const route = routes.find((r) => r.path === window.location.pathname);
+  routesPath.forEach(({ path, page }) => {
+    Router.use(path, page);
+  });
 
-  if (root != null && route?.data) {
-    root.innerHTML = "";
-    root!.append(route.data.getContent()!);
-  }
+  Router.start();
+  // Router.go(ROUTES.INDEX);
 });
+
+// const root = document.getElementById("root");
+
+(window as any).router = ({ event, path }: { event: any; path: string }) => {
+  event.preventDefault();
+  Router.go(path);
+};

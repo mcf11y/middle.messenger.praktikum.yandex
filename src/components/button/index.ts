@@ -1,4 +1,4 @@
-import Block from "utils/Block";
+import Block from "base-component";
 import template from "./button.hbs";
 
 type Props = {
@@ -10,6 +10,8 @@ type Props = {
   startIconSrc?: string;
   endIconSrc?: string;
   width?: number;
+  onClick?: (event: MouseEvent) => void;
+  onHover?: (event: MouseEvent) => void;
 };
 
 class Button extends Block {
@@ -22,6 +24,7 @@ class Button extends Block {
     startIconSrc,
     endIconSrc,
     width,
+    onClick,
   }: Props) {
     super({
       id,
@@ -33,7 +36,14 @@ class Button extends Block {
       startIconSrc,
       endIconSrc,
       width,
+      onClick,
     });
+  }
+
+  protected init () {
+    this.props.events = {
+      click: this.props?.onClick?.bind(this)
+    }
   }
 
   protected render(): DocumentFragment {

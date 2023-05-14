@@ -1,4 +1,4 @@
-import Block from "utils/Block";
+import Block from "base-component";
 import { InputValidateEnum, validateInput } from "utils/validations";
 import template from "./messageTextArea.hbs";
 

@@ -5,6 +5,10 @@ import CenteredLayout from "components/centeredWrapper";
 
 import AuthForm from "containers/authForm";
 
+import { ROUTES } from "utils/pageRoutes";
+
+import Router from "router";
+
 const emailField = new Field({
   id: "email",
   type: "text",
@@ -90,6 +94,9 @@ const signUpFormContext = {
     variant: "link",
     type: "button",
     text: "Уже есть аккаунт?",
+    onClick: () => {
+      Router.go(ROUTES.LOGIN);
+    },
   }),
   action: "",
   onSubmit: onAuthFormSubmit,

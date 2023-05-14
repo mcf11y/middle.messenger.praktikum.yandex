@@ -39,7 +39,8 @@
     "src/**/*.hbs",
     "src/utils/test.js",
     "src/utils/EventBus.ts",
-    "src/utils/Block.js"
+    "src/utils/Block.js",
+    "src/utils/mediator.ts"
   ],
 
   "exclude": ["node_modules"]

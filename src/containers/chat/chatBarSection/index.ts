@@ -2,10 +2,11 @@ import { ChatData, ChatDetailsData } from "types/chat";
 import Button from "components/button";
 import SearchInput from "components/searchInput";
 import Input from "components/input";
-import Block from "utils/Block";
+import Block from "base-component";
+import Router from "router";
+import { ROUTES } from "utils/pageRoutes";
+import arrowIcon from "../static/icons/arrow-go-to.svg";
 import ChatList from "./components/chatList";
-
-import arrowIcon from "../../../../static/icons/arrow-left.svg";
 
 import template from "./chatBar.hbs";
 
@@ -24,6 +25,7 @@ class ChatBar extends Block {
       variant: "secondary",
       text: "Профиль",
       endIconSrc: arrowIcon,
+      onClick: () => Router.go(ROUTES.PROFILE),
     });
 
     this.children.searchInput = new SearchInput({

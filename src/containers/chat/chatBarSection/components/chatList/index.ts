@@ -1,6 +1,6 @@
 import Avatar from "components/avatar";
 import { ChatData } from "types/chat";
-import Block from "utils/Block";
+import Block from "base-component";
 import ChatItem from "../chatItem";
 
 import template from "./chatList.hbs";

@@ -1,5 +1,9 @@
-import Block from "utils/Block";
 import Field from "components/field";
+import Block from "base-component";
+
+import { ROUTES } from "utils/pageRoutes";
+
+import Router from "router";
 import template from "./authForm.hbs";
 
 type Props = {
@@ -46,8 +50,12 @@ class AuthForm extends Block {
     this.props.events = {
       submit: (e: any) => {
         e.preventDefault();
-        this.validateFields();
+        const validateResult = this.validateFields();
         this.props?.onSubmit?.(this.getFieldsValue());
+
+        if (validateResult.length === 0) {
+          Router.go(ROUTES.INDEX);
+        }
       },
     };
   }

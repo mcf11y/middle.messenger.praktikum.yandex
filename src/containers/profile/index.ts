@@ -1,5 +1,5 @@
 import CenteredWrapper from "components/centeredWrapper";
-import Block from "utils/Block";
+import Block from "base-component";
 import LeftBar from "./components/leftBar";
 import template from "./profile.hbs";
 import ProfileForm from "./components/profileForm";
@@ -9,10 +9,11 @@ type Props = {
   userName?: string;
   contentFields: Block[];
   footerFields: Block[];
+  onSubmit?: () => void;
 };
 
 class Profile extends Block {
-  constructor({ avatar, userName, contentFields, footerFields }: Props) {
+  constructor({ avatar, userName, contentFields, footerFields, onSubmit }: Props) {
     const leftBar = new LeftBar();
     const profileForm = new CenteredWrapper({
       content: new ProfileForm({
@@ -20,6 +21,7 @@ class Profile extends Block {
         userName,
         contentFields,
         footerFields,
+        onSubmit,
       }),
     });
 

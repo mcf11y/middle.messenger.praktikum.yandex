@@ -1,4 +1,4 @@
-import Block from "utils/Block";
+import Block from "base-component";
 import Avatar from "../../../../../components/avatar";
 import Title from "../../../../../components/title";
 

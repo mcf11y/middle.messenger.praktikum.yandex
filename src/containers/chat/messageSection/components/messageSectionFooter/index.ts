@@ -1,4 +1,4 @@
-import Block from "utils/Block";
+import Block from "base-component";
 import MessageInputArea from "components/messageTextArea";
 
 import IconButton from "components/iconButton";

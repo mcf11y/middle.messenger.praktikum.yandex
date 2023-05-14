@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import Block from "utils/Block";
+import Block from "base-component";
 import Input from "components/input";
 import { validateInput } from "utils/validations";
 import Label from "components/label";

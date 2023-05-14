@@ -1,5 +1,5 @@
 import Divider from "components/divider";
-import Block from "utils/Block";
+import Block from "base-component";
 import Label from "components/label";
 import Title from "components/title";
 import Link from "components/link";
@@ -35,8 +35,6 @@ class ProfileField extends Block {
   }
 
   protected init() {
-
-
     if (this.props.divider) {
       this.children.divider = new Divider();
     }
@@ -61,6 +59,7 @@ class ProfileField extends Block {
     if (this.props.leftContent?.type === "linkButton") {
       this.children.leftField = new Link({
         text: this.props.leftContent?.text,
+        onClick: this.props.leftContent?.onClick,
       });
     }
 
@@ -68,6 +67,7 @@ class ProfileField extends Block {
       this.children.leftField = new Link({
         text: this.props.leftContent.text,
         color: "red",
+        onClick: this.props.leftContent?.onClick,
       });
     }
 
@@ -99,6 +99,7 @@ class ProfileField extends Block {
     if (field instanceof Input) {
       const value = field.getValue();
       const name = field.getName();
+
       const error = validateInput(value, name);
 
       this.setProps({ error });

@@ -1,4 +1,4 @@
-import Block from "utils/Block";
+import Block from "base-component";
 import template from "./badge.hbs";
 
 type Props = {

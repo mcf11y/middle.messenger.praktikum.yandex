@@ -4,6 +4,9 @@ import Button from "components/button";
 import CustomField from "components/profileField";
 
 import Profile from "containers/profile";
+import { ROUTES } from "utils/pageRoutes";
+
+import Router from "router";
 
 const EDIT_PROFILE_FIELDS = [
   new CustomField({
@@ -101,11 +104,16 @@ const EDIT_PROFILE_FOOTER_FIELDS = [
   }),
 ];
 
+const onSubmit = () => {
+  Router.go(ROUTES.PROFILE);
+};
+
 const EditProfilePage = () =>
   new Profile({
     avatar: new Avatar({ size: "l" }),
     contentFields: EDIT_PROFILE_FIELDS,
     footerFields: EDIT_PROFILE_FOOTER_FIELDS,
+    onSubmit,
   });
 
 export default EditProfilePage;

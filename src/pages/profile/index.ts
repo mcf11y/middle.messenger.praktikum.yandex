@@ -1,8 +1,10 @@
 import Avatar from "components/avatar";
 
 import ProfileField from "components/profileField";
+import Router from "router";
 
 import Profile from "containers/profile";
+import { ROUTES } from "utils/pageRoutes";
 
 const PROFILE_FIELDS = [
   new ProfileField({
@@ -73,21 +75,27 @@ const FOOTER_FIELDS = [
     leftContent: {
       type: "linkButton",
       text: "Изменить данные",
-      onClick: () => {},
+      onClick: () => {
+        Router.go(ROUTES.EDIT_PROFILE);
+      },
     },
   }),
   new ProfileField({
     leftContent: {
       type: "linkButton",
       text: "Изменить пароль",
-      onClick: () => {},
+      onClick: () => {
+        Router.go(ROUTES.EDIT_PASSWORD);
+      },
     },
   }),
   new ProfileField({
     leftContent: {
       type: "redLinkButton",
       text: "Выйти",
-      onClick: () => {},
+      onClick: () => {
+        Router.go(ROUTES.LOGIN);
+      },
     },
     divider: false,
   }),

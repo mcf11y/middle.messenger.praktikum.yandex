@@ -19,7 +19,7 @@ export class EventBus<
 
   off<Event extends MapInterface<E>>(event: Event, callback: Handler<Args[Event]>) {
     if (!this.listeners[event]) {
-      throw new Error(`Нет события: ${event}`);
+      throw new Error(`Event not found: ${event}`);
     }
 
     this.listeners[event] = this.listeners[event]!.filter(

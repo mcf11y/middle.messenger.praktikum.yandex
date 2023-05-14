@@ -4,6 +4,8 @@ import Button from "components/button";
 import ProfileField from "components/profileField";
 
 import Profile from "containers/profile";
+import { ROUTES } from "utils/pageRoutes";
+import Router from "router";
 
 const oldPasswordField = new ProfileField({
   leftContent: {
@@ -60,11 +62,16 @@ const submitButton = new Button({
   width: 280,
 });
 
+const onSubmit = () => {
+  Router.go(ROUTES.PROFILE);
+};
+
 const EditPasswordPage = () =>
   new Profile({
     avatar: new Avatar({ size: "l" }),
     contentFields: [oldPasswordField, newPasswordField, newPasswordField2],
     footerFields: [submitButton],
+    onSubmit,
   });
 
 export default EditPasswordPage;

@@ -1,5 +1,5 @@
 import { ChatData, ChatDetailsData } from "types/chat";
-import Block from "utils/Block";
+import Block from "base-component";
 import ChatBar from "./chatBarSection";
 import MessageSection from "./messageSection";
 

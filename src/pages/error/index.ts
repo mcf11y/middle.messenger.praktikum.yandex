@@ -1,7 +1,11 @@
-import Block from "utils/Block";
+import Block from "base-component";
 import Button from "components/button";
 import Title from "components/title";
 import CenteredWrapper from "components/centeredWrapper";
+
+import { ROUTES } from "utils/pageRoutes";
+
+import Router from "router";
 import template from "./error.hbs";
 
 type Props = {
@@ -23,6 +27,9 @@ class ErrorComponent extends Block {
       id: "error-page-btn",
       variant: "link",
       text: "Вернуться к чатам",
+      onClick: () => {
+        Router.go(ROUTES.INDEX);
+      },
     });
   }
 
