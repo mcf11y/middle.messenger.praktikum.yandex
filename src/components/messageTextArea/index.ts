@@ -1,8 +1,8 @@
 import Block from "base-component";
-import { InputValidateEnum, validateInput } from "utils/validations";
 import template from "./messageTextArea.hbs";
 
 type Props = {
+  id?: string;
   savedMessage?: Nullable<string>;
   name: string;
   placeholder: string;
@@ -13,6 +13,7 @@ type Props = {
 
 class MessageInputArea extends Block {
   constructor({
+    id,
     savedMessage,
     name,
     placeholder = "",
@@ -21,6 +22,7 @@ class MessageInputArea extends Block {
     onInput,
   }: Props) {
     super({
+      id,
       savedMessage,
       name,
       placeholder,
@@ -49,12 +51,6 @@ class MessageInputArea extends Block {
 
   public getValue() {
     return (this.element as HTMLTextAreaElement).value;
-  }
-
-  public validate(): string {
-    const value = this.getValue();
-    const error = validateInput(value, InputValidateEnum.NOT_EMPTY);
-    return error;
   }
 
   protected render(): DocumentFragment {

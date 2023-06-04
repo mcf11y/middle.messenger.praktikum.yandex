@@ -1,75 +1,56 @@
 import Avatar from "components/avatar";
 import Button from "components/button";
 
-import ProfileField from "components/profileField";
+import ProfileField, { EProfileField } from "components/profileField";
+import { IDS, NAMES } from "constants/fields";
+import PAGE_URL from "constants/pageUrls";
 
 import Profile from "containers/profile";
-import { ROUTES } from "utils/pageRoutes";
 import Router from "router";
+import { FORM_TYPE } from "constants/formTypes";
+import ValidationMediator from "validation/ValidationMediator";
+
+const validation = new ValidationMediator(FORM_TYPE.EDIT_PASSWORD);
 
 const oldPasswordField = new ProfileField({
-  leftContent: {
-    id: "oldPassordLabel",
-    type: "label",
-    text: "Текущий пароль",
-  },
+  fieldType: EProfileField.EDITABLE,
+  fieldName: NAMES.oldPassword,
 
-  rightContent: {
-    id: "oldPassword",
-    type: "input",
-    inputType: "password",
-    text: "********",
-    inputName: "oldPassword",
-  },
+  validation,
 });
 
 const newPasswordField = new ProfileField({
-  leftContent: {
-    id: "newPassordLabel",
-    type: "label",
-    text: "Новый пароль",
-  },
+  fieldType: EProfileField.EDITABLE,
+  fieldName: NAMES.newPassword,
 
-  rightContent: {
-    id: "newPassword",
-    type: "input",
-    inputType: "password",
-    text: "********",
-    inputName: "newPassword",
-  },
+  validation,
 });
 
-const newPasswordField2 = new ProfileField({
-  leftContent: {
-    id: "newPasswordLabel_2",
-    type: "label",
-    text: "Повторите пароль",
-  },
+const newPasswordAgain = new ProfileField({
+  fieldType: EProfileField.EDITABLE,
+  fieldName: NAMES.newPasswordAgain,
 
-  rightContent: {
-    id: "newPassword_2",
-    type: "input",
-    inputType: "password",
-    text: "********",
-    inputName: "newPassword",
-  },
-  divider: false,
+  validation,
+
+  withDivider: false,
 });
 
 const submitButton = new Button({
+  id: IDS[NAMES.submitBtn],
   variant: "primary",
   text: "Сохранить",
   width: 280,
 });
 
 const onSubmit = () => {
-  Router.go(ROUTES.PROFILE);
+  validation.validateForm();
+  validation.isFormValid() && Router.go(PAGE_URL.PROFILE);
 };
 
 const EditPasswordPage = () =>
   new Profile({
     avatar: new Avatar({ size: "l" }),
-    contentFields: [oldPasswordField, newPasswordField, newPasswordField2],
+    contentFields: [oldPasswordField, newPasswordField, newPasswordAgain],
     footerFields: [submitButton],
     onSubmit,
   });

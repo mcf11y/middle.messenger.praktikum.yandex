@@ -1,68 +1,51 @@
 import Button from "components/button";
 import Title from "components/title";
-import Field from "components/field";
+import Field from "components/formField";
 import CenteredLayout from "components/centeredWrapper";
 
 import AuthForm from "containers/authForm";
 
-import { ROUTES } from "utils/pageRoutes";
-
 import Router from "router";
+import PAGE_URL from "constants/pageUrls";
+import { IDS, NAMES } from "constants/fields";
+import ValidationMediator from "validation/ValidationMediator";
+import FORM_TYPE from "constants/formTypes";
+
+const signupValidation = new ValidationMediator(FORM_TYPE.SINGUP);
 
 const emailField = new Field({
-  id: "email",
-  type: "text",
-  fieldName: "Почта",
-  placeholder: "Введите почту",
-  inputName: "email",
+  fieldName: NAMES.email,
+  validation: signupValidation,
 });
 
 const loginField = new Field({
-  id: "login",
-  type: "text",
-  fieldName: "Логин",
-  placeholder: "Введите логин",
-  inputName: "login",
+  fieldName: NAMES.login,
+  validation: signupValidation,
 });
 
 const firstNameField = new Field({
-  id: "first_name",
-  type: "text",
-  fieldName: "Имя",
-  placeholder: "Введите имя",
-  inputName: "first_name",
+  fieldName: NAMES.firstName,
+  validation: signupValidation,
 });
 
 const secondNameField = new Field({
-  id: "second_name",
-  type: "text",
-  fieldName: "Фамилия",
-  placeholder: "Введите фамилию",
-  inputName: "second_name",
+  fieldName: NAMES.secondName,
+  validation: signupValidation,
 });
 
 const phoneField = new Field({
-  id: "phone",
-  type: "tel",
-  fieldName: "Телефон",
-  placeholder: "Введите телефон",
-  inputName: "phone",
+  fieldName: NAMES.phone,
+  validation: signupValidation,
 });
 
 const passwordField = new Field({
-  id: "password",
-  type: "password",
-  fieldName: "Пароль",
-  placeholder: "Введите пароль",
-  inputName: "password",
+  fieldName: NAMES.password,
+  validation: signupValidation,
 });
 
-const rePasswordField = new Field({
-  id: "re-password",
-  type: "password",
-  fieldName: "Повторите пароль",
-  placeholder: "Повторно введите пароль",
-  inputName: "password",
+const passwordAgainField = new Field({
+  fieldName: NAMES.passwordAgain,
+  validation: signupValidation,
 });
 
 const onAuthFormSubmit = (data: any) => {
@@ -81,10 +64,10 @@ const signUpFormContext = {
     secondNameField,
     phoneField,
     passwordField,
-    rePasswordField,
+    passwordAgainField,
   ],
   submitBtn: new Button({
-    id: "login-submit-btn",
+    id: IDS[NAMES.submitBtn],
     variant: "primary",
     type: "submit",
     text: "Зарегистрироваться",
@@ -95,11 +78,13 @@ const signUpFormContext = {
     type: "button",
     text: "Уже есть аккаунт?",
     onClick: () => {
-      Router.go(ROUTES.LOGIN);
+      Router.go(PAGE_URL.LOGIN);
     },
   }),
   action: "",
   onSubmit: onAuthFormSubmit,
+
+  validation: signupValidation,
 };
 
 const SignUp = () =>

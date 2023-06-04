@@ -1,5 +1,4 @@
-// eslint-disable-next-line import/prefer-default-export
-export enum ROUTES {
+enum PAGE_URL {
   INDEX = "/",
   LOGIN = "/login",
   SIGN_UP = "/signup",
@@ -10,3 +9,5 @@ export enum ROUTES {
   NOT_FOUND = "/404",
   SERVER_ERROR = "/500",
 }
+
+export default PAGE_URL;

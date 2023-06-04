@@ -7,7 +7,7 @@
     display: inline-flex;
     align-items: center;
     justify-content: space-between;
-    padding: 10px 0px;
+    padding: 12px 0px;
 
     &__left,
     &__right {
@@ -16,7 +16,7 @@
       flex: 0.5;
 
       &__error {
-        margin-top: 7px;
+        margin-top: 2px;
         font-size: 8px;
         line-height: 8px;
         color: #ff2f2f;

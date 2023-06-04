@@ -1,9 +1,9 @@
-import Field from "components/field";
+import FormField from "components/formField";
 import Block from "base-component";
 
-import { ROUTES } from "utils/pageRoutes";
-
 import Router from "router";
+import PAGE_URL from "constants/pageUrls";
+import ValidationMediator from "validation/ValidationMediator";
 import template from "./authForm.hbs";
 
 type Props = {
@@ -13,10 +13,12 @@ type Props = {
   redirectBtn: Block;
   actionUrl?: string;
   onSubmit?: (data: any) => void;
+
+  validation?: ValidationMediator;
 };
 
 class AuthForm extends Block {
-  constructor(props: Props) {
+  constructor({...props }: Props) {
     super({
       ...props,
     });
@@ -25,7 +27,7 @@ class AuthForm extends Block {
   public getFieldsValue(): Record<string, string> {
     const fields = this.children.contentItems;
 
-    return (fields as Field[]).reduce(
+    return (fields as FormField[]).reduce(
       (result, field) => ({
         ...result,
         [field.getName()]: field.getValue(),
@@ -34,27 +36,20 @@ class AuthForm extends Block {
     );
   }
 
-  public validateFields() {
-    const fields = this.children.contentItems;
-
-    return (fields as Field[]).reduce((result: any, field) => {
-      const error = field.validateField();
-      if (error) {
-        return [...result, error];
-      }
-      return [...result];
-    }, []);
-  }
-
   protected init(): void {
     this.props.events = {
       submit: (e: any) => {
+        const validation = this.props.validation;
+
         e.preventDefault();
-        const validateResult = this.validateFields();
+
         this.props?.onSubmit?.(this.getFieldsValue());
 
-        if (validateResult.length === 0) {
-          Router.go(ROUTES.INDEX);
+        if (validation) {
+          validation.validateForm();
+          validation.isFormValid() && Router.go(PAGE_URL.INDEX);
+        } else {
+          Router.go(PAGE_URL.INDEX);
         }
       },
     };

@@ -8,8 +8,8 @@
     {{#if rightField}}
       <div class="profile-field__content__right">
         {{{rightField}}}
-        {{#if error}}
-          <label class="profile-field__content__right__error">{{{error}}}</label>
+        {{#if id}}
+          <label id="{{{id}}}-error-label" class="profile-field__content__right__error" />
         {{/if}}
       </div>
     {{/if}}

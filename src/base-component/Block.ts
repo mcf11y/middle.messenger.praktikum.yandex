@@ -30,7 +30,7 @@ class Block<P extends Record<string, any> = any> {
 
     this.children = children;
     this.props = this._makePropsProxy(props);
-
+    // eslint-disable-next-line no-debugger
     this._eventBus = () => eventBus;
 
     this._registerEvents(eventBus);
@@ -38,7 +38,7 @@ class Block<P extends Record<string, any> = any> {
     eventBus.emit(Block.EVENTS.INIT);
   }
 
-  _getChildrenAndProps(childrenAndProps: P): {
+  private _getChildrenAndProps(childrenAndProps: P): {
     props: P;
     children: Record<string, Block | Block[]>;
   } {
@@ -62,7 +62,7 @@ class Block<P extends Record<string, any> = any> {
     return { props: props as P, children };
   }
 
-  _addEvents() {
+  private _addEvents() {
     const { events = {} } = this.props as P & { events: Record<string, () => void> };
 
     Object.keys(events).forEach((eventName) => {
@@ -70,7 +70,7 @@ class Block<P extends Record<string, any> = any> {
     });
   }
 
-  _removeEvents() {
+  protected _removeEvents() {
     const { events = {} } = this.props as P & { events: Record<string, () => void> };
 
     Object.keys(events).forEach((eventName) => {
@@ -86,7 +86,7 @@ class Block<P extends Record<string, any> = any> {
     });
   }
 
-  _registerEvents(_eventBus: EventBus) {
+  private _registerEvents(_eventBus: EventBus) {
     _eventBus.on(Block.EVENTS.INIT, this._init.bind(this));
     _eventBus.on(Block.EVENTS.FLOW_CDM, this._componentDidMount.bind(this));
     _eventBus.on(Block.EVENTS.FLOW_CDU, this._componentDidUpdate.bind(this));
@@ -101,11 +101,11 @@ class Block<P extends Record<string, any> = any> {
 
   protected init() {}
 
-  _componentDidMount() {
+  private _componentDidMount() {
     this.componentDidMount();
   }
 
-  componentDidMount() {}
+  protected componentDidMount() {}
 
   public dispatchComponentDidMount() {
     this._eventBus().emit(Block.EVENTS.FLOW_CDM);
@@ -130,7 +130,7 @@ class Block<P extends Record<string, any> = any> {
     return true;
   }
 
-  setProps = (nextProps: Partial<P>) => {
+  public setProps = (nextProps: Partial<P>) => {
     if (!nextProps) {
       return;
     }
@@ -138,7 +138,7 @@ class Block<P extends Record<string, any> = any> {
     Object.assign(this.props, nextProps);
   };
 
-  get element() {
+  public get element() {
     return this._element;
   }
 
@@ -205,11 +205,11 @@ class Block<P extends Record<string, any> = any> {
     return new DocumentFragment();
   }
 
-  getContent() {
+  public getContent() {
     return this.element;
   }
 
-  _makePropsProxy(props: P) {
+  private _makePropsProxy(props: P) {
     const self = this;
 
     return new Proxy(props, {

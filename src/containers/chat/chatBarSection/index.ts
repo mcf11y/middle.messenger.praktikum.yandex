@@ -4,8 +4,10 @@ import SearchInput from "components/searchInput";
 import Input from "components/input";
 import Block from "base-component";
 import Router from "router";
-import { ROUTES } from "utils/pageRoutes";
-import arrowIcon from "../static/icons/arrow-go-to.svg";
+import PAGE_URL from "constants/pageUrls";
+
+import arrowIcon from "../../../../static/icons/arrow-go-to.svg";
+
 import ChatList from "./components/chatList";
 
 import template from "./chatBar.hbs";
@@ -25,7 +27,7 @@ class ChatBar extends Block {
       variant: "secondary",
       text: "Профиль",
       endIconSrc: arrowIcon,
-      onClick: () => Router.go(ROUTES.PROFILE),
+      onClick: () => Router.go(PAGE_URL.PROFILE),
     });
 
     this.children.searchInput = new SearchInput({

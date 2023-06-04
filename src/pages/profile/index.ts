@@ -1,110 +1,92 @@
 import Avatar from "components/avatar";
 
-import ProfileField from "components/profileField";
+import ProfileField, { EProfileField } from "components/profileField";
 import Router from "router";
 
 import Profile from "containers/profile";
-import { ROUTES } from "utils/pageRoutes";
+import PAGE_URL from "constants/pageUrls";
+import { NAMES } from "constants/fields";
+
+const emailField = new ProfileField({
+  fieldName: NAMES.email,
+  fieldType: EProfileField.TEXT,
+  value: "mock email...",
+});
+
+const loginField = new ProfileField({
+  fieldName: NAMES.login,
+  fieldType: EProfileField.TEXT,
+  value: "mock login...",
+});
+
+const firstNameField = new ProfileField({
+  fieldName: NAMES.firstName,
+  fieldType: EProfileField.TEXT,
+  value: "mock name...",
+});
+
+const secondNameField = new ProfileField({
+  fieldName: NAMES.secondName,
+  fieldType: EProfileField.TEXT,
+  value: "mock second name...",
+});
+
+const displayNameField = new ProfileField({
+  fieldName: NAMES.displayName,
+  fieldType: EProfileField.TEXT,
+  value: "IVAN",
+});
+
+const phoneField = new ProfileField({
+  fieldName: NAMES.phone,
+  fieldType: EProfileField.TEXT,
+  value: "+7 (909) 967 30 30",
+});
 
 const PROFILE_FIELDS = [
-  new ProfileField({
-    leftContent: {
-      type: "text",
-      text: "Почта",
-    },
-    rightContent: {
-      type: "text",
-      text: "andrey@mail.ru",
-    },
-  }),
-  new ProfileField({
-    leftContent: {
-      type: "text",
-      text: "Логин",
-    },
-    rightContent: {
-      type: "text",
-      text: "andrey@mail.ru",
-    },
-  }),
-  new ProfileField({
-    leftContent: {
-      type: "text",
-      text: "Имя",
-    },
-    rightContent: {
-      type: "text",
-      text: "Иван",
-    },
-  }),
-  new ProfileField({
-    leftContent: {
-      type: "text",
-      text: "Фамилия",
-    },
-    rightContent: {
-      type: "text",
-      text: "Иванов",
-    },
-  }),
-  new ProfileField({
-    leftContent: {
-      type: "text",
-      text: "Имя в чате",
-    },
-    rightContent: {
-      type: "text",
-      text: "Иван",
-    },
-  }),
-  new ProfileField({
-    leftContent: {
-      type: "text",
-      text: "Телефон",
-    },
-    rightContent: {
-      type: "text",
-      text: "+7 (909) 967 30 30",
-    },
-    divider: false,
-  }),
+  emailField,
+  loginField,
+  firstNameField,
+  secondNameField,
+  displayNameField,
+  phoneField,
 ];
 
 const FOOTER_FIELDS = [
   new ProfileField({
-    leftContent: {
-      type: "linkButton",
-      text: "Изменить данные",
-      onClick: () => {
-        Router.go(ROUTES.EDIT_PROFILE);
-      },
+    fieldType: EProfileField.BTN,
+    fieldName: NAMES.editProfileBtn,
+
+    btnOnClick: () => {
+      Router.go(PAGE_URL.EDIT_PROFILE);
     },
   }),
+
   new ProfileField({
-    leftContent: {
-      type: "linkButton",
-      text: "Изменить пароль",
-      onClick: () => {
-        Router.go(ROUTES.EDIT_PASSWORD);
-      },
+    fieldType: EProfileField.BTN,
+    fieldName: NAMES.editPasswordBtn,
+
+    btnOnClick: () => {
+      Router.go(PAGE_URL.EDIT_PASSWORD);
     },
   }),
+
   new ProfileField({
-    leftContent: {
-      type: "redLinkButton",
-      text: "Выйти",
-      onClick: () => {
-        Router.go(ROUTES.LOGIN);
-      },
+    fieldType: EProfileField.BTN,
+    fieldName: NAMES.logoutBtn,
+    btnColor: "red",
+    withDivider: false,
+
+    btnOnClick: () => {
+      Router.go(PAGE_URL.LOGIN);
     },
-    divider: false,
   }),
 ];
 
 const ProfilePage = () =>
   new Profile({
     avatar: new Avatar({ size: "l" }),
-    userName: "Иван",
+    userName: "mock username...",
     contentFields: PROFILE_FIELDS,
     footerFields: FOOTER_FIELDS,
   });

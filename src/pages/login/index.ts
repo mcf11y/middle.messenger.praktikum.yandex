@@ -1,28 +1,26 @@
 import Button from "components/button";
 import Title from "components/title";
-import Field from "components/field";
+import FormField from "components/formField";
 import CenteredLayout from "components/centeredWrapper";
 
 import AuthForm from "containers/authForm";
 
-import { ROUTES } from "utils/pageRoutes";
-
 import Router from "router";
+import { IDS, NAMES } from "constants/fields";
+import PAGE_URL from "constants/pageUrls";
+import ValidationMediator from "validation/ValidationMediator";
+import FORM_TYPE from "constants/formTypes";
 
-const loginField = new Field({
-  id: "login",
-  type: "text",
-  fieldName: "Логин",
-  placeholder: "Введите логин",
-  inputName: "login",
+const loginValidation = new ValidationMediator(FORM_TYPE.LOGIN);
+
+const loginField = new FormField({
+  fieldName: NAMES.login,
+  validation: loginValidation,
 });
 
-const passwordField = new Field({
-  id: "password",
-  type: "password",
-  fieldName: "Пароль",
-  placeholder: "Введите пароль",
-  inputName: "password",
+const passwordField = new FormField({
+  fieldName: NAMES.password,
+  validation: loginValidation,
 });
 
 const onAuthFormSubmit = (data: any) => {
@@ -34,24 +32,29 @@ const loginFormContext = {
     text: "Вход",
     size: "l",
   }),
+
   contentItems: [loginField, passwordField],
+
   submitBtn: new Button({
-    id: "login-submit-btn",
+    id: IDS[NAMES.submitBtn],
     variant: "primary",
     type: "submit",
     text: "Авторизоваться",
   }),
+
   redirectBtn: new Button({
     id: "redirect-btn",
     variant: "link",
     type: "button",
     text: "Нет аккаунта?",
     onClick: () => {
-      Router.go(ROUTES.SIGN_UP);
+      Router.go(PAGE_URL.SIGN_UP);
     },
   }),
+
   actionUrl: "",
   onSubmit: onAuthFormSubmit,
+  validation: loginValidation,
 };
 
 const Login = () =>

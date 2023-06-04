@@ -1,7 +1,9 @@
 import IconButton from "components/iconButton";
 import Block from "base-component";
-import Router from "router";
-import BackIcon from "../static/icons/arrow-left.svg";
+
+import PAGE_URL from "constants/pageUrls";
+import router from "router";
+import BackIcon from "../../../../../static/icons/arrow-left.svg";
 
 import template from "./leftBar.hbs";
 
@@ -14,7 +16,7 @@ class LeftBar extends Block {
     this.children.backButton = new IconButton({
       iconSrc: BackIcon,
       onClick: () => {
-        Router.back();
+        router.go(PAGE_URL.INDEX);
       },
     });
   }

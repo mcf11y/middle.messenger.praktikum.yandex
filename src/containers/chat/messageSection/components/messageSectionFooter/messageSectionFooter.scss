@@ -1,11 +1,19 @@
 .message-section-footer {
+  height: 70px;
   display: flex;
   align-items: center;
   margin-top: 13px;
   gap: 10px;
 
   &__area {
-    padding-top: 4px;
     flex: 1 1 80%;
+    height: 100%
+  }
+
+  &__buttons {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
   }
 }

@@ -266,7 +266,7 @@ class Block {
 
   private _addEvents() {
     const { events = {} } = this.props as {
-      events: Record<string, EventCallback<any>>;
+      events: Record<string, Callback<any>>;
     };
 
     Object.keys(events).forEach((eventName) => {

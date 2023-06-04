@@ -2,13 +2,17 @@ import Block from "base-component";
 import MessageInputArea from "components/messageTextArea";
 
 import IconButton from "components/iconButton";
+import ValidationMediator from "validation/ValidationMediator";
+import { IDS, NAMES, PLACEHOLDERS } from "constants/fields";
 import template from "./messageSectionFooter.hbs";
 
 import AttachIcon from "../../../../../../static/icons/attach-icon.svg";
 import SubmitIcon from "../../../../../../static/icons/arrow-right.svg";
 
+
 type Props = {
   savedMessage?: Nullable<string>;
+  validation: ValidationMediator;
 };
 
 class MessageSectionFooter extends Block {
@@ -17,33 +21,32 @@ class MessageSectionFooter extends Block {
   }
 
   protected init(): void {
+    const fName = NAMES.message;
+
+    this.props.validation?.subscribeField(fName);
+
     this.children.attachButton = new IconButton({
       iconSrc: AttachIcon,
       variant: "secondary",
-      btnWidth: 35,
+      btnWidth: 30,
       iconWidth: 20,
     });
+
     this.children.inputArea = new MessageInputArea({
+      id: IDS[fName],
+      name: fName,
       savedMessage: this.props.savedMessage,
-      name: "message",
-      placeholder: "Сообщение",
-      onBlur: this.validateMessageArea.bind(this),
-      onFocus: this.validateMessageArea.bind(this),
-      onInput: this.validateMessageArea.bind(this),
+      placeholder: PLACEHOLDERS[fName],
+
+      onBlur: () => this.props.validation.validateField(fName),
+      onFocus: () => this.props.validation.validateField(fName),
+      onInput: () => this.props.validation.validateField(fName),
     });
+
     this.children.submitButton = new IconButton({
+      id: IDS[NAMES.submitBtn],
       iconSrc: SubmitIcon,
     });
-  }
-
-  public validateMessageArea(): void {
-    const error = (this.children.inputArea as MessageInputArea).validate();
-
-    if (error !== "") {
-      (this.children.submitButton as IconButton).disabled();
-    } else {
-      (this.children.submitButton as IconButton).enabled();
-    }
   }
 
   protected render(): DocumentFragment {

@@ -1,7 +1,11 @@
 import Chat from "containers/chat";
 import SignUp from "pages/signup";
 
+import ValidationMediator from "validation/ValidationMediator";
+import FORM_TYPE from "constants/formTypes";
 import { CHAT_LIST, CURRENT_CHAT } from "./mock.const";
+
+const chatValidation = new ValidationMediator(FORM_TYPE.CHAT_MESSAGE);
 
 const Home = () => {
   const isLogin = true;
@@ -13,6 +17,7 @@ const Home = () => {
   return new Chat({
     chats: CHAT_LIST,
     currentChat: CURRENT_CHAT,
+    validation: chatValidation,
   });
 };
 

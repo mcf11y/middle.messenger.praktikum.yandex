@@ -55,6 +55,10 @@ module.exports = {
 
     "@typescript-eslint/default-param-last": "off",
     "@typescript-eslint/no-plusplus": "off",
+    "@typescript-eslint/naming-convention": "off",
+
+    "no-unused-expressions": "off",
+    "@typescript-eslint/no-unused-expressions": 0,
 
     quotes: ["error", "double"],
     indent: ["error", 2],

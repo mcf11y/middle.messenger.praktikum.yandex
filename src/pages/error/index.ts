@@ -3,10 +3,9 @@ import Button from "components/button";
 import Title from "components/title";
 import CenteredWrapper from "components/centeredWrapper";
 
-import { ROUTES } from "utils/pageRoutes";
-
 import Router from "router";
 import template from "./error.hbs";
+import PAGE_URL from 'constants/pageUrls';
 
 type Props = {
   code: string | number;
@@ -28,7 +27,7 @@ class ErrorComponent extends Block {
       variant: "link",
       text: "Вернуться к чатам",
       onClick: () => {
-        Router.go(ROUTES.INDEX);
+        Router.go(PAGE_URL.INDEX);
       },
     });
   }

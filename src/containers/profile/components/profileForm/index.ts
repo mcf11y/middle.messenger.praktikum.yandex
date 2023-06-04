@@ -1,6 +1,5 @@
 import Title from "components/title";
 import Block from "base-component";
-import ProfileField from "components/profileField";
 import template from "./profileForm.hbs";
 
 type Props = {
@@ -28,22 +27,7 @@ class ProfileForm extends Block {
 
   public onSubmit(event: any): void {
     event.preventDefault();
-
-    const validateResult = (this.children.contentFields as Block[]).reduce(
-      (res, field) => {
-        const er = (field as ProfileField)?.validateInputField();
-
-        if (field instanceof ProfileField && er) {
-          return [...res, er];
-        }
-        return [...res];
-      },
-      [] as any[]
-    );
-
-    if (validateResult.length === 0) {
-      this.props?.onSubmit();
-    }
+    this.props?.onSubmit?.();
   }
 
   protected render(): DocumentFragment {

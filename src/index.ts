@@ -1,5 +1,5 @@
 import Router from "router";
-import { ROUTES } from "utils/pageRoutes";
+import PAGE_URL from "constants/pageUrls";
 import Login from "./pages/login";
 import SignUp from "./pages/signup";
 import ErrorPage from "./pages/error";
@@ -25,35 +25,35 @@ const homePage = HomePage();
 
 const routesPath = [
   {
-    path: ROUTES.INDEX,
+    path: PAGE_URL.INDEX,
     page: homePage,
   },
   {
-    path: ROUTES.LOGIN,
+    path: PAGE_URL.LOGIN,
     page: loginPage,
   },
   {
-    path: ROUTES.SIGN_UP,
+    path: PAGE_URL.SIGN_UP,
     page: signUpPage,
   },
   {
-    path: ROUTES.PROFILE,
+    path: PAGE_URL.PROFILE,
     page: profilePage,
   },
   {
-    path: ROUTES.EDIT_PASSWORD,
+    path: PAGE_URL.EDIT_PASSWORD,
     page: editPasswordPage,
   },
   {
-    path: ROUTES.EDIT_PROFILE,
+    path: PAGE_URL.EDIT_PROFILE,
     page: editProfilePage,
   },
   {
-    path: ROUTES.NOT_FOUND,
+    path: PAGE_URL.NOT_FOUND,
     page: error404,
   },
   {
-    path: ROUTES.SERVER_ERROR,
+    path: PAGE_URL.SERVER_ERROR,
     page: error500,
   },
 ];
@@ -64,7 +64,7 @@ window.addEventListener("DOMContentLoaded", () => {
   });
 
   Router.start();
-  // Router.go(ROUTES.INDEX);
+  // Router.go(PAGE_URL.INDEX);
 });
 
 // const root = document.getElementById("root");

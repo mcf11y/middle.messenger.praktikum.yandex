@@ -1,21 +1,23 @@
-<form
-  class="auth-form"
-  {{#if actionUrl}}
-    action="{{actionUrl}}"
-    method="post"
-  {{/if}}
->
-  {{{title}}}
+<div class="auth-form__wrapper">
+  <form
+    class="auth-form"
+    {{#if actionUrl}}
+      action="{{actionUrl}}"
+      method="post"
+    {{/if}}
+  >
+    {{{title}}}
 
-  <div class="auth-form__content">
-    {{#each contentItems}}
-      {{{this}}}
-    {{/each}}
-  </div>
+    <div class="auth-form__content">
+      {{#each contentItems}}
+        {{{this}}}
+      {{/each}}
+    </div>
 
-  <div class="auth-form__footer">
-    {{{submitBtn}}}
-    {{{redirectBtn}}}
-  </div>
+    <div class="auth-form__footer">
+      {{{submitBtn}}}
+      {{{redirectBtn}}}
+    </div>
 
-</form>
+  </form>
+</div>

@@ -1,5 +1,6 @@
 import { ChatData, ChatDetailsData } from "types/chat";
 import Block from "base-component";
+import ValidationMediator from "validation/ValidationMediator";
 import ChatBar from "./chatBarSection";
 import MessageSection from "./messageSection";
 
@@ -9,6 +10,7 @@ import EmptyMessage from "./messageSection/components/emptyMessageSection";
 type Props = {
   chats: ChatData[];
   currentChat?: ChatDetailsData;
+  validation: ValidationMediator;
 };
 
 class Chat extends Block {
@@ -21,7 +23,7 @@ class Chat extends Block {
 
     this.children.chatBar = new ChatBar({ chats });
     this.children.chatMessages = currentChat
-      ? new MessageSection({ currentChat })
+      ? new MessageSection({ currentChat, validation: this.props.validation })
       : new EmptyMessage();
   }
 

@@ -39,7 +39,7 @@ declare type ArgumentTypes<F extends Function> = F extends (...args: infer A) =>
 
 declare type Callback<T extends (...args: any[]) => any> = T;
 
-declare type EventCallback<T extends (...args: any[]) => void> = T;
+declare type Handler<T extends any[] = unknown[]> = (...args: T) => void;
 
 declare type PromiseValue<T extends Promise<any>> = T extends Promise<infer P>
   ? P
@@ -51,3 +51,5 @@ declare type TypedAction<TActionModule> = {
     ? ReturnType<TActionModule[P]>
     : never;
 }[keyof TActionModule];
+
+declare type ObjectKeys<T extends object> = keyof T;

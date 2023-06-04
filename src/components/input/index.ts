@@ -9,9 +9,10 @@ type Props = {
   name?: string;
   disabled?: boolean;
   reverseAlign?: boolean;
-  onFocus?: (e: any) => void;
-  onBlur?: (e: any) => void;
+  onFocus?: (e: FocusEvent) => void;
+  onBlur?: (e: FocusEvent) => void;
   onChange?: (e: any) => void;
+  onInput?: (e: any) => void;
 };
 
 class Input extends Block {
@@ -26,6 +27,7 @@ class Input extends Block {
     onFocus,
     onBlur,
     onChange,
+    onInput,
   }: Props) {
     super({
       id,
@@ -38,14 +40,20 @@ class Input extends Block {
       onFocus,
       onBlur,
       onChange,
+      onInput,
     });
   }
 
   protected init(): void {
     this.props.events = {
-      focus: (e: any) => this.props?.onFocus?.(e),
-      blur: (e: any) => this.props?.onBlur?.(e),
-      change: (e: any) => this.props.onChange?.(e),
+      blur: (e: FocusEvent) => {
+        this.props.onBlur?.(e);
+      },
+      input: (e: InputEvent) => {
+        this.props.onInput?.(e);
+      },
+      change: (e: InputEvent) => this.props.onChange?.(e),
+      focus: (e: FocusEvent) => this.props.onFocus?.(e),
     };
   }
 

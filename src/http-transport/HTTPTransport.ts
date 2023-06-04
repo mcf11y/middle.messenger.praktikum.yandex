@@ -1,3 +1,5 @@
+import { queryStringify } from "utils/mydash";
+
 enum METHOD {
   GET = "GET",
   POST = "POST",
@@ -20,19 +22,20 @@ type HTTPMethod = (
   options?: OptionsWithoutMethod
 ) => Promise<XMLHttpRequest>;
 
-const queryStringify = (queryObj: Record<string, unknown>): string => {
-  const keys = Object.keys(queryObj);
+// const queryStringify = (queryObj: Record<string, unknown>): string => {
 
-  if (!keys.length) {
-    return "";
-  }
+//   const keys = Object.keys(queryObj);
 
-  return keys.reduce(
-    (result, key, index) =>
-      `${result}${key}=${queryObj[key]}${index < keys.length - 1 ? "&" : ""}`,
-    "?"
-  );
-};
+//   if (!keys.length) {
+//     return "";
+//   }
+
+//   return keys.reduce(
+//     (result, key, index) =>
+//       `${result}${key}=${queryObj[key]}${index < keys.length - 1 ? "&" : ""}`,
+//     "?"
+//   );
+// };
 
 class HTTPTransport {
   get: HTTPMethod = (url, options = {}) =>
