@@ -1,7 +1,7 @@
 import { ChatDetailsData } from "types/chat";
 import Divider from "components/divider";
-import Block from "base-component";
-import ValidationMediator from "validation/ValidationMediator";
+import Block from "services/block";
+import ValidationMediator from "services/validation/ValidationMediator";
 import Header from "./components/messageSectionHeader";
 import Content from "./components/messageSectionContent";
 import Footer from "./components/messageSectionFooter";

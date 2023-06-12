@@ -6,9 +6,9 @@ import { IDS, NAMES } from "constants/fields";
 import PAGE_URL from "constants/pageUrls";
 
 import Profile from "containers/profile";
-import Router from "router";
+import Router from "services/router";
 import { FORM_TYPE } from "constants/formTypes";
-import ValidationMediator from "validation/ValidationMediator";
+import ValidationMediator from "services/validation/ValidationMediator";
 
 const validation = new ValidationMediator(FORM_TYPE.EDIT_PASSWORD);
 

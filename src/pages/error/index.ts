@@ -1,9 +1,9 @@
-import Block from "base-component";
+import Block from "services/block";
 import Button from "components/button";
 import Title from "components/title";
 import CenteredWrapper from "components/centeredWrapper";
 
-import Router from "router";
+import Router from "services/router";
 import template from "./error.hbs";
 import PAGE_URL from 'constants/pageUrls';
 

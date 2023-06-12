@@ -1,10 +1,11 @@
-import Block from "base-component";
+import Block from "services/block";
 
 export interface BlockConstructable<P extends Record<string, any> = any> {
   new (props: P): Block<P>;
 }
 
-const isPathEqual = (lhs: string, rhs: string): boolean => lhs === rhs;
+// TODO: костыль переделать
+const isPathEqual = (lhs: string, rhs: string): boolean => lhs.startsWith(rhs);
 
 const render = (query: string, block: Block) => {
   const root = document.querySelector(query);

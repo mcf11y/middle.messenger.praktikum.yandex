@@ -1,4 +1,4 @@
-import Block from "base-component";
+import Block from "services/block";
 import Route, { BlockConstructable } from "./Route";
 
 class Router {
@@ -61,6 +61,10 @@ class Router {
 
   public forward() {
     this._history.forward();
+  }
+
+  public reload() {
+	  window.location.reload();
   }
 
   private _getRoute(pathname: string) {

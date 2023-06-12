@@ -1,8 +1,8 @@
-import Block from "base-component";
+import Block from "services/block";
 import MessageInputArea from "components/messageTextArea";
 
 import IconButton from "components/iconButton";
-import ValidationMediator from "validation/ValidationMediator";
+import ValidationMediator from "services/validation/ValidationMediator";
 import { IDS, NAMES, PLACEHOLDERS } from "constants/fields";
 import template from "./messageSectionFooter.hbs";
 

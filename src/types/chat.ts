@@ -9,6 +9,7 @@ export type MessageData = {
 };
 
 export type ChatData = {
+  uid: string;
   id: number | string;
   chatName: string;
   lastMessage?: MessageData;
@@ -18,6 +19,7 @@ export type ChatData = {
 };
 
 export type ChatDetailsData = {
+  uid: string;
   id: number;
   chatName: string;
   messages: MessageData[];

@@ -1,5 +1,5 @@
 import CenteredWrapper from "components/centeredWrapper";
-import Block from "base-component";
+import Block from "services/block";
 import LeftBar from "./components/leftBar";
 import template from "./profile.hbs";
 import ProfileForm from "./components/profileForm";

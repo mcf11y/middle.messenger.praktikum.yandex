@@ -1,7 +1,7 @@
 import Avatar from "components/avatar";
 
 import ProfileField, { EProfileField } from "components/profileField";
-import Router from "router";
+import Router from "services/router";
 
 import Profile from "containers/profile";
 import PAGE_URL from "constants/pageUrls";

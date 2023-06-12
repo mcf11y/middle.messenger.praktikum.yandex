@@ -1,4 +1,4 @@
-import Block from "base-component";
+import Block from "services/block";
 import template from "./emptyMessage.hbs";
 
 class EmptyMessage extends Block {

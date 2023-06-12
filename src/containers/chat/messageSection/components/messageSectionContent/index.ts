@@ -1,7 +1,7 @@
 import { MessageData } from "types/chat";
 
 import ChatMessage from "components/chatMessage";
-import Block from "base-component";
+import Block from "services/block";
 import template from "./messageSectionContent.hbs";
 
 type Props = {

@@ -1,5 +1,5 @@
 import Title from "components/title";
-import Block from "base-component";
+import Block from "services/block";
 import template from "./profileForm.hbs";
 
 type Props = {

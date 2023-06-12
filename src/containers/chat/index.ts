@@ -1,6 +1,6 @@
 import { ChatData, ChatDetailsData } from "types/chat";
-import Block from "base-component";
-import ValidationMediator from "validation/ValidationMediator";
+import Block from "services/block";
+import ValidationMediator from "services/validation/ValidationMediator";
 import ChatBar from "./chatBarSection";
 import MessageSection from "./messageSection";
 

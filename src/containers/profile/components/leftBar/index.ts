@@ -1,8 +1,8 @@
 import IconButton from "components/iconButton";
-import Block from "base-component";
+import Block from "services/block";
 
 import PAGE_URL from "constants/pageUrls";
-import router from "router";
+import router from "services/router";
 import BackIcon from "../../../../../static/icons/arrow-left.svg";
 
 import template from "./leftBar.hbs";

@@ -19,8 +19,8 @@
 
 /* containers */
 @import "../containers/authForm/authForm.scss";
-@import "../containers/chat/chatBarSection/components/chatItem/chatItem.scss";
-@import "../containers/chat/chatBarSection/components/chatList/chatList.scss";
+@import "../containers/chat/chatBarSection/components/chatBarItem/chatBarItem.scss";
+@import "../containers/chat/chatBarSection/components/chatBarList/chatBarList.scss";
 @import "../containers/chat/messageSection/components/emptyMessageSection/emptyMessage.scss";
 @import "../containers/chat/messageSection/components/messageSectionHeader/messageSectionHeader.scss";
 @import "../containers/chat/messageSection/components/messageSectionContent/messageSectionContent.scss";

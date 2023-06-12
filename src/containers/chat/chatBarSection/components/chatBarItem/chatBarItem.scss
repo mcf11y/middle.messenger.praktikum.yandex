@@ -1,4 +1,4 @@
-.bar-item {
+.chat-bar-item {
   display: flex;
   flex-direction: row;
   box-sizing: border-box;
@@ -47,7 +47,11 @@
     }
   }
 
+  &_selected {
+    background-color: $light-blue-selected;
+  }
+
   &:hover {
-    background-color: $ligth-blue;
+    background-color: $light-blue-hover;
   }
 }

@@ -1,8 +1,8 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import Block from "base-component";
+import Block from "services/block";
 import Input from "components/input";
 import Label from "components/label";
-import ValidationMediator from "validation/ValidationMediator";
+import ValidationMediator from "services/validation/ValidationMediator";
 import {
   TFieldNames,
   IDS,

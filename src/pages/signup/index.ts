@@ -5,10 +5,10 @@ import CenteredLayout from "components/centeredWrapper";
 
 import AuthForm from "containers/authForm";
 
-import Router from "router";
+import Router from "services/router";
 import PAGE_URL from "constants/pageUrls";
 import { IDS, NAMES } from "constants/fields";
-import ValidationMediator from "validation/ValidationMediator";
+import ValidationMediator from "services/validation/ValidationMediator";
 import FORM_TYPE from "constants/formTypes";
 
 const signupValidation = new ValidationMediator(FORM_TYPE.SINGUP);

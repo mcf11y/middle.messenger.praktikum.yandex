@@ -1,7 +1,7 @@
 import Divider from "components/divider";
-import Block from "base-component";
+import Block from "services/block";
 import Input from "components/input";
-import ValidationMediator from "validation/ValidationMediator";
+import ValidationMediator from "services/validation/ValidationMediator";
 import {
   IDS,
   INPUT_TYPES,

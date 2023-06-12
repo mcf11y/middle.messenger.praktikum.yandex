@@ -40,7 +40,8 @@
     "src/utils/test.js",
     "src/utils/EventBus.ts",
     "src/utils/Block.js",
-    "src/utils/mediator.ts"
+    "src/utils/mediator.ts",
+    "src/store/index.ts"
   ],
 
   "exclude": ["node_modules"]

@@ -1,8 +1,8 @@
 import Title from "components/title";
 import Badge from "components/badge";
 
-import Block from "base-component";
-import template from "./chatItem.hbs";
+import Block from "services/block";
+import template from "./chatBarItem.hbs";
 
 type Props = {
   id?: string | number;
@@ -11,6 +11,8 @@ type Props = {
   lastMessage?: string;
   time: string;
   missedMesssageCount?: number;
+  selected?: boolean;
+  onClick: (id: string | number) => void;
 };
 
 class ChatItem extends Block {
@@ -29,6 +31,10 @@ class ChatItem extends Block {
     if (this.props.missedMesssageCount) {
       this.children.countBadge = new Badge({ text: this.props.missedMesssageCount });
     }
+
+    this.props.events = {
+      click: () => this.props.onClick(this.props.id),
+    };
   }
 
   protected render(): DocumentFragment {

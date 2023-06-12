@@ -1,13 +1,13 @@
 import Chat from "containers/chat";
 import SignUp from "pages/signup";
 
-import ValidationMediator from "validation/ValidationMediator";
+import ValidationMediator from "services/validation/ValidationMediator";
 import FORM_TYPE from "constants/formTypes";
 import { CHAT_LIST, CURRENT_CHAT } from "./mock.const";
 
 const chatValidation = new ValidationMediator(FORM_TYPE.CHAT_MESSAGE);
 
-const Home = () => {
+const Messenger = () => {
   const isLogin = true;
 
   if (!isLogin) {
@@ -21,4 +21,4 @@ const Home = () => {
   });
 };
 
-export default Home;
+export default Messenger;

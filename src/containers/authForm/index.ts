@@ -1,9 +1,9 @@
 import FormField from "components/formField";
-import Block from "base-component";
+import Block from "services/block";
 
-import Router from "router";
+import Router from "services/router";
 import PAGE_URL from "constants/pageUrls";
-import ValidationMediator from "validation/ValidationMediator";
+import ValidationMediator from "services/validation/ValidationMediator";
 import template from "./authForm.hbs";
 
 type Props = {

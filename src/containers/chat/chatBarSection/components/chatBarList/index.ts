@@ -1,9 +1,11 @@
 import Avatar from "components/avatar";
 import { ChatData } from "types/chat";
-import Block from "base-component";
-import ChatItem from "../chatItem";
+import Block from "services/block";
+import router from "services/router";
+import PAGE_URL from "constants/pageUrls";
+import ChatItem from "../chatBarItem";
 
-import template from "./chatList.hbs";
+import template from "./chatBarList.hbs";
 
 type Props = {
   chats: ChatData[];
@@ -27,6 +29,10 @@ class ChatList extends Block {
           time: time.toString(),
           missedMesssageCount,
           lastMessage: lastMessage?.content.toString(),
+
+          onClick: (_id: string | number) => {
+            router.go(`${PAGE_URL.CHATS}/${_id}`);
+          }
         })
     );
   }

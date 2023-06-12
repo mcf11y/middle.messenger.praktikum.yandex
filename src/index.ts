@@ -1,4 +1,4 @@
-import Router from "router";
+import Router from "services/router";
 import PAGE_URL from "constants/pageUrls";
 import Login from "./pages/login";
 import SignUp from "./pages/signup";
@@ -6,7 +6,7 @@ import ErrorPage from "./pages/error";
 import ProfilePage from "./pages/profile";
 import EditProfilePage from "./pages/editProfile";
 import EditPasswordPage from "./pages/editPassword";
-import HomePage from "./pages/home";
+import MessengerPage from "./pages/messenger";
 
 const error404 = ErrorPage({
   code: 404,
@@ -21,12 +21,16 @@ const signUpPage = SignUp();
 const profilePage = ProfilePage();
 const editProfilePage = EditProfilePage();
 const editPasswordPage = EditPasswordPage();
-const homePage = HomePage();
+const messengerPage = MessengerPage();
 
 const routesPath = [
   {
     path: PAGE_URL.INDEX,
-    page: homePage,
+    page: messengerPage,
+  },
+  {
+    path: PAGE_URL.CHATS,
+    page: messengerPage,
   },
   {
     path: PAGE_URL.LOGIN,
@@ -64,10 +68,10 @@ window.addEventListener("DOMContentLoaded", () => {
   });
 
   Router.start();
+
   // Router.go(PAGE_URL.INDEX);
 });
 
-// const root = document.getElementById("root");
 
 (window as any).router = ({ event, path }: { event: any; path: string }) => {
   event.preventDefault();

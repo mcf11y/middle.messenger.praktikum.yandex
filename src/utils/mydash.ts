@@ -205,10 +205,6 @@ export function trim(str: string, trimmedChars?: string): string {
   return str.replace(regex, "");
 }
 
-type Indexed<T = unknown> = {
-  [key in string]: T;
-};
-
 export function merge(lhs: Indexed, rhs: Indexed): Indexed {
   for (const p in rhs) {
     // eslint-disable-next-line no-prototype-builtins

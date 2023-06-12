@@ -17,6 +17,8 @@ declare module "*.scss" {
   export default styles;
 }
 
+declare type UID = string | number;
+
 declare type Nullable<T> = T | null;
 
 declare type Maybe<T> = T | undefined;
@@ -53,3 +55,7 @@ declare type TypedAction<TActionModule> = {
 }[keyof TActionModule];
 
 declare type ObjectKeys<T extends object> = keyof T;
+
+type Indexed<T = unknown> = {
+  [key in string]: T;
+};

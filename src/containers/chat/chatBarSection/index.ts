@@ -2,13 +2,13 @@ import { ChatData, ChatDetailsData } from "types/chat";
 import Button from "components/button";
 import SearchInput from "components/searchInput";
 import Input from "components/input";
-import Block from "base-component";
-import Router from "router";
+import Block from "services/block";
+import Router from "services/router";
 import PAGE_URL from "constants/pageUrls";
 
 import arrowIcon from "../../../../static/icons/arrow-go-to.svg";
 
-import ChatList from "./components/chatList";
+import ChatList from "./components/chatBarList";
 
 import template from "./chatBar.hbs";
 
