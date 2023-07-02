@@ -47,11 +47,15 @@
     }
   }
 
-  &_selected {
-    background-color: $light-blue-selected;
-  }
-
   &:hover {
     background-color: $light-blue-hover;
+  }
+
+  &_selected {
+    background-color: $light-blue-selected;
+
+    &:hover {
+      background-color: $light-blue-selected;
+    }
   }
 }

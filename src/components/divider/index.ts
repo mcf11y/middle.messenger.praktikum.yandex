@@ -1,5 +1,6 @@
 import Block from "services/block";
-import template from "./divider.hbs";
+
+import template from "./Divider.hbs";
 
 class Divider extends Block {
   constructor() {

@@ -1,5 +1,6 @@
 import Block from "services/block";
-import template from "./link.hbs";
+
+import template from "./Link.hbs";
 
 type Props = {
   id?: string;
@@ -22,10 +23,10 @@ class Link extends Block {
     });
   }
 
-  protected init (): void {
+  protected init(): void {
     this.props.events = {
       click: (e: any) => this.props?.onClick?.(e),
-    }
+    };
   }
 
   protected render(): DocumentFragment {

@@ -1,3 +1,3 @@
-import HTTPTransport from "services/http/HTTPTransport";
+import HTTPTransport from "services/http/transport";
 
 export default HTTPTransport;

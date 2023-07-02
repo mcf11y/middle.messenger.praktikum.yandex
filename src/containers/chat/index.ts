@@ -1,11 +1,11 @@
-import { ChatData, ChatDetailsData } from "types/chat";
 import Block from "services/block";
-import ValidationMediator from "services/validation/ValidationMediator";
-import ChatBar from "./chatBarSection";
-import MessageSection from "./messageSection";
+import ValidationMediator from "services/validation/validation-mediator";
+import { ChatData, ChatDetailsData } from "types/chat";
 
-import template from "./chat.hbs";
-import EmptyMessage from "./messageSection/components/emptyMessageSection";
+import EmptyMessage from "./MessageSection/EmptyMessageSection";
+import template from "./Chat.hbs";
+import ChatBar from "./ChatBarSection";
+import MessageSection from "./MessageSection";
 
 type Props = {
   chats: ChatData[];

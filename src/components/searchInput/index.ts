@@ -1,5 +1,6 @@
 import Block from "services/block";
-import template from "./searchInput.hbs";
+
+import template from "./SearchInput.hbs";
 
 type Props = {
   input: Block;

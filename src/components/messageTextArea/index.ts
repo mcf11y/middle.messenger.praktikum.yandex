@@ -1,5 +1,6 @@
 import Block from "services/block";
-import template from "./messageTextArea.hbs";
+
+import template from "./MessageTextArea.hbs";
 
 type Props = {
   id?: string;

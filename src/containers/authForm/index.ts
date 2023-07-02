@@ -1,10 +1,9 @@
-import FormField from "components/formField";
+import { TFieldNames } from "constants/fields";
 import Block from "services/block";
 
-import Router from "services/router";
-import PAGE_URL from "constants/pageUrls";
-import ValidationMediator from "services/validation/ValidationMediator";
-import template from "./authForm.hbs";
+import FormField from "components/FormField";
+
+import template from "./AuthForm.hbs";
 
 type Props = {
   title: Block;
@@ -12,13 +11,11 @@ type Props = {
   submitBtn: Block;
   redirectBtn: Block;
   actionUrl?: string;
-  onSubmit?: (data: any) => void;
-
-  validation?: ValidationMediator;
+  onSubmit?: (data: Record<TFieldNames, string>) => void;
 };
 
 class AuthForm extends Block {
-  constructor({...props }: Props) {
+  constructor({ ...props }: Props) {
     super({
       ...props,
     });
@@ -39,18 +36,8 @@ class AuthForm extends Block {
   protected init(): void {
     this.props.events = {
       submit: (e: any) => {
-        const validation = this.props.validation;
-
         e.preventDefault();
-
         this.props?.onSubmit?.(this.getFieldsValue());
-
-        if (validation) {
-          validation.validateForm();
-          validation.isFormValid() && Router.go(PAGE_URL.INDEX);
-        } else {
-          Router.go(PAGE_URL.INDEX);
-        }
       },
     };
   }

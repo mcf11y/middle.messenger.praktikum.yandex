@@ -4,8 +4,18 @@ export interface BlockConstructable<P extends Record<string, any> = any> {
   new (props: P): Block<P>;
 }
 
-// TODO: костыль переделать
-const isPathEqual = (lhs: string, rhs: string): boolean => lhs.startsWith(rhs);
+// TODO: костыль для чатов - в будущем переделать
+const isPathEqual = (lhs: string, rhs: string): boolean => {
+  if (lhs === rhs) {
+    return true;
+  }
+
+  if (lhs.startsWith(rhs) && lhs[rhs.length] === "/") {
+    return true;
+  }
+
+  return false;
+};
 
 const render = (query: string, block: Block) => {
   const root = document.querySelector(query);
@@ -15,7 +25,6 @@ const render = (query: string, block: Block) => {
   }
 
   root.innerHTML = "";
-
   root.append(block.getContent()!);
 
   return root;

@@ -1,8 +1,9 @@
+import Block from "services/block";
 import { MessageData } from "types/chat";
 
-import ChatMessage from "components/chatMessage";
-import Block from "services/block";
-import template from "./messageSectionContent.hbs";
+import ChatMessage from "components/ChatMessage";
+
+import template from "./MessageSectionContent.hbs";
 
 type Props = {
   id?: string;

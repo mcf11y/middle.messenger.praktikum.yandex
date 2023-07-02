@@ -1,14 +1,13 @@
-import Block from "services/block";
-import MessageInputArea from "components/messageTextArea";
-
-import IconButton from "components/iconButton";
-import ValidationMediator from "services/validation/ValidationMediator";
 import { IDS, NAMES, PLACEHOLDERS } from "constants/fields";
-import template from "./messageSectionFooter.hbs";
+import SubmitIcon from "icons/arrow-right.svg";
+import AttachIcon from "icons/attach-icon.svg";
+import Block from "services/block";
+import ValidationMediator from "services/validation/validation-mediator";
 
-import AttachIcon from "../../../../../../static/icons/attach-icon.svg";
-import SubmitIcon from "../../../../../../static/icons/arrow-right.svg";
+import IconButton from "components/IconButton";
+import MessageInputArea from "components/MessageTextArea";
 
+import template from "./MessageSectionFooter.hbs";
 
 type Props = {
   savedMessage?: Nullable<string>;

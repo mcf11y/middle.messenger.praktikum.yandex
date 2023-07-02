@@ -1,8 +1,10 @@
-import CenteredWrapper from "components/centeredWrapper";
 import Block from "services/block";
-import LeftBar from "./components/leftBar";
-import template from "./profile.hbs";
-import ProfileForm from "./components/profileForm";
+
+import CenteredWrapper from "components/CenteredWrapper";
+
+import LeftBar from "./LeftBar";
+import template from "./Profile.hbs";
+import ProfileForm from "./ProfileForm";
 
 type Props = {
   avatar: Block;

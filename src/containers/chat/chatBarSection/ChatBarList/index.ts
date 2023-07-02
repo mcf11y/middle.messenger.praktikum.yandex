@@ -1,25 +1,26 @@
-import Avatar from "components/avatar";
-import { ChatData } from "types/chat";
+import PAGE_URL from "constants/page-urls";
 import Block from "services/block";
 import router from "services/router";
-import PAGE_URL from "constants/pageUrls";
-import ChatItem from "../chatBarItem";
+import { ChatData } from "types/chat";
 
+import Avatar from "components/Avatar";
+
+import ChatBarItem from "./ChatBarItem";
 import template from "./chatBarList.hbs";
 
 type Props = {
   chats: ChatData[];
 };
 
-class ChatList extends Block {
+class ChatBarList extends Block {
   constructor(props: Props) {
     super({ ...props });
   }
 
   private renderItems(chats: ChatData[]) {
     return chats.map(
-      ({ id, chatName, lastMessage, time, missedMesssageCount, avatarImage }) =>
-        new ChatItem({
+      ({ id, chatName, lastMessage, time, missedMesssageCount, avatarImage }) => {
+        const chatItem = new ChatBarItem({
           id,
           chatName,
           avatar: new Avatar({
@@ -29,11 +30,21 @@ class ChatList extends Block {
           time: time.toString(),
           missedMesssageCount,
           lastMessage: lastMessage?.content.toString(),
-
+          selected: window.location.pathname === `${PAGE_URL.CHATS}/${id}`,
           onClick: (_id: string | number) => {
             router.go(`${PAGE_URL.CHATS}/${_id}`);
-          }
-        })
+            chatItem.setProps({ selected: true });
+
+            (this.children.items as Block[]).forEach((item) => {
+              if (item !== chatItem) {
+                item.setProps({ selected: false });
+              }
+            });
+          },
+        });
+
+        return chatItem;
+      }
     );
   }
 
@@ -46,4 +57,4 @@ class ChatList extends Block {
   }
 }
 
-export default ChatList;
+export default ChatBarList;

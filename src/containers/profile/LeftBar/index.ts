@@ -1,11 +1,11 @@
-import IconButton from "components/iconButton";
+import PAGE_URL from "constants/page-urls";
+import BackIcon from "icons/arrow-left.svg";
 import Block from "services/block";
-
-import PAGE_URL from "constants/pageUrls";
 import router from "services/router";
-import BackIcon from "../../../../../static/icons/arrow-left.svg";
 
-import template from "./leftBar.hbs";
+import IconButton from "components/IconButton";
+
+import template from "./LeftBar.hbs";
 
 class LeftBar extends Block {
   constructor() {

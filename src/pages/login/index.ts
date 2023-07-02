@@ -1,30 +1,32 @@
-import Button from "components/button";
-import Title from "components/title";
-import FormField from "components/formField";
-import CenteredLayout from "components/centeredWrapper";
-
-import AuthForm from "containers/authForm";
-
+import { IDS, NAMES, TFieldNames } from "constants/fields";
+import PAGE_URL from "constants/page-urls";
+import AuthForm from "containers/AuthForm";
+import AuthAPI from "services/api/auth";
+import UserLoginController from "services/controller/user-login";
 import Router from "services/router";
-import { IDS, NAMES } from "constants/fields";
-import PAGE_URL from "constants/pageUrls";
-import ValidationMediator from "services/validation/ValidationMediator";
-import FORM_TYPE from "constants/formTypes";
 
-const loginValidation = new ValidationMediator(FORM_TYPE.LOGIN);
+import Button from "components/Button";
+import CenteredLayout from "components/CenteredWrapper";
+import FormField from "components/FormField";
+import Title from "components/Title";
+
+const userLoginController = new UserLoginController();
 
 const loginField = new FormField({
   fieldName: NAMES.login,
-  validation: loginValidation,
+  validation: userLoginController.validation,
 });
 
 const passwordField = new FormField({
   fieldName: NAMES.password,
-  validation: loginValidation,
+  validation: userLoginController.validation,
 });
 
-const onAuthFormSubmit = (data: any) => {
+(window as any).AUTH_API = AuthAPI;
+
+const onAuthFormSubmit = (data: Record<TFieldNames, string>) => {
   console.log("FORM DATA", data);
+  userLoginController.login(data);
 };
 
 const loginFormContext = {
@@ -54,7 +56,6 @@ const loginFormContext = {
 
   actionUrl: "",
   onSubmit: onAuthFormSubmit,
-  validation: loginValidation,
 };
 
 const Login = () =>

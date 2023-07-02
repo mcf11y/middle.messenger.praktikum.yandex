@@ -1,7 +1,8 @@
-import Title from "components/title";
-import Badge from "components/badge";
-
 import Block from "services/block";
+
+import Badge from "components/Badge";
+import Title from "components/Title";
+
 import template from "./chatBarItem.hbs";
 
 type Props = {
@@ -15,7 +16,7 @@ type Props = {
   onClick: (id: string | number) => void;
 };
 
-class ChatItem extends Block {
+class ChatBarItem extends Block {
   constructor(props: Props) {
     super({
       ...props,
@@ -33,13 +34,17 @@ class ChatItem extends Block {
     }
 
     this.props.events = {
-      click: () => this.props.onClick(this.props.id),
+      click: () => {
+        this.props.onClick(this.props.id);
+      },
     };
   }
 
   protected render(): DocumentFragment {
-    return this.compile(template, this.props);
+    return this.compile(template, {
+      ...this.props,
+    });
   }
 }
 
-export default ChatItem;
+export default ChatBarItem;

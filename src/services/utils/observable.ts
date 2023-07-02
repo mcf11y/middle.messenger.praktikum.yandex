@@ -1,6 +1,6 @@
 type MapInterface<P> = P[keyof P];
 
-export class EventBus<
+export class Observable<
   E extends Record<string, string> = Record<string, string>,
   Args extends Record<MapInterface<E>, any[]> = Record<string, any[]>
 > {
@@ -37,4 +37,4 @@ export class EventBus<
   }
 }
 
-export default EventBus;
+export default Observable;

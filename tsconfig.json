@@ -1,5 +1,10 @@
 {
   "compilerOptions": {
+    "target": "es2015",
+    "lib": ["dom", "dom.iterable", "esnext"],
+
+    "experimentalDecorators": true,
+
     "module": "commonjs",
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
@@ -18,8 +23,6 @@
     "useUnknownInCatchVariables": false,
     "downlevelIteration": true,
 
-    "target": "es2015",
-    "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,
 
@@ -28,7 +31,7 @@
 
     "jsx": "preserve",
     "incremental": true,
-    "experimentalDecorators": true,
+
     "emitDecoratorMetadata": true,
 
     "baseUrl": "src"
@@ -37,11 +40,6 @@
   "include": [
     "./src/**/*.ts",
     "src/**/*.hbs",
-    "src/utils/test.js",
-    "src/utils/EventBus.ts",
-    "src/utils/Block.js",
-    "src/utils/mediator.ts",
-    "src/store/index.ts"
   ],
 
   "exclude": ["node_modules"]

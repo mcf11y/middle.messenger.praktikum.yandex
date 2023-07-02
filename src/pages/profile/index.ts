@@ -1,11 +1,10 @@
-import Avatar from "components/avatar";
-
-import ProfileField, { EProfileField } from "components/profileField";
+import { NAMES } from "constants/fields";
+import PAGE_URL from "constants/page-urls";
+import Profile from "containers/Profile";
 import Router from "services/router";
 
-import Profile from "containers/profile";
-import PAGE_URL from "constants/pageUrls";
-import { NAMES } from "constants/fields";
+import Avatar from "components/Avatar";
+import ProfileField, { EProfileField } from "components/ProfileField";
 
 const emailField = new ProfileField({
   fieldName: NAMES.email,

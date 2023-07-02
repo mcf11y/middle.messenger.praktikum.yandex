@@ -1,3 +1,3 @@
-import Block from "services/block/Block";
+import Block from "./block";
 
 export default Block;

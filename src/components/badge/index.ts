@@ -1,5 +1,6 @@
 import Block from "services/block";
-import template from "./badge.hbs";
+
+import template from "./Badge.hbs";
 
 type Props = {
   id?: string;

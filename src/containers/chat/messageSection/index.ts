@@ -1,12 +1,13 @@
-import { ChatDetailsData } from "types/chat";
-import Divider from "components/divider";
 import Block from "services/block";
-import ValidationMediator from "services/validation/ValidationMediator";
-import Header from "./components/messageSectionHeader";
-import Content from "./components/messageSectionContent";
-import Footer from "./components/messageSectionFooter";
+import ValidationMediator from "services/validation/validation-mediator";
+import { ChatDetailsData } from "types/chat";
 
-import template from "./messageSection.hbs";
+import Divider from "components/Divider";
+
+import template from "./MessageSection.hbs";
+import Content from "./MessageSectionContent";
+import Footer from "./MessageSectionFooter";
+import Header from "./MessageSectionHeader";
 
 type Props = {
   currentChat: ChatDetailsData;

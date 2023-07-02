@@ -1,5 +1,6 @@
 import Block from "services/block";
-import template from "./input.hbs";
+
+import template from "./Input.hbs";
 
 type Props = {
   id?: string;

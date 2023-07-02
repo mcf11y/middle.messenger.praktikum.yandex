@@ -1,11 +1,12 @@
+import PAGE_URL from "constants/page-urls";
 import Block from "services/block";
-import Button from "components/button";
-import Title from "components/title";
-import CenteredWrapper from "components/centeredWrapper";
-
 import Router from "services/router";
-import template from "./error.hbs";
-import PAGE_URL from 'constants/pageUrls';
+
+import Button from "components/Button";
+import CenteredWrapper from "components/CenteredWrapper";
+import Title from "components/Title";
+
+import template from "./Error.hbs";
 
 type Props = {
   code: string | number;

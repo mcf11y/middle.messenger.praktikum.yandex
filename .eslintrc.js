@@ -12,10 +12,39 @@ module.exports = {
   ],
   parser: "@typescript-eslint/parser",
   parserOptions: {
-    project: "./tsconfig.json",
     ecmaVersion: "latest",
     sourceType: "module",
+    tsconfigRootDir: __dirname,
+    project: ["./tsconfig.json"],
   },
+  plugins: ["simple-import-sort"],
+  overrides: [
+    // override "simple-import-sort" config
+    {
+      files: ["*.js", "*.jsx", "*.ts", "*.tsx"],
+      rules: {
+        "simple-import-sort/imports": [
+          "error",
+          {
+            groups: [
+              // Packages `react` related packages come first.
+              ["^react", "^@?\\w"],
+              // Internal packages.
+              ["^(@|components)(/.*|$)"],
+              // Side effect imports.
+              ["^\\u0000"],
+              // Parent imports. Put `..` last.
+              ["^\\.\\.(?!/?$)", "^\\.\\./?$"],
+              // Other relative imports. Put same-folder imports and `.` last.
+              ["^\\./(?=.*/)(?!/?$)", "^\\.(?!/?$)", "^\\./?$"],
+              // Style imports.
+              ["^.+\\.?(css)$"],
+            ],
+          },
+        ],
+      },
+    },
+  ],
   rules: {
     "max-len": [
       2,
@@ -61,6 +90,6 @@ module.exports = {
     "@typescript-eslint/no-unused-expressions": 0,
 
     quotes: ["error", "double"],
-    indent: ["error", 2],
+    indent: ["error", 2, { SwitchCase: 1 }],
   },
 };

@@ -1,5 +1,6 @@
 import { nanoid } from "nanoid";
-import { EventBus } from "./EventBus";
+
+import { Observable as EventBus } from "./observable";
 
 type PropsType = Record<string, any>;
 

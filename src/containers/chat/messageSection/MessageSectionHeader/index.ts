@@ -1,8 +1,9 @@
 import Block from "services/block";
-import Avatar from "../../../../../components/avatar";
-import Title from "../../../../../components/title";
 
-import template from "./messageSectionHeader.hbs";
+import Avatar from "components/Avatar";
+import Title from "components/Title";
+
+import template from "./MessageSectionHeader.hbs";
 
 type Props = {
   avatarImg?: string;

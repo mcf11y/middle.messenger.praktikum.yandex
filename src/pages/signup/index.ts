@@ -1,54 +1,53 @@
-import Button from "components/button";
-import Title from "components/title";
-import Field from "components/formField";
-import CenteredLayout from "components/centeredWrapper";
-
-import AuthForm from "containers/authForm";
-
+import { IDS, NAMES, TFieldNames } from "constants/fields";
+import PAGE_URL from "constants/page-urls";
+import AuthForm from "containers/AuthForm";
+import SignupUserController from "services/controller/user-signup";
 import Router from "services/router";
-import PAGE_URL from "constants/pageUrls";
-import { IDS, NAMES } from "constants/fields";
-import ValidationMediator from "services/validation/ValidationMediator";
-import FORM_TYPE from "constants/formTypes";
 
-const signupValidation = new ValidationMediator(FORM_TYPE.SINGUP);
+import Button from "components/Button";
+import CenteredLayout from "components/CenteredWrapper";
+import Field from "components/FormField";
+import Title from "components/Title";
+
+const userSignupController = new SignupUserController();
 
 const emailField = new Field({
   fieldName: NAMES.email,
-  validation: signupValidation,
+  validation: userSignupController.validation,
 });
 
 const loginField = new Field({
   fieldName: NAMES.login,
-  validation: signupValidation,
+  validation: userSignupController.validation,
 });
 
 const firstNameField = new Field({
   fieldName: NAMES.firstName,
-  validation: signupValidation,
+  validation: userSignupController.validation,
 });
 
 const secondNameField = new Field({
   fieldName: NAMES.secondName,
-  validation: signupValidation,
+  validation: userSignupController.validation,
 });
 
 const phoneField = new Field({
   fieldName: NAMES.phone,
-  validation: signupValidation,
+  validation: userSignupController.validation,
 });
 
 const passwordField = new Field({
   fieldName: NAMES.password,
-  validation: signupValidation,
+  validation: userSignupController.validation,
 });
 
 const passwordAgainField = new Field({
   fieldName: NAMES.passwordAgain,
-  validation: signupValidation,
+  validation: userSignupController.validation,
 });
 
-const onAuthFormSubmit = (data: any) => {
+const onAuthFormSubmit = (data: Record<TFieldNames, string>) => {
+  userSignupController.signup(data);
   console.log("FORM DATA", data);
 };
 
@@ -57,6 +56,7 @@ const signUpFormContext = {
     text: "Регистрация",
     size: "l",
   }),
+
   contentItems: [
     emailField,
     loginField,
@@ -66,12 +66,14 @@ const signUpFormContext = {
     passwordField,
     passwordAgainField,
   ],
+
   submitBtn: new Button({
     id: IDS[NAMES.submitBtn],
     variant: "primary",
     type: "submit",
     text: "Зарегистрироваться",
   }),
+
   redirectBtn: new Button({
     id: "redirect-btn",
     variant: "link",
@@ -81,10 +83,10 @@ const signUpFormContext = {
       Router.go(PAGE_URL.LOGIN);
     },
   }),
-  action: "",
-  onSubmit: onAuthFormSubmit,
 
-  validation: signupValidation,
+  action: "",
+
+  onSubmit: onAuthFormSubmit,
 };
 
 const SignUp = () =>

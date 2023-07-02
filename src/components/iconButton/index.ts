@@ -1,5 +1,6 @@
 import Block from "services/block";
-import template from "./iconButton.hbs";
+
+import template from "./IconButton.hbs";
 
 type Props = {
   id?: string;
@@ -32,17 +33,17 @@ class IconButton extends Block {
     });
   }
 
-  protected init (): void {
+  protected init(): void {
     this.props.events = {
       click: this.props?.onClick?.bind(this),
-    }
+    };
   }
 
-  public disabled (): void {
+  public disabled(): void {
     this.props.disabled = true;
   }
 
-  public enabled (): void {
+  public enabled(): void {
     this.props.disabled = false;
   }
 

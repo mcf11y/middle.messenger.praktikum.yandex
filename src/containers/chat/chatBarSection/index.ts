@@ -1,16 +1,15 @@
-import { ChatData, ChatDetailsData } from "types/chat";
-import Button from "components/button";
-import SearchInput from "components/searchInput";
-import Input from "components/input";
+import PAGE_URL from "constants/page-urls";
+import arrowIcon from "icons/arrow-go-to.svg";
 import Block from "services/block";
 import Router from "services/router";
-import PAGE_URL from "constants/pageUrls";
+import { ChatData, ChatDetailsData } from "types/chat";
 
-import arrowIcon from "../../../../static/icons/arrow-go-to.svg";
-
-import ChatList from "./components/chatBarList";
+import Button from "components/Button";
+import Input from "components/Input";
+import SearchInput from "components/SearchInput";
 
 import template from "./chatBar.hbs";
+import ChatList from "./ChatBarList";
 
 type Props = {
   chats: ChatData[];

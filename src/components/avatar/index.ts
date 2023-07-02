@@ -1,5 +1,6 @@
 import Block from "services/block";
-import template from "./avatar.hbs";
+
+import template from "./Avatar.hbs";
 
 type Props = {
   id?: string;

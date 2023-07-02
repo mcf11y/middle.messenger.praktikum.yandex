@@ -1,4 +1,4 @@
-import EventBus from "utils/EventBus";
+import { Observable as EventBus } from "services/utils/observable";
 
 export enum EStoreEvents {
   Updated = "updated",
@@ -8,7 +8,7 @@ export default class Store extends EventBus {
   private _state: Indexed = {};
 
   static _instance: Store;
-  static STORE_NAME = "appStore";
+  static STORE_NAME = "app";
 
   constructor() {
     if (Store._instance) {

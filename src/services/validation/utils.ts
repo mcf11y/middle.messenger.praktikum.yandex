@@ -1,5 +1,5 @@
 import { NAMES, TFieldNames } from "constants/fields";
-import { ERROR_MESSAGES, REGEX } from "constants/validationErrors";
+import { ERROR_MESSAGES, REGEX } from "constants/validation-errors";
 
 export const FIELD_REGEX = {
   [NAMES.login]: REGEX.login,

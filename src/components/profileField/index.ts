@@ -1,7 +1,3 @@
-import Divider from "components/divider";
-import Block from "services/block";
-import Input from "components/input";
-import ValidationMediator from "services/validation/ValidationMediator";
 import {
   IDS,
   INPUT_TYPES,
@@ -9,9 +5,15 @@ import {
   PLACEHOLDERS,
   TFieldNames,
 } from "constants/fields";
-import Label from "components/label";
-import Title from "components/title";
-import Link from "components/link";
+import Block from "services/block";
+import ValidationMediator from "services/validation/validation-mediator";
+
+import Divider from "components/Divider";
+import Input from "components/Input";
+import Label from "components/Label";
+import Link from "components/Link";
+import Title from "components/Title";
+
 import template from "./profileField.hbs";
 
 export enum EProfileField {

@@ -1,12 +1,13 @@
+import PAGE_URL from "constants/page-urls";
 import Router from "services/router";
-import PAGE_URL from "constants/pageUrls";
-import Login from "./pages/login";
-import SignUp from "./pages/signup";
-import ErrorPage from "./pages/error";
-import ProfilePage from "./pages/profile";
-import EditProfilePage from "./pages/editProfile";
-import EditPasswordPage from "./pages/editPassword";
-import MessengerPage from "./pages/messenger";
+
+import EditPasswordPage from "./pages/EditPassword";
+import EditProfilePage from "./pages/EditProfile";
+import ErrorPage from "./pages/Error";
+import Login from "./pages/Login";
+import MessengerPage from "./pages/Messenger";
+import ProfilePage from "./pages/Profile";
+import SignUp from "./pages/Signup";
 
 const error404 = ErrorPage({
   code: 404,
@@ -68,12 +69,11 @@ window.addEventListener("DOMContentLoaded", () => {
   });
 
   Router.start();
-
-  // Router.go(PAGE_URL.INDEX);
 });
 
-
 (window as any).router = ({ event, path }: { event: any; path: string }) => {
-  event.preventDefault();
+  event?.preventDefault();
   Router.go(path);
 };
+
+(window as any).Router = Router;

@@ -1,14 +1,13 @@
-import Avatar from "components/avatar";
-import Button from "components/button";
-
-import ProfileField, { EProfileField } from "components/profileField";
 import { IDS, NAMES } from "constants/fields";
-import PAGE_URL from "constants/pageUrls";
-
-import Profile from "containers/profile";
+import { FORM_TYPE } from "constants/form-types";
+import PAGE_URL from "constants/page-urls";
+import Profile from "containers/Profile";
 import Router from "services/router";
-import { FORM_TYPE } from "constants/formTypes";
-import ValidationMediator from "services/validation/ValidationMediator";
+import ValidationMediator from "services/validation/validation-mediator";
+
+import Avatar from "components/Avatar";
+import Button from "components/Button";
+import ProfileField, { EProfileField } from "components/ProfileField";
 
 const validation = new ValidationMediator(FORM_TYPE.EDIT_PASSWORD);
 

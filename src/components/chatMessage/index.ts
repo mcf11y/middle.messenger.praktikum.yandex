@@ -1,5 +1,6 @@
 import Block from "services/block";
-import template from "./chatMessage.hbs";
+
+import template from "./ChatMessage.hbs";
 
 type Props = {
   message: string;

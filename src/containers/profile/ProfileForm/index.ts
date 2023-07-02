@@ -1,6 +1,8 @@
-import Title from "components/title";
 import Block from "services/block";
-import template from "./profileForm.hbs";
+
+import Title from "components/Title";
+
+import template from "./ProfileForm.hbs";
 
 type Props = {
   avatar: Block;

@@ -1,5 +1,6 @@
 import Block from "services/block";
-import template from "./emptyMessage.hbs";
+
+import template from "./EmptyMessage.hbs";
 
 class EmptyMessage extends Block {
   constructor() {

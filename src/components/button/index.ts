@@ -1,5 +1,6 @@
 import Block from "services/block";
-import template from "./button.hbs";
+
+import template from "./Button.hbs";
 
 type Props = {
   id?: string;
@@ -40,10 +41,10 @@ class Button extends Block {
     });
   }
 
-  protected init () {
+  protected init() {
     this.props.events = {
-      click: this.props?.onClick?.bind(this)
-    }
+      click: this.props?.onClick?.bind(this),
+    };
   }
 
   protected render(): DocumentFragment {

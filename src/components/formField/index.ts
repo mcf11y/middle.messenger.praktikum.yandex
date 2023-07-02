@@ -1,27 +1,26 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-import Block from "services/block";
-import Input from "components/input";
-import Label from "components/label";
-import ValidationMediator from "services/validation/ValidationMediator";
 import {
-  TFieldNames,
   IDS,
+  INPUT_TYPES,
   LABELS,
   PLACEHOLDERS,
-  INPUT_TYPES,
+  TFieldNames,
 } from "constants/fields";
-import template from "./formField.hbs";
+import Block from "services/block";
+import ValidationMediator from "services/validation/validation-mediator";
+
+import Input from "components/Input";
+import Label from "components/Label";
+
+import template from "./FormField.hbs";
 
 type Props = {
   fieldName: TFieldNames;
-
   style?: CSSStyleSheet;
-
   validation: ValidationMediator;
 };
 
 class FormField extends Block {
-  constructor({...props }: Props) {
+  constructor({ ...props }: Props) {
     super({ ...props });
   }
 

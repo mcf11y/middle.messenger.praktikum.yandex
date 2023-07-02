@@ -1,5 +1,5 @@
 import { nanoid } from "nanoid";
-import EventBus from "utils/EventBus";
+import EventBus from "services/utils/observable";
 
 class Block<P extends Record<string, any> = any> {
   static EVENTS = {

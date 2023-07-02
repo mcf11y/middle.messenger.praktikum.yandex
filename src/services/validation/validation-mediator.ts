@@ -1,7 +1,8 @@
-import FORM_TYPE from "constants/formTypes";
-import { isEmpty } from "utils/mydash";
-import Mediator from "utils/Mediator";
 import { IDS, NAMES, TFieldNames } from "constants/fields";
+import FORM_TYPE from "constants/form-types";
+import Mediator from "services/utils/mediator";
+import { isEmpty } from "services/utils/my-dash";
+
 import { getErrorMessage } from "./utils";
 
 type TValidaitonResult = Record<TFieldNames, string>;
@@ -20,13 +21,7 @@ class ValidationMediator {
     this._formType = formType;
   }
 
-  private _validateField(fieldName: TFieldNames) {
-    const value = (
-      document.querySelectorAll(`[name="${fieldName}"]`)[0] as HTMLInputElement
-    )?.value;
-
-    const errorMessage = getErrorMessage(value, fieldName);
-
+  private _setFieldErrorMessage(fieldName: TFieldNames, errorMessage: string) {
     this._validationResult[fieldName] = errorMessage;
 
     const errorLabel = document.getElementById(
@@ -36,7 +31,9 @@ class ValidationMediator {
     if (errorLabel) {
       errorLabel.textContent = errorMessage;
     }
+  }
 
+  private _disableSubmitBtn() {
     const submitBtn = document.getElementById(
       IDS[NAMES.submitBtn]
     ) as HTMLButtonElement;
@@ -48,6 +45,22 @@ class ValidationMediator {
       submitBtn.disabled = true;
       submitBtn.classList.add(ERROR_BTN_CLASS);
     }
+  }
+
+  private _validateField(fieldName: TFieldNames) {
+    const value = (
+      document.querySelectorAll(`[name="${fieldName}"]`)[0] as HTMLInputElement
+    )?.value;
+
+    const errorMessage = getErrorMessage(value, fieldName);
+
+    this._setFieldErrorMessage(fieldName, errorMessage);
+    this._disableSubmitBtn();
+  }
+
+  public setFieldErrorMessage(fieldName: TFieldNames, errorMessage: string) {
+    this._setFieldErrorMessage(fieldName, errorMessage);
+    this._disableSubmitBtn();
   }
 
   public subscribeField(fieldName: TFieldNames) {

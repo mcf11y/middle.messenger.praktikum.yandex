@@ -1,5 +1,6 @@
 import Block from "services/block";
-import template from "./centeredWrapper.hbs";
+
+import template from "./CenteredWrapper.hbs";
 
 type Props = {
   content: Block;
