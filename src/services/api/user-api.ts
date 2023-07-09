@@ -1,15 +1,16 @@
 import { METHOD } from "services/http/transport";
 
-import BaseAPI from "./base";
-import { IUser, IUserData } from "./interface";
+import BaseAPI from "./api";
+import { IProfileUser, IProfileUserData, IUser } from "./interface";
 
 const PATH = "/api/v2/user";
 
-export interface IUpdateProfileRequestData extends IUserData {}
+export interface IUpdateProfileRequestData extends IProfileUserData {}
 
-export interface IUpdateProfileResponseData extends IUser {}
+export interface IUpdateProfileResponseData extends IProfileUser {}
 
-export interface IUpdateAvatarResponseData extends IUser {}
+export interface IUpdateAvatarResponseData extends IProfileUser {}
+
 export interface IUpdatePasswordRequestData {
   oldPassword: string;
   newPassword: string;
@@ -20,10 +21,6 @@ export interface IUserRequestData {
 }
 
 export interface IUserResponseData extends IUser {}
-
-export interface IUserSearchRequestData {
-  login: string;
-}
 
 export interface IUserSearchResponseData extends Array<IUser> {}
 
@@ -58,7 +55,7 @@ class UserAPI extends BaseAPI {
 
   public findUserByLogin = async (login: string) => {
     const response = await this.httpFetch<
-      IUserSearchRequestData,
+      { login: string },
       IUserSearchResponseData
     >("/search", METHOD.GET, { login });
 
@@ -71,4 +68,4 @@ class UserAPI extends BaseAPI {
   };
 }
 
-export default UserAPI;
+export default new UserAPI();

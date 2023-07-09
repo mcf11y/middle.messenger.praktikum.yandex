@@ -14,7 +14,7 @@ type Props = {
   onSubmit?: () => void;
 };
 
-class Profile extends Block {
+export default class BaseProfile extends Block {
   constructor({ avatar, userName, contentFields, footerFields, onSubmit }: Props) {
     const leftBar = new LeftBar();
     const profileForm = new CenteredWrapper({
@@ -34,5 +34,3 @@ class Profile extends Block {
     return this.compile(template, this.props);
   }
 }
-
-export default Profile;

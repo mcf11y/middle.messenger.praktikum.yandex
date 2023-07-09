@@ -1,54 +1,69 @@
 import { NAMES } from "constants/fields";
 import PAGE_URL from "constants/page-urls";
 import Profile from "containers/Profile";
+import Block from "services/block";
+import AuthContoller from "services/controllers/auth-controller";
 import Router from "services/router";
+import { Connect } from "services/store";
 
 import Avatar from "components/Avatar";
 import ProfileField, { EProfileField } from "components/ProfileField";
 
-const emailField = new ProfileField({
-  fieldName: NAMES.email,
-  fieldType: EProfileField.TEXT,
-  value: "mock email...",
-});
+import template from "./template.hbs";
 
-const loginField = new ProfileField({
-  fieldName: NAMES.login,
-  fieldType: EProfileField.TEXT,
-  value: "mock login...",
-});
+interface IContentFieldsProps {
+  email: string;
+  login: string;
+  firstName: string;
+  secondName: string;
+  userName: string;
+  phone: string;
+}
 
-const firstNameField = new ProfileField({
-  fieldName: NAMES.firstName,
-  fieldType: EProfileField.TEXT,
-  value: "mock name...",
-});
+const renderContentFields = ({
+  email,
+  login,
+  firstName,
+  secondName,
+  userName,
+  phone,
+}: IContentFieldsProps) => [
+  new ProfileField({
+    fieldType: EProfileField.TEXT,
+    fieldName: NAMES.email,
+    value: email,
+  }),
 
-const secondNameField = new ProfileField({
-  fieldName: NAMES.secondName,
-  fieldType: EProfileField.TEXT,
-  value: "mock second name...",
-});
+  new ProfileField({
+    fieldType: EProfileField.TEXT,
+    fieldName: NAMES.login,
+    value: login,
+  }),
 
-const displayNameField = new ProfileField({
-  fieldName: NAMES.displayName,
-  fieldType: EProfileField.TEXT,
-  value: "IVAN",
-});
+  new ProfileField({
+    fieldType: EProfileField.TEXT,
+    fieldName: NAMES.firstName,
+    value: firstName,
+  }),
 
-const phoneField = new ProfileField({
-  fieldName: NAMES.phone,
-  fieldType: EProfileField.TEXT,
-  value: "+7 (909) 967 30 30",
-});
+  new ProfileField({
+    fieldType: EProfileField.TEXT,
+    fieldName: NAMES.secondName,
+    value: secondName,
+  }),
 
-const PROFILE_FIELDS = [
-  emailField,
-  loginField,
-  firstNameField,
-  secondNameField,
-  displayNameField,
-  phoneField,
+  new ProfileField({
+    fieldType: EProfileField.TEXT,
+    fieldName: NAMES.displayName,
+    value: userName,
+  }),
+
+  new ProfileField({
+    fieldType: EProfileField.TEXT,
+    fieldName: NAMES.phone,
+    value: phone,
+    withDivider: false,
+  }),
 ];
 
 const FOOTER_FIELDS = [
@@ -77,17 +92,41 @@ const FOOTER_FIELDS = [
     withDivider: false,
 
     btnOnClick: () => {
-      Router.go(PAGE_URL.LOGIN);
+      AuthContoller.logout();
     },
   }),
 ];
 
-const ProfilePage = () =>
-  new Profile({
-    avatar: new Avatar({ size: "l" }),
-    userName: "mock username...",
-    contentFields: PROFILE_FIELDS,
-    footerFields: FOOTER_FIELDS,
-  });
+class UserProfile extends Block {
+  protected init(): void {}
 
-export default ProfilePage;
+  protected render(): DocumentFragment {
+    const { avatarPath, userName, ...rest } = this.props;
+
+    const contentFields = renderContentFields(rest);
+    this.children.profile = new Profile({
+      avatar: new Avatar({ size: "l", imageSrc: avatarPath }),
+      userName,
+      contentFields,
+      footerFields: FOOTER_FIELDS,
+    });
+
+    return this.compile(template, this.props);
+  }
+}
+
+function mapStateToProps(state: any) {
+  if (!state || !state.user) return;
+
+  // eslint-disable-next-line consistent-return
+  return {
+    avatarPath: state.user.avatar,
+    email: state.user.email,
+    login: state.user.login,
+    firstName: state.user.first_name,
+    secondName: state.user.second_name,
+    userName: state.user.display_name,
+    phone: state.user.phone,
+  };
+}
+export const ProfilePage = Connect(UserProfile, mapStateToProps);

@@ -1,57 +1,79 @@
 import { IDS, NAMES } from "constants/fields";
-import FORM_TYPE from "constants/form-types";
-import PAGE_URL from "constants/page-urls";
 import Profile from "containers/Profile";
-import Router from "services/router";
-import ValidationMediator from "services/validation/validation-mediator";
+import Block from "services/block";
+import ProfileController from "services/controllers/profile-controller";
+import { Connect } from "services/store";
 
 import Avatar from "components/Avatar";
 import Button from "components/Button";
 import ProfileField, { EProfileField } from "components/ProfileField";
 
-const validation = new ValidationMediator(FORM_TYPE.EDIT_PROFILE);
+import template from "./template.hbs";
 
-const EDIT_PROFILE_FIELDS = [
+const validation = ProfileController.editProfileValidation;
+
+interface IContentFieldsProps {
+  email: string;
+  login: string;
+  firstName: string;
+  secondName: string;
+  userName: string;
+  phone: string;
+}
+
+const renderContentFields = ({
+  email,
+  login,
+  firstName,
+  secondName,
+  userName,
+  phone,
+}: IContentFieldsProps) => [
   new ProfileField({
     fieldType: EProfileField.EDITABLE,
     fieldName: NAMES.email,
+    value: email,
     validation,
   }),
 
   new ProfileField({
     fieldType: EProfileField.EDITABLE,
     fieldName: NAMES.login,
+    value: login,
     validation,
   }),
 
   new ProfileField({
     fieldType: EProfileField.EDITABLE,
     fieldName: NAMES.firstName,
+    value: firstName,
     validation,
   }),
 
   new ProfileField({
     fieldType: EProfileField.EDITABLE,
     fieldName: NAMES.secondName,
+    value: secondName,
     validation,
   }),
 
   new ProfileField({
     fieldType: EProfileField.EDITABLE,
     fieldName: NAMES.displayName,
+    value: userName,
     validation,
   }),
 
   new ProfileField({
     fieldType: EProfileField.EDITABLE,
     fieldName: NAMES.phone,
+    value: phone,
     validation,
     withDivider: false,
   }),
-
 ];
 
-const EDIT_PROFILE_FOOTER_FIELDS = [
+const FOOTER_FIELDS = [
   new Button({
     id: IDS[NAMES.submitBtn],
     variant: "primary",
@@ -61,17 +83,48 @@ const EDIT_PROFILE_FOOTER_FIELDS = [
 ];
 
 const onSubmit = () => {
-  validation.validateForm();
-
-  validation.isFormValid() && Router.go(PAGE_URL.PROFILE);
+  ProfileController.updateProfile([
+    NAMES.email,
+    NAMES.login,
+    NAMES.firstName,
+    NAMES.secondName,
+    NAMES.displayName,
+    NAMES.phone,
+  ]);
 };
 
-const EditProfilePage = () =>
-  new Profile({
-    avatar: new Avatar({ size: "l" }),
-    contentFields: EDIT_PROFILE_FIELDS,
-    footerFields: EDIT_PROFILE_FOOTER_FIELDS,
-    onSubmit,
-  });
+export class EditProfile extends Block {
+  protected componentDidMount(): void {}
 
-export default EditProfilePage;
+  protected render(): DocumentFragment {
+    const { avatarPath, userName, ...rest } = this.props;
+
+    const contentFields = renderContentFields(rest);
+    this.children.profile = new Profile({
+      avatar: new Avatar({ size: "l", imageSrc: avatarPath }),
+      userName,
+      contentFields,
+      footerFields: FOOTER_FIELDS,
+      onSubmit,
+    });
+
+    return this.compile(template, this.props);
+  }
+}
+
+function mapStateToProps(state: any) {
+  if (!state || !state.user) return;
+
+  // eslint-disable-next-line consistent-return
+  return {
+    avatarPath: state.user.avatar,
+    email: state.user.email,
+    login: state.user.login,
+    firstName: state.user.first_name,
+    secondName: state.user.second_name,
+    userName: state.user.display_name,
+    phone: state.user.phone,
+  };
+}
+
+export const EditProfilePage = Connect(EditProfile, mapStateToProps);

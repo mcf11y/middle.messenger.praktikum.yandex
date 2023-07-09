@@ -3,12 +3,16 @@ import { METHOD } from "services/http/transport";
 
 export const BASE_URL = "https://ya-praktikum.tech";
 
-export interface IResponse<T> {
+interface IBaseResponse<T> {
   status: number;
   data: T & { reason?: string };
 }
 
-const parceJsonResponse = (jsonStr: string) => {
+export interface Che {
+  prop: { a: string } | { b: number };
+}
+
+const safeJsonParce = (jsonStr: string) => {
   try {
     return JSON.parse(jsonStr);
   } catch (e) {
@@ -32,10 +36,10 @@ abstract class BaseAPI {
     return this._apiInstance;
   }
 
-  protected responseHandler<T>(req: XMLHttpRequest): IResponse<T> {
+  protected responseHandler<T>(req: XMLHttpRequest): IBaseResponse<T> {
     return {
       status: req.status,
-      data: parceJsonResponse(req.response),
+      data: safeJsonParce(req.response),
     };
   }
 

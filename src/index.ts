@@ -1,12 +1,13 @@
 import PAGE_URL from "constants/page-urls";
+import AuthController from "services/controllers/auth-controller";
 import Router from "services/router";
 
-import EditPasswordPage from "./pages/EditPassword";
-import EditProfilePage from "./pages/EditProfile";
+import { EditPasswordPage } from "./pages/EditPassword";
+import { EditProfilePage } from "./pages/EditProfile";
 import ErrorPage from "./pages/Error";
 import Login from "./pages/Login";
 import MessengerPage from "./pages/Messenger";
-import ProfilePage from "./pages/Profile";
+import { ProfilePage } from "./pages/Profile";
 import SignUp from "./pages/Signup";
 
 const error404 = ErrorPage({
@@ -19,12 +20,12 @@ const error500 = ErrorPage({
 });
 const loginPage = Login();
 const signUpPage = SignUp();
-const profilePage = ProfilePage();
-const editProfilePage = EditProfilePage();
-const editPasswordPage = EditPasswordPage();
+const profilePage = new ProfilePage();
+const editProfilePage = new EditProfilePage();
+const editPasswordPage = new EditPasswordPage();
 const messengerPage = MessengerPage();
 
-const routesPath = [
+const routePaths = [
   {
     path: PAGE_URL.INDEX,
     page: messengerPage,
@@ -63,12 +64,37 @@ const routesPath = [
   },
 ];
 
-window.addEventListener("DOMContentLoaded", () => {
-  routesPath.forEach(({ path, page }) => {
+window.addEventListener("DOMContentLoaded", async () => {
+  routePaths.forEach(({ path, page }) => {
     Router.use(path, page);
   });
 
   Router.start();
+
+  if (!routePaths.some(({ path }) => path === window.location.pathname)) {
+    Router.go(PAGE_URL.NOT_FOUND);
+  }
+
+  let isProtectedRoute = true;
+  // eslint-disable-next-line default-case
+  switch (window.location.pathname) {
+    case PAGE_URL.LOGIN:
+    case PAGE_URL.SIGN_UP:
+      isProtectedRoute = false;
+      break;
+  }
+
+  try {
+    await AuthController.fetchUser();
+
+    if (!isProtectedRoute) {
+      Router.go(PAGE_URL.INDEX);
+    }
+  } catch (e) {
+    if (isProtectedRoute) {
+      Router.go(PAGE_URL.LOGIN);
+    }
+  }
 });
 
 (window as any).router = ({ event, path }: { event: any; path: string }) => {

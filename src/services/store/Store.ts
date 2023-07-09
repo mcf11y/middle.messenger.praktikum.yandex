@@ -24,6 +24,8 @@ export default class Store extends EventBus {
 
     Store._instance = this;
 
+    (window as any).store = this;
+
     // for debug
     this.on(EStoreEvents.Updated, () => {
       localStorage.setItem(Store.STORE_NAME, JSON.stringify(this._state));
@@ -36,6 +38,13 @@ export default class Store extends EventBus {
 
   public removeState() {
     this._state = {};
+
+    this.emit(EStoreEvents.Updated);
+  }
+
+  public removeStateItem(id: string) {
+    delete this._state[id];
+
     this.emit(EStoreEvents.Updated);
   }
 

@@ -12,13 +12,30 @@ const ERROR_BTN_CLASS = "btn-disabled";
 
 class ValidationMediator {
   private _mediator: Mediator;
-  private _formType: FORM_TYPE;
+  private _formType?: FORM_TYPE;
 
   private _validationResult: TValidaitonResult = {} as TValidaitonResult;
 
-  constructor(formType: FORM_TYPE) {
+  constructor(formType?: FORM_TYPE) {
     this._mediator = new Mediator();
+
+    if (formType) this._formType = formType;
+  }
+
+  public setFormType(formType: FORM_TYPE) {
     this._formType = formType;
+  }
+
+  public getFormType() {
+    return this._formType;
+  }
+
+  public getFieldValue(fieldName: TFieldNames) {
+    const value = (
+      document.querySelectorAll(`[name="${fieldName}"]`)[0] as HTMLInputElement
+    )?.value;
+
+    return value;
   }
 
   private _setFieldErrorMessage(fieldName: TFieldNames, errorMessage: string) {
@@ -48,9 +65,7 @@ class ValidationMediator {
   }
 
   private _validateField(fieldName: TFieldNames) {
-    const value = (
-      document.querySelectorAll(`[name="${fieldName}"]`)[0] as HTMLInputElement
-    )?.value;
+    const value = this.getFieldValue(fieldName);
 
     const errorMessage = getErrorMessage(value, fieldName);
 
@@ -63,24 +78,34 @@ class ValidationMediator {
     this._disableSubmitBtn();
   }
 
-  public subscribeField(fieldName: TFieldNames) {
-    this._mediator.subscribe(this._formType, fieldName, () =>
+  public subscribeField(fieldName: TFieldNames, formType?: FORM_TYPE) {
+    this._isFormTypeSet(formType);
+
+    this._mediator.subscribe(formType ?? this._formType, fieldName, () =>
       this._validateField(fieldName)
     );
   }
 
-  public unsubscribeField(fieldName: TFieldNames) {
-    this._mediator.unsubscribe(this._formType, fieldName);
+  public unsubscribeField(fieldName: TFieldNames, formType?: FORM_TYPE) {
+    this._isFormTypeSet(formType);
+
+    this._mediator.unsubscribe(formType ?? this._formType, fieldName);
   }
 
-  public validateField(fieldName: TFieldNames) {
-    this._mediator.notify({ channel: this._formType, recipient: fieldName });
+  public validateField(fieldName: TFieldNames, formType?: FORM_TYPE) {
+    this._isFormTypeSet(formType);
+
+    this._mediator.notify({
+      channel: formType ?? this._formType,
+      recipient: fieldName,
+    });
   }
 
-  public validateForm() {
+  public validateForm(formType?: FORM_TYPE) {
+    this._isFormTypeSet(formType);
+
     this._validationResult = {} as TValidaitonResult;
-
-    this._mediator.notify({ channel: this._formType });
+    this._mediator.notify({ channel: formType ?? this._formType });
   }
 
   public getFieldErrorMessage(fieldName: TFieldNames): string {
@@ -109,6 +134,11 @@ class ValidationMediator {
       isEmpty(this._validationResult) ||
       !Object.values(this._validationResult).some((value) => value)
     );
+  }
+
+  private _isFormTypeSet(formType?: FORM_TYPE): asserts formType is FORM_TYPE {
+    if (!formType && !this._formType)
+      throw new Error("VALIDATION MEDIATOR - Form type is not set");
   }
 }
 

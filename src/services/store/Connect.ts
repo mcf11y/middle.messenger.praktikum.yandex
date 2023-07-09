@@ -8,9 +8,7 @@ export default function Connect(
 ) {
   return class extends Component {
     constructor(props = {}) {
-
       const store = new Store();
-
       super({ ...props, ...mapStateToProps(store.getState()) });
 
       store.on(EStoreEvents.Updated, () => {

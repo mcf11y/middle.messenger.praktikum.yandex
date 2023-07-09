@@ -5,6 +5,7 @@ export const ERROR_MESSAGES = {
   phone: "Invalid phone",
   name: "Invalid name",
   surname: "Invalid surname",
+  displayName: "Invalid display name",
 
   empty: "The field cannot be empty",
   required: "The field is required",
@@ -14,7 +15,7 @@ export const ERROR_MESSAGES = {
   userAlreadyInSystem: "User already in system",
 
   loginError: "Error while logging in, try again later",
-  singUpError: "Error while signing up, try again later",
+  signUpError: "Error while signing up, try again later",
 };
 
 export const REGEX = {
@@ -24,4 +25,5 @@ export const REGEX = {
   email: /^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/,
   login: /(?!^\d+$)^[a-zA-Z0-9_-]{3,20}$/,
   phone: /^\+?\d{1,3}[- ]?\d{2,3}[- ]?\d{2,3}[- ]?\d{2,3}$/,
+  displayName: /^(?:|[A-Za-z][0-9]{0,14}[A-Za-z0-9]*)$/,
 };

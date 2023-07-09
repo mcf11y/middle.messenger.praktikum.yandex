@@ -271,7 +271,7 @@ export function isFunction(value: unknown): value is Function {
 }
 
 export function isEqual(lhs: PlainObject, rhs: PlainObject) {
-  if (Object.keys(lhs).length !== Object.keys(rhs).length) {
+  if (Object.keys(lhs)?.length !== Object.keys(rhs)?.length) {
     return false;
   }
 

@@ -1,4 +1,4 @@
-import { IUser } from "types/models";
+
 
 import Store from "./store";
 
@@ -17,13 +17,13 @@ const store = new Store();
 //   };
 // };
 
-export const setUser = (user: IUser) => {
+export const setUser = (user: any) => {
   store.set("user", user);
 };
 
-export const getUser = (): IUser | null => {
+export const getUser = (): any | null => {
   const state = store.getState();
-  const user = (state.user as IUser) ?? null;
+  const user = (state.user as any) ?? null;
 
   return user;
 };

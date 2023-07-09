@@ -1,8 +1,9 @@
-import BaseAPI from "services/api/base";
+import BaseAPI from "services/api/api";
 import { METHOD } from "services/http/transport";
-import { IUser, IUserData } from "types/models";
 
-const AUTH_PATH = "/api/v2/auth";
+import { IUser, IUserData } from "./interface";
+
+const PATH = "/api/v2/auth";
 
 export interface ILoginRequestData {
   login: string;
@@ -19,7 +20,7 @@ interface IUserInfoResponseData extends IUser {}
 
 class AuthAPI extends BaseAPI {
   constructor() {
-    super(AUTH_PATH);
+    super(PATH);
   }
 
   public login = async (data: ILoginRequestData) =>

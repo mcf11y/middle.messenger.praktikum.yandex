@@ -1,4 +1,24 @@
-export const NAMES = {
+type TField =
+  | "login"
+  | "password"
+  | "password_again"
+  | "first_name"
+  | "second_name"
+  | "email"
+  | "phone"
+  | "message"
+  | "oldPassword"
+  | "newPassword"
+  | "newPassword_again"
+  | "search"
+  | "display_name"
+  | "avatar"
+  | "editProfile"
+  | "editPassword"
+  | "logout"
+  | "submit";
+
+export const NAMES: Record<string, TField> = {
   login: "login",
   password: "password",
   passwordAgain: "password_again",
@@ -76,6 +96,8 @@ export const PLACEHOLDERS = {
   [NAMES.passwordAgain]: "Повторно введите пароль",
 
   [NAMES.message]: "Сообщение",
+
+  [NAMES.displayName]: "Введите имя в чате",
 
   [NAMES.oldPassword]: "**********",
   [NAMES.newPassword]: "**********",

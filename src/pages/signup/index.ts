@@ -1,7 +1,7 @@
 import { IDS, NAMES, TFieldNames } from "constants/fields";
 import PAGE_URL from "constants/page-urls";
 import AuthForm from "containers/AuthForm";
-import SignupUserController from "services/controller/user-signup";
+import AuthController from "services/controllers/auth-controller";
 import Router from "services/router";
 
 import Button from "components/Button";
@@ -9,46 +9,43 @@ import CenteredLayout from "components/CenteredWrapper";
 import Field from "components/FormField";
 import Title from "components/Title";
 
-const userSignupController = new SignupUserController();
-
 const emailField = new Field({
   fieldName: NAMES.email,
-  validation: userSignupController.validation,
+  validation: AuthController.signupValidation,
 });
 
 const loginField = new Field({
   fieldName: NAMES.login,
-  validation: userSignupController.validation,
+  validation: AuthController.signupValidation,
 });
 
 const firstNameField = new Field({
   fieldName: NAMES.firstName,
-  validation: userSignupController.validation,
+  validation: AuthController.signupValidation,
 });
 
 const secondNameField = new Field({
   fieldName: NAMES.secondName,
-  validation: userSignupController.validation,
+  validation: AuthController.signupValidation,
 });
 
 const phoneField = new Field({
   fieldName: NAMES.phone,
-  validation: userSignupController.validation,
+  validation: AuthController.signupValidation,
 });
 
 const passwordField = new Field({
   fieldName: NAMES.password,
-  validation: userSignupController.validation,
+  validation: AuthController.signupValidation,
 });
 
 const passwordAgainField = new Field({
   fieldName: NAMES.passwordAgain,
-  validation: userSignupController.validation,
+  validation: AuthController.signupValidation,
 });
 
 const onAuthFormSubmit = (data: Record<TFieldNames, string>) => {
-  userSignupController.signup(data);
-  console.log("FORM DATA", data);
+  AuthController.signup(data);
 };
 
 const signUpFormContext = {

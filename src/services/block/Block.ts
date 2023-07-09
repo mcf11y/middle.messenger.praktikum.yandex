@@ -1,4 +1,5 @@
 import { nanoid } from "nanoid";
+import { isEqual } from 'services/utils/my-dash';
 import EventBus from "services/utils/observable";
 
 class Block<P extends Record<string, any> = any> {
@@ -127,7 +128,7 @@ class Block<P extends Record<string, any> = any> {
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   protected componentDidUpdate(_oldProps: P, _newProps: P) {
-    return true;
+    return isEqual(_oldProps, _newProps);
   }
 
   public setProps = (nextProps: Partial<P>) => {
@@ -144,6 +145,8 @@ class Block<P extends Record<string, any> = any> {
 
   private _render() {
     const fragment = this.render();
+
+    // eslint-disable-next-line no-debugger
     this._removeEvents();
 
     const newElement = fragment.firstElementChild as HTMLElement;

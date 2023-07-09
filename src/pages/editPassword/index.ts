@@ -1,15 +1,16 @@
 import { IDS, NAMES } from "constants/fields";
-import { FORM_TYPE } from "constants/form-types";
-import PAGE_URL from "constants/page-urls";
 import Profile from "containers/Profile";
-import Router from "services/router";
-import ValidationMediator from "services/validation/validation-mediator";
+import Block from "services/block";
+import ProfileController from "services/controllers/profile-controller";
+import { Connect } from "services/store";
 
 import Avatar from "components/Avatar";
 import Button from "components/Button";
 import ProfileField, { EProfileField } from "components/ProfileField";
 
-const validation = new ValidationMediator(FORM_TYPE.EDIT_PASSWORD);
+import template from "./template.hbs";
+
+const validation = ProfileController.editPasswordValidation;
 
 const oldPasswordField = new ProfileField({
   fieldType: EProfileField.EDITABLE,
@@ -42,16 +43,37 @@ const submitButton = new Button({
 });
 
 const onSubmit = () => {
-  validation.validateForm();
-  validation.isFormValid() && Router.go(PAGE_URL.PROFILE);
+  ProfileController.updatePassword([NAMES.oldPassword, NAMES.newPassword]);
 };
 
-const EditPasswordPage = () =>
-  new Profile({
-    avatar: new Avatar({ size: "l" }),
-    contentFields: [oldPasswordField, newPasswordField, newPasswordAgain],
-    footerFields: [submitButton],
-    onSubmit,
-  });
+export class EditPassword extends Block {
+  protected init(): void {}
 
-export default EditPasswordPage;
+  protected render(): DocumentFragment {
+    const { avatarPath, userName } = this.props;
+    const contentFields = [oldPasswordField, newPasswordField, newPasswordAgain];
+    const footerFields = [submitButton];
+
+    this.children.profile = new Profile({
+      avatar: new Avatar({ size: "l", imageSrc: avatarPath }),
+      userName,
+      contentFields,
+      footerFields,
+      onSubmit,
+    });
+
+    return this.compile(template, this.props);
+  }
+}
+
+function mapStateToProps(state: any) {
+  if (!state || !state.user) return;
+
+  // eslint-disable-next-line consistent-return
+  return {
+    avatarPath: state.user.avatar,
+    userName: state.user.display_name,
+  };
+}
+2
+export const EditPasswordPage = Connect(EditPassword, mapStateToProps);

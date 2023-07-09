@@ -7,9 +7,18 @@ export interface IUserData {
   phone: string;
 }
 
+export interface IProfileUserData extends Omit<IUserData, "password"> {
+  display_name: string;
+}
+
 export interface IUser extends IUserData {
   id: number;
   display_name: Nullable<string>;
+  avatar: Nullable<string>;
+}
+
+export interface IProfileUser extends IProfileUserData {
+  id: number;
   avatar: Nullable<string>;
 }
 
