@@ -6,23 +6,56 @@
   background: $primary-gray;
   border-radius: 50%;
 
-  &__s {
+  text-align: center;
+
+  &_s {
     width: 34px;
     height: 34px;
   }
 
-  &__m {
+  &_m {
     width: 47px;
     height: 47px;
   }
 
-  &__l {
+  &_l {
     width: 130px;
     height: 130px;
   }
 
-  &__img {
+  &__img-src {
     width: 100%;
     border-radius: 50%;
+  }
+
+  &_edit {
+    cursor: pointer;
+
+    transition: all ease-in-out 0.3s;
+
+    &__icon {
+      cursor: pointer;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+
+      transform: translate(-50%, -50%);
+
+      width: inherit;
+      height: inherit;
+      border-radius: 100%;
+      opacity: 0;
+      background-color: rgba(0, 0, 0, 0);
+      transition: all ease-in-out 0.3s;
+    }
+
+    &:hover {
+      box-shadow: $avatar-hover-shadow;
+      background-color: rgba(0, 0, 0, 0.273);
+
+      .avatar_edit__icon {
+        opacity: 1;
+      }
+    }
   }
 }

@@ -103,9 +103,17 @@ class UserProfile extends Block {
   protected render(): DocumentFragment {
     const { avatarPath, userName, ...rest } = this.props;
 
-    const contentFields = renderContentFields(rest);
+    const contentFields = renderContentFields({ userName, ...rest });
     this.children.profile = new Profile({
-      avatar: new Avatar({ size: "l", imageSrc: avatarPath }),
+      avatar: new Avatar({
+        size: "l",
+        imageSrc: avatarPath,
+        isEditable: true,
+        onClick: () => {
+          // eslint-disable-next-line no-alert
+
+        },
+      }),
       userName,
       contentFields,
       footerFields: FOOTER_FIELDS,
@@ -118,6 +126,7 @@ class UserProfile extends Block {
 function mapStateToProps(state: any) {
   if (!state || !state.user) return;
 
+  console.log("Data", state);
   // eslint-disable-next-line consistent-return
   return {
     avatarPath: state.user.avatar,
@@ -129,4 +138,6 @@ function mapStateToProps(state: any) {
     phone: state.user.phone,
   };
 }
+
+// eslint-disable-next-line import/prefer-default-export
 export const ProfilePage = Connect(UserProfile, mapStateToProps);

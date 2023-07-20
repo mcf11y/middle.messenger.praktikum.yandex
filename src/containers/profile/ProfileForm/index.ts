@@ -22,6 +22,8 @@ class ProfileForm extends Block {
       submit: this.onSubmit.bind(this),
     };
 
+    console.log("TITLE", this.props.userName);
+
     if (this.props.userName) {
       this.children.title = new Title({ text: this.props.userName, size: "m" });
     }

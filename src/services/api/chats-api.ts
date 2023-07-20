@@ -44,23 +44,13 @@ class ChatsAPI extends BaseAPI {
     super(PATH);
   }
 
-  public getChats = async (data: IChatsRequestData) =>
-    this.httpFetch<IChatsRequestData, IChatsResponseData>("", METHOD.GET, data).then(
-      (response) =>
-        response.data.map((chat) => ({
-          id: chat.id,
-          name: chat.title,
-          avatar: chat.avatar,
-          unread: chat.unread_count,
-          lastMessage: chat.last_message.content,
-          lastMessageTime: chat.last_message.time,
-        }))
-    );
+  public getChats = async (data?: IChatsRequestData) =>
+    this.httpFetch<IChatsRequestData, IChatsResponseData>("", METHOD.GET, data);
 
   public createChat = async (title: string) =>
     this.httpFetch<{ title: string }>("", METHOD.POST, { title });
 
-  public deleteChat = async (chatId: number) =>
+  public deleteChatById = async (chatId: number) =>
     this.httpFetch<{ chatId: number }, IDeleteChatResponseData>(
       `/${chatId}`,
       METHOD.DELETE
@@ -89,6 +79,12 @@ class ChatsAPI extends BaseAPI {
       `/${chatId}/token`,
       METHOD.POST
     );
+
+  // public getChatSentFiles = async (chatId: number) =>
+  //   this.httpFetch<{ chatId: number }, Array<{ token: string }>>(
+  //     `/${chatId}/token`,
+  //     METHOD.POST
+  //   );
 }
 
-export default ChatsAPI;
+export default new ChatsAPI();

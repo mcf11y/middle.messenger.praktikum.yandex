@@ -6,7 +6,7 @@ import { EditPasswordPage } from "./pages/EditPassword";
 import { EditProfilePage } from "./pages/EditProfile";
 import ErrorPage from "./pages/Error";
 import Login from "./pages/Login";
-import MessengerPage from "./pages/Messenger";
+import { MessengerPage } from "./pages/Messenger";
 import { ProfilePage } from "./pages/Profile";
 import SignUp from "./pages/Signup";
 
@@ -23,7 +23,7 @@ const signUpPage = SignUp();
 const profilePage = new ProfilePage();
 const editProfilePage = new EditProfilePage();
 const editPasswordPage = new EditPasswordPage();
-const messengerPage = MessengerPage();
+const messengerPage = new MessengerPage();
 
 const routePaths = [
   {

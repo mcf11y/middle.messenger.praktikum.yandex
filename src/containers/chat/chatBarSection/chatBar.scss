@@ -9,11 +9,17 @@
     display: flex;
     flex-direction: column;
 
-    &__profile-btn {
-      align-self: flex-end;
-      margin-bottom: 23px;
 
-      button {
+    &__btn-group {
+      width: 100%;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+
+      margin-bottom: 15px;
+
+      &__btn {
+        width: fit-content;
         padding: 0;
       }
     }

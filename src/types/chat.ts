@@ -9,13 +9,15 @@ export type MessageData = {
 };
 
 export type ChatData = {
-  uid: string;
-  id: number | string;
-  chatName: string;
-  lastMessage?: MessageData;
-  time: string | Date;
-  missedMesssageCount?: number;
-  avatarImage?: string | HTMLImageElement;
+  id: string;
+  name: string;
+  avatar?: string;
+  unreadCount: string;
+  lastMesage: {
+    userName: string;
+    content: string;
+    time: string;
+  };
 };
 
 export type ChatDetailsData = {

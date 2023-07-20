@@ -28,7 +28,14 @@ export interface IChat {
   avatar: string;
   unread_count: number;
   last_message: {
-    user: IUserData;
+    user: {
+      first_name: string;
+      second_name: string;
+      avatar: string;
+      email: string;
+      login: string;
+      phone: string;
+    }
     time: string;
     content: string;
   };

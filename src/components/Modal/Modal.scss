@@ -1,0 +1,38 @@
+.modal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+
+  height: 260px;
+  width: 340px;
+  border-radius: 6px;
+
+  background-color: #fefefe;
+  background: #ffffff;
+
+  &__close {
+    position: absolute;
+    top: 5px;
+    right: 10px;
+
+    color: #aaaaaa;
+    font-size: 28px;
+    font-weight: bold;
+
+    &:hover,
+    &:focus {
+      color: #000;
+      text-decoration: none;
+      cursor: pointer;
+    }
+  }
+
+  &__title {
+  }
+
+  &__content {
+  }
+
+  &__submit_btn {
+  }
+}

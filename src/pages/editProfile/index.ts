@@ -93,13 +93,15 @@ const onSubmit = () => {
   ]);
 };
 
-export class EditProfile extends Block {
+class EditProfile extends Block {
   protected componentDidMount(): void {}
 
   protected render(): DocumentFragment {
     const { avatarPath, userName, ...rest } = this.props;
 
-    const contentFields = renderContentFields(rest);
+    console.log("PROFILE", userName);
+
+    const contentFields = renderContentFields({ userName, ...rest });
     this.children.profile = new Profile({
       avatar: new Avatar({ size: "l", imageSrc: avatarPath }),
       userName,
@@ -127,4 +129,5 @@ function mapStateToProps(state: any) {
   };
 }
 
+// eslint-disable-next-line import/prefer-default-export
 export const EditProfilePage = Connect(EditProfile, mapStateToProps);

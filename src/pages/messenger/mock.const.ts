@@ -1,5 +1,3 @@
-import { ChatData, ChatDetailsData } from "types/chat";
-
 export const CHAT_LIST = [
   {
     uid: "1",
@@ -89,7 +87,7 @@ export const CHAT_LIST = [
     time: "10:39",
     missedMesssageCount: 2,
   },
-] as ChatData[];
+];
 
 export const CURRENT_CHAT = {
   uid: "3",
@@ -115,4 +113,4 @@ export const CURRENT_CHAT = {
     content: "начал что-то писать",
     time: "13:56",
   },
-} as ChatDetailsData;
+};

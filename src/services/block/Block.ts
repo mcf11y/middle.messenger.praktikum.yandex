@@ -1,5 +1,5 @@
 import { nanoid } from "nanoid";
-import { isEqual } from 'services/utils/my-dash';
+import { isEqual } from "services/utils/my-dash";
 import EventBus from "services/utils/observable";
 
 class Block<P extends Record<string, any> = any> {

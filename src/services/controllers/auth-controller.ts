@@ -41,23 +41,10 @@ class AuthController {
       this.loginValidation.validateForm();
 
       if (!this.loginValidation.isFormValid()) {
-        throw new Error("Форма логина заполнена неверно");
+        return;
       }
 
       const response = await AuthAPI.login(prepareDataToRequest());
-
-      // не валидный логин или пароль
-      if (response.status === 409) {
-        this.loginValidation.setFieldErrorMessage(
-          NAMES.login,
-          response.data.reason ?? ERROR_MESSAGES.invalidPasswordOrLogin
-        );
-        this.loginValidation.setFieldErrorMessage(
-          NAMES.password,
-          response.data.reason ?? ERROR_MESSAGES.invalidPasswordOrLogin
-        );
-        return;
-      }
 
       // юзер уже авторизован
       if (response.status === 400) {
@@ -75,7 +62,15 @@ class AuthController {
       }
 
       if (response.status !== 200) {
-        throw new Error("Authorization error");
+        this.loginValidation.setFieldErrorMessage(
+          NAMES.login,
+          response.data.reason ?? ERROR_MESSAGES.invalidPasswordOrLogin
+        );
+        this.loginValidation.setFieldErrorMessage(
+          NAMES.password,
+          response.data.reason ?? ERROR_MESSAGES.invalidPasswordOrLogin
+        );
+        return;
       }
 
       Router.go(PAGE_URL.INDEX);

@@ -31,7 +31,7 @@ class UserAPI extends BaseAPI {
 
   public updateProfile = async (data: IUpdateProfileRequestData) =>
     this.httpFetch<typeof data, IUpdateProfileResponseData>(
-      "profile",
+      "/profile",
       METHOD.PUT,
       data
     );

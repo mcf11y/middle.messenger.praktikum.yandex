@@ -1,16 +1,35 @@
-import FORM_TYPE from "constants/form-types";
 import Chat from "containers/Chat";
-import ValidationMediator from "services/validation/validation-mediator";
+import Block from "services/block";
+import ChatController from "services/controllers/chat-controller";
+import { Connect } from "services/store";
 
-import { CHAT_LIST, CURRENT_CHAT } from "./mock.const";
+import template from "./template.hbs";
 
-const chatValidation = new ValidationMediator(FORM_TYPE.CHAT_MESSAGE);
+const validation = ChatController.validation;
 
-const Messenger = () =>
-  new Chat({
-    chats: CHAT_LIST,
-    currentChat: CURRENT_CHAT,
-    validation: chatValidation,
-  });
+class Messenger extends Block {
+  protected componentDidMount(): void {}
 
-export default Messenger;
+  protected render(): DocumentFragment {
+    const { chats } = this.props;
+
+    this.children.messenger = new Chat({
+      chats,
+      validation,
+    });
+
+    return this.compile(template, this.props);
+  }
+}
+
+function mapStateToProps(state: any) {
+  if (!state || !state) return;
+
+  console.log("CHATS STATE", state);
+
+  // eslint-disable-next-line consistent-return
+  return state.chats;
+}
+
+// eslint-disable-next-line import/prefer-default-export
+export const MessengerPage = Connect(Messenger, mapStateToProps);

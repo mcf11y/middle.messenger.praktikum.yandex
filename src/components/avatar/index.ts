@@ -6,11 +6,20 @@ type Props = {
   id?: string;
   size?: "s" | "m" | "l";
   imageSrc?: string | HTMLImageElement;
+
+  isEditable?: boolean;
+  onClick?: () => void;
 };
 
-class Avatar extends Block<Props> {
+class Avatar extends Block {
   constructor(props: Props) {
     super({ ...props });
+  }
+
+  protected init() {
+    this.props.events = {
+      click: this.props?.onClick?.bind(this),
+    };
   }
 
   protected render(): DocumentFragment {

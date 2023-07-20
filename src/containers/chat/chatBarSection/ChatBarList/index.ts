@@ -12,40 +12,51 @@ type Props = {
   chats: ChatData[];
 };
 
+const formattedDate = (dateString: string) => {
+  const date = new Date(dateString);
+
+  const options: Intl.DateTimeFormatOptions = {
+    day: "numeric",
+    month: "long",
+    hour: "numeric",
+    minute: "numeric",
+  };
+
+  return date.toLocaleString("en-US", options);
+};
+
 class ChatBarList extends Block {
   constructor(props: Props) {
     super({ ...props });
   }
 
   private renderItems(chats: ChatData[]) {
-    return chats.map(
-      ({ id, chatName, lastMessage, time, missedMesssageCount, avatarImage }) => {
-        const chatItem = new ChatBarItem({
-          id,
-          chatName,
-          avatar: new Avatar({
-            size: "m",
-            imageSrc: avatarImage,
-          }),
-          time: time.toString(),
-          missedMesssageCount,
-          lastMessage: lastMessage?.content.toString(),
-          selected: window.location.pathname === `${PAGE_URL.CHATS}/${id}`,
-          onClick: (_id: string | number) => {
-            router.go(`${PAGE_URL.CHATS}/${_id}`);
-            chatItem.setProps({ selected: true });
+    return chats.map(({ id, name, avatar, unreadCount, lastMesage }) => {
+      const chatItem = new ChatBarItem({
+        id,
+        chatName: name,
+        avatar: new Avatar({
+          size: "m",
+          imageSrc: avatar,
+        }),
+        time: formattedDate(lastMesage.time),
+        missedMesssageCount: +unreadCount,
+        lastMessage: lastMesage.content,
+        selected: window.location.pathname === `${PAGE_URL.CHATS}/${id}`,
+        onClick: (_id: string | number) => {
+          router.go(`${PAGE_URL.CHATS}/${_id}`);
+          chatItem.setProps({ selected: true });
 
-            (this.children.items as Block[]).forEach((item) => {
-              if (item !== chatItem) {
-                item.setProps({ selected: false });
-              }
-            });
-          },
-        });
+          (this.children.items as Block[]).forEach((item) => {
+            if (item !== chatItem) {
+              item.setProps({ selected: false });
+            }
+          });
+        },
+      });
 
-        return chatItem;
-      }
-    );
+      return chatItem;
+    });
   }
 
   protected init() {
