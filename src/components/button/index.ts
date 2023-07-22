@@ -4,7 +4,7 @@ import template from "./Button.hbs";
 
 type Props = {
   id?: string;
-  variant: "primary" | "secondary" | "link";
+  variant?: "primary" | "secondary" | "link";
   type?: "submit" | "reset" | "button";
   text: string;
   disabled?: boolean;

@@ -13,10 +13,10 @@ export type ChatData = {
   name: string;
   avatar?: string;
   unreadCount: string;
-  lastMesage: {
-    userName: string;
-    content: string;
-    time: string;
+  lastMesage?: {
+    userName?: string;
+    content?: string;
+    time?: string;
   };
 };
 

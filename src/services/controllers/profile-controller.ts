@@ -4,7 +4,12 @@ import PAGE_URL from "constants/page-urls";
 import UserAPI from "services/api/user-api";
 import AuthContoller from "services/controllers/auth-controller";
 import Router from "services/router";
+import store from "services/store";
 import ValidationMediator from "services/validation/validation-mediator";
+
+import AvatarFormInput from "components/AvatarFormInput";
+
+import ModalController from "./modal-controller";
 
 class ProfileController {
   private _editProfileValidation: ValidationMediator;
@@ -100,6 +105,34 @@ class ProfileController {
     } catch (e) {
       console.error(e);
     }
+  }
+
+  public async updateAvatar() {
+    const handleSubmit = async () => {
+      const avatarForm = document.getElementById("avatar-form-input");
+
+      if (avatarForm) {
+        const form = new FormData(avatarForm as HTMLFormElement);
+
+        const response = await UserAPI.updateAvatar(form);
+
+        if (response.status === 200) {
+          store.set("user", response.data);
+
+          ModalController.hideModal();
+        }
+      }
+    };
+
+    ModalController.createModal({
+      title: "Загрузить файл",
+      content: new AvatarFormInput({
+        onSubmit: handleSubmit,
+      }),
+      onClose: () => ModalController.hideModal(),
+    });
+
+    ModalController.showModal();
   }
 
   private reloadUserAndGoToProfile = async () => {

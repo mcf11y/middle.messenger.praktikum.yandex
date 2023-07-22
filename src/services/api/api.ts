@@ -93,6 +93,15 @@ abstract class BaseAPI {
         throw new Error("Unknown method");
     }
   }
+
+  protected fetchFile = async (url: string, form: FormData) =>
+    this.apiInstance
+      .request(url, {
+        method: METHOD.PUT,
+        withCredentials: true,
+        data: form,
+      })
+      .then((res) => this.responseHandler(res));
 }
 
 export default BaseAPI;

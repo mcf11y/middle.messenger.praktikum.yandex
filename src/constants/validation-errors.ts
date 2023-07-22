@@ -7,6 +7,8 @@ export const ERROR_MESSAGES = {
   surname: "Invalid surname",
   displayName: "Invalid display name",
 
+  createChat: "Invalid chat name",
+
   empty: "The field cannot be empty",
   required: "The field is required",
 

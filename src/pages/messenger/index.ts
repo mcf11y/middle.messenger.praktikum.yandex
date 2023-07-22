@@ -10,6 +10,14 @@ const validation = ChatController.validation;
 class Messenger extends Block {
   protected componentDidMount(): void {}
 
+  protected init() {
+    ChatController.fetchChats();
+  }
+
+  protected componentDidUpdate() {
+    return true;
+  }
+
   protected render(): DocumentFragment {
     const { chats } = this.props;
 
@@ -23,12 +31,12 @@ class Messenger extends Block {
 }
 
 function mapStateToProps(state: any) {
-  if (!state || !state) return;
+  if (!state || !state.chats) return;
 
-  console.log("CHATS STATE", state);
+  console.log("CHATS STATE", state.chats);
 
   // eslint-disable-next-line consistent-return
-  return state.chats;
+  return state;
 }
 
 // eslint-disable-next-line import/prefer-default-export

@@ -11,7 +11,7 @@ export type OptionsType<T> = {
   method: METHOD;
   headers?: Record<string, string>;
   withCredentials?: boolean;
-  data?: T;
+  data?: T | FormData;
   timeout?: number;
 };
 
@@ -24,41 +24,25 @@ class HTTPTransport {
     url: string,
     options: OptionsWithoutMethod<T> = {}
   ): Promise<XMLHttpRequest> =>
-    this.request(
-      this.baseUrl + url,
-      { ...options, method: METHOD.GET },
-      options.timeout
-    );
+    this.request(url, { ...options, method: METHOD.GET }, options.timeout);
 
   public put = <T>(
     url: string,
     options: OptionsWithoutMethod<T> = {}
   ): Promise<XMLHttpRequest> =>
-    this.request(
-      this.baseUrl + url,
-      { ...options, method: METHOD.PUT },
-      options.timeout
-    );
+    this.request(url, { ...options, method: METHOD.PUT }, options.timeout);
 
   public post = <T>(
     url: string,
     options: OptionsWithoutMethod<T> = {}
   ): Promise<XMLHttpRequest> =>
-    this.request(
-      this.baseUrl + url,
-      { ...options, method: METHOD.POST },
-      options.timeout
-    );
+    this.request(url, { ...options, method: METHOD.POST }, options.timeout);
 
   public delete = <T>(
     url: string,
     options: OptionsWithoutMethod<T> = {}
   ): Promise<XMLHttpRequest> =>
-    this.request(
-      this.baseUrl + url,
-      { ...options, method: METHOD.DELETE },
-      options.timeout
-    );
+    this.request(url, { ...options, method: METHOD.DELETE }, options.timeout);
 
   public request = <T>(
     url: string,
@@ -66,6 +50,8 @@ class HTTPTransport {
     timeout = 5000
   ): Promise<XMLHttpRequest> => {
     const { headers = {}, method, data, withCredentials } = options;
+
+    const _url = this.baseUrl + url;
 
     return new Promise((resolve, reject) => {
       const xhr = new XMLHttpRequest();
@@ -75,7 +61,7 @@ class HTTPTransport {
         xhr.withCredentials = true;
       }
 
-      xhr.open(method, isGet && !!data ? `${url}${queryStringify(data)}` : url);
+      xhr.open(method, isGet && !!data ? `${_url}${queryStringify(data)}` : _url);
 
       const headersArr = Object.entries(headers);
       if (headersArr.length) {
@@ -97,7 +83,7 @@ class HTTPTransport {
       if (isGet || !data) {
         xhr.send();
       } else {
-        xhr.send(JSON.stringify(data));
+        xhr.send(data instanceof FormData ? data : JSON.stringify(data));
       }
     });
   };

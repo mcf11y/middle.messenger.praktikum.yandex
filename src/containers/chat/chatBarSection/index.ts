@@ -25,7 +25,7 @@ class ChatBar extends Block {
   protected init() {
     this.children.addChatButton = new Button({
       variant: "secondary",
-      text: "Создать новый чат",
+      text: "Создать чат",
 
       onClick: () => {
         ChatController.createChat();

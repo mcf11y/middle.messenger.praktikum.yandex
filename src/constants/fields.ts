@@ -13,6 +13,7 @@ type TField =
   | "search"
   | "display_name"
   | "avatar"
+  | "create_chat"
   | "editProfile"
   | "editPassword"
   | "logout"
@@ -33,11 +34,10 @@ export const NAMES: Record<string, TField> = {
   search: "search",
   displayName: "display_name",
   avatar: "avatar",
-
+  createChat: "create_chat",
   editProfileBtn: "editProfile",
   editPasswordBtn: "editPassword",
   logoutBtn: "logout",
-
   submitBtn: "submit",
 };
 
@@ -53,11 +53,11 @@ export const LABELS = {
   [NAMES.email]: "Почта",
   [NAMES.phone]: "Телефон",
   [NAMES.displayName]: "Имя в чате",
+  [NAMES.createChat]: "Имя чата",
   [NAMES.avatar]: "Аватар",
   [NAMES.oldPassword]: "Старый пароль",
   [NAMES.newPassword]: "Новый пароль",
   [NAMES.newPasswordAgain]: "Повторите новый пароль",
-
   [NAMES.editProfileBtn]: "Изменить данные",
   [NAMES.editPasswordBtn]: "Изменить пароль",
   [NAMES.logoutBtn]: "Выйти",
@@ -74,6 +74,8 @@ export const IDS = {
   [NAMES.message]: "fld-message",
   [NAMES.phone]: "fld-phone",
   [NAMES.email]: "fld-email",
+
+  [NAMES.createChat]: "fld-create-chat",
   [NAMES.firstName]: "fld-first-name",
   [NAMES.secondName]: "fld-second-name",
   [NAMES.displayName]: "field-display-name",
@@ -96,8 +98,9 @@ export const PLACEHOLDERS = {
   [NAMES.passwordAgain]: "Повторно введите пароль",
 
   [NAMES.message]: "Сообщение",
-
   [NAMES.displayName]: "Введите имя в чате",
+
+  [NAMES.createChat]: "Введите название чата",
 
   [NAMES.oldPassword]: "**********",
   [NAMES.newPassword]: "**********",
@@ -119,4 +122,5 @@ export const INPUT_TYPES = {
   [NAMES.secondName]: "text",
   [NAMES.displayName]: "text",
   [NAMES.avatar]: "file",
+  [NAMES.chatName]: "text",
 };

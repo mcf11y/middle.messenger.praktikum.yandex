@@ -3,6 +3,7 @@ import PAGE_URL from "constants/page-urls";
 import Profile from "containers/Profile";
 import Block from "services/block";
 import AuthContoller from "services/controllers/auth-controller";
+import ProfileController from "services/controllers/profile-controller";
 import Router from "services/router";
 import { Connect } from "services/store";
 
@@ -10,6 +11,7 @@ import Avatar from "components/Avatar";
 import ProfileField, { EProfileField } from "components/ProfileField";
 
 import template from "./template.hbs";
+import { RESOURCE_URL } from "constants/urls";
 
 interface IContentFieldsProps {
   email: string;
@@ -107,11 +109,10 @@ class UserProfile extends Block {
     this.children.profile = new Profile({
       avatar: new Avatar({
         size: "l",
-        imageSrc: avatarPath,
+        imageSrc: RESOURCE_URL + avatarPath,
         isEditable: true,
         onClick: () => {
-          // eslint-disable-next-line no-alert
-
+          ProfileController.updateAvatar();
         },
       }),
       userName,

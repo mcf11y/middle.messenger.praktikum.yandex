@@ -16,7 +16,7 @@ import template from "./FormField.hbs";
 type Props = {
   fieldName: TFieldNames;
   style?: CSSStyleSheet;
-  validation: ValidationMediator;
+  validation?: ValidationMediator;
 };
 
 class FormField extends Block {

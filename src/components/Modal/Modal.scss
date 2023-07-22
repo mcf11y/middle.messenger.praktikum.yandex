@@ -1,38 +1,32 @@
 .modal {
   position: absolute;
+  display: flex !important;
+  flex-direction: column;
+
+
   top: 50%;
   left: 50%;
+
+  transform: translate(-50%, -50%);
 
   height: 260px;
   width: 340px;
   border-radius: 6px;
+  padding: 2rem 1.5rem;
 
   background-color: #fefefe;
   background: #ffffff;
 
-  &__close {
-    position: absolute;
-    top: 5px;
-    right: 10px;
-
-    color: #aaaaaa;
-    font-size: 28px;
-    font-weight: bold;
-
-    &:hover,
-    &:focus {
-      color: #000;
-      text-decoration: none;
-      cursor: pointer;
-    }
-  }
-
   &__title {
+    text-align: center;
   }
 
   &__content {
+    height: 100%;
+    margin: 3rem .2rem .2rem;
   }
 
   &__submit_btn {
+    margin: auto 0 0;
   }
 }

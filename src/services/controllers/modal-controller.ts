@@ -3,48 +3,49 @@ import Block from "services/block";
 import Modal, { ModalProps } from "components/Modal";
 
 class ModalController {
-  _modal: Block;
+  _modal: Nullable<Block>;
+  _container: Nullable<HTMLElement>;
 
   constructor() {
-    this._modal = new Modal({});
-
-    // eslint-disable-next-line no-debugger
-    debugger;
-
-    const modalContainer = document.getElementById("modal");
-
-    if (modalContainer) {
-      modalContainer.innerHTML = "";
-      modalContainer.append(this._modal.getContent()!);
-    }
+    this._container = document.getElementById("modal-container");
+    this._modal = null;
   }
 
-  public show() {
-    this._modal?.show();
-  }
-
-  public hide() {
-    this._modal?.hide();
-  }
-
-  public reset() {
-    this._modal?.setProps({});
-  }
-
-  public setModalContent({
+  public createModal({
     title,
     content,
+    hasSubmitBtn,
     submitBtnText,
     onClose,
     onSubmit,
   }: ModalProps) {
-    this._modal?.setProps({
+    this._modal = new Modal({
       title,
       content,
+      hasSubmitBtn,
       submitBtnText,
       onClose,
       onSubmit,
     });
+
+    if (!this._container) {
+      throw Error("Cant find modal container");
+    }
+
+    this._container.innerHTML = "";
+    this._container.append(this._modal.getContent()!);
+  }
+
+  public hideModal() {
+    if (this._modal) {
+      // @ts-ignore
+      this._container?.style.display = "none";
+    }
+  }
+
+  public showModal() {
+    // @ts-ignore
+    this._container?.style.display = "block";
   }
 }
 

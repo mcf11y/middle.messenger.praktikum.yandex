@@ -10,7 +10,7 @@ type Props = {
   avatar: Block;
   chatName: string;
   lastMessage?: string;
-  time: string;
+  time?: string;
   missedMesssageCount?: number;
   selected?: boolean;
   onClick: (id: string | number) => void;

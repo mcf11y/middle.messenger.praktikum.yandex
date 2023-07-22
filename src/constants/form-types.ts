@@ -3,7 +3,7 @@ export enum FORM_TYPE {
   SIGNUP = "sign_up",
   EDIT_PROFILE = "edit_profile",
   EDIT_PASSWORD = "edit_password",
-  CHAT_MESSAGE = "chat_message",
+  CHATS = "chats",
 }
 
 export default FORM_TYPE;

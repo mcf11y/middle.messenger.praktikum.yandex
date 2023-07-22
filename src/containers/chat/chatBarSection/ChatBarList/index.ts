@@ -1,6 +1,5 @@
 import PAGE_URL from "constants/page-urls";
 import Block from "services/block";
-import router from "services/router";
 import { ChatData } from "types/chat";
 
 import Avatar from "components/Avatar";
@@ -39,19 +38,22 @@ class ChatBarList extends Block {
           size: "m",
           imageSrc: avatar,
         }),
-        time: formattedDate(lastMesage.time),
+        time: lastMesage?.time && formattedDate(lastMesage.time),
         missedMesssageCount: +unreadCount,
-        lastMessage: lastMesage.content,
+        lastMessage: lastMesage?.content,
         selected: window.location.pathname === `${PAGE_URL.CHATS}/${id}`,
         onClick: (_id: string | number) => {
-          router.go(`${PAGE_URL.CHATS}/${_id}`);
-          chatItem.setProps({ selected: true });
+          // TODO add logic
 
-          (this.children.items as Block[]).forEach((item) => {
-            if (item !== chatItem) {
-              item.setProps({ selected: false });
-            }
-          });
+          // debugger;
+          // router.go(`${PAGE_URL.CHATS}/${_id}`);
+          // chatItem.setProps({ selected: true });
+
+          // (this.children.items as Block[]).forEach((item) => {
+          //   if (item !== chatItem) {
+          //     item.setProps({ selected: false });
+          //   }
+          // });
         },
       });
 

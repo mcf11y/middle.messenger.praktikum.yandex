@@ -1,8 +1,10 @@
 <div class="modal">
-  <span id="close-modal-icon" class="close">&times;</span>
+  {{{closeIcon}}}
   <div class="modal__title">{{{title}}}</div>
 
-  <div class="modal__content">{{{content}}}</div>
+  <div id="modal-content" class="modal__content">{{{content}}}</div>
 
-  <div class="modal__submit_btn">{{{submitBtn}}}</div>
+  {{#if submitBtn}}
+    <div class="modal__submit_btn">{{{submitBtn}}}</div>
+  {{/if}}
 </div>

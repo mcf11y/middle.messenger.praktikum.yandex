@@ -2,9 +2,9 @@
   {{#if id}} id="{{id}}" {{/if}}
   class="avatar{{#if size}} avatar_{{size}}{{/if}}{{#if isEditable}} avatar_edit{{/if}}">
 
-  <figure>
+  <div class="avatar__figure">
     {{#if imageSrc}}
-      <img class="avatar__img-src" src="{{imageSrc}}" alt="Аватар" />
+      <img class="avatar__img-src{{#if size}} avatar_{{size}}{{/if}}" src="{{imageSrc}}" alt="Аватар" />
     {{/if}}
 
     {{#if isEditable}}
@@ -12,5 +12,5 @@
         <img src="https://raw.githubusercontent.com/ThiagoLuizNunes/angular-boilerplate/master/src/assets/imgs/camera-white.png">
       </figcaption>
     {{/if}}
-  </figure>
+  </div>
 </div>

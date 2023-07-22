@@ -36,16 +36,8 @@ class UserAPI extends BaseAPI {
       data
     );
 
-  public updateAvatar = async (file: File) => {
-    const data = new FormData();
-    data.append("avatar", file);
-
-    return this.httpFetch<typeof data, IUpdateAvatarResponseData>(
-      "/profile/avatar",
-      METHOD.PUT,
-      data
-    );
-  };
+  public updateAvatar = async (form: FormData) =>
+    this.fetchFile("/profile/avatar", form);
 
   public changePassword = async (data: IUpdatePasswordRequestData) =>
     this.httpFetch<typeof data>("/password", METHOD.PUT, data);

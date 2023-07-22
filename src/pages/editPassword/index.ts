@@ -9,6 +9,7 @@ import Button from "components/Button";
 import ProfileField, { EProfileField } from "components/ProfileField";
 
 import template from "./template.hbs";
+import { RESOURCE_URL } from "constants/urls";
 
 const validation = ProfileController.editPasswordValidation;
 
@@ -55,7 +56,7 @@ export class EditPassword extends Block {
     const footerFields = [submitButton];
 
     this.children.profile = new Profile({
-      avatar: new Avatar({ size: "l", imageSrc: avatarPath }),
+      avatar: new Avatar({ size: "l", imageSrc: RESOURCE_URL + avatarPath }),
       userName,
       contentFields,
       footerFields,
@@ -75,5 +76,5 @@ function mapStateToProps(state: any) {
     userName: state.user.display_name,
   };
 }
-2
+2;
 export const EditPasswordPage = Connect(EditPassword, mapStateToProps);

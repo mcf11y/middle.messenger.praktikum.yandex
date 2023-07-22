@@ -15,6 +15,7 @@ export const FIELD_REGEX = {
   [NAMES.firstName]: REGEX.name,
   [NAMES.secondName]: REGEX.name,
   [NAMES.displayName]: REGEX.displayName,
+  [NAMES.createChat]: REGEX.login
 };
 
 export const FIELD_ERROR_MESSAGES = {
@@ -31,6 +32,7 @@ export const FIELD_ERROR_MESSAGES = {
   [NAMES.firstName]: ERROR_MESSAGES.name,
   [NAMES.secondName]: ERROR_MESSAGES.surname,
   [NAMES.displayName]: ERROR_MESSAGES.displayName,
+  [NAMES.createChat]: ERROR_MESSAGES.createChat,
 };
 
 export const getErrorMessage = (value: string, type: TFieldNames): string => {
