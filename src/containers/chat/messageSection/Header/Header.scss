@@ -1,0 +1,11 @@
+.message-section-header {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: 10px 0;
+  gap: 8px;
+
+  &__menu {
+    margin: 0 5px 0 auto;
+  }
+}

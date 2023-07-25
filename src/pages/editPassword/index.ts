@@ -76,5 +76,5 @@ function mapStateToProps(state: any) {
     userName: state.user.display_name,
   };
 }
-2;
+
 export const EditPasswordPage = Connect(EditPassword, mapStateToProps);

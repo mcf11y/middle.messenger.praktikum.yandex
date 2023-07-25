@@ -51,10 +51,9 @@ class ChatsAPI extends BaseAPI {
     this.httpFetch<{ title: string }>("", METHOD.POST, { title });
 
   public deleteChatById = async (chatId: number) =>
-    this.httpFetch<{ chatId: number }, IDeleteChatResponseData>(
-      `/${chatId}`,
-      METHOD.DELETE
-    );
+    this.httpFetch<{ chatId: number }, IDeleteChatResponseData>("", METHOD.DELETE, {
+      chatId,
+    });
 
   public getChatUsers = async (data: IGetChatUsersRequestData) =>
     this.httpFetch<typeof data, IGetChatUsersResponseData>(
@@ -79,6 +78,8 @@ class ChatsAPI extends BaseAPI {
       `/${chatId}/token`,
       METHOD.POST
     );
+
+  public updateAvatar = async (form: FormData) => this.fetchFile("/avatar", form);
 
   // public getChatSentFiles = async (chatId: number) =>
   //   this.httpFetch<{ chatId: number }, Array<{ token: string }>>(

@@ -7,14 +7,14 @@ import ValidationMediator from "services/validation/validation-mediator";
 import IconButton from "components/IconButton";
 import MessageInputArea from "components/MessageTextArea";
 
-import template from "./MessageSectionFooter.hbs";
+import template from "./Footer.hbs";
 
 type Props = {
   savedMessage?: Nullable<string>;
   validation: ValidationMediator;
 };
 
-class MessageSectionFooter extends Block {
+class Footer extends Block {
   constructor(props: Props) {
     super({ ...props });
   }
@@ -53,4 +53,4 @@ class MessageSectionFooter extends Block {
   }
 }
 
-export default MessageSectionFooter;
+export default Footer;

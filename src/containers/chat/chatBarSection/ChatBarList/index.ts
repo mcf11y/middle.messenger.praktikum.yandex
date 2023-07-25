@@ -1,14 +1,16 @@
-import PAGE_URL from "constants/page-urls";
 import Block from "services/block";
+import store from "services/store";
 import { ChatData } from "types/chat";
 
 import Avatar from "components/Avatar";
 
 import ChatBarItem from "./ChatBarItem";
 import template from "./chatBarList.hbs";
+import { RESOURCE_URL } from 'constants/urls';
 
 type Props = {
   chats: ChatData[];
+  currentChatId?: number;
 };
 
 const formattedDate = (dateString: string) => {
@@ -36,24 +38,16 @@ class ChatBarList extends Block {
         chatName: name,
         avatar: new Avatar({
           size: "m",
-          imageSrc: avatar,
+          imageSrc:  avatar ? RESOURCE_URL + avatar : undefined,
         }),
+        selected: id === this.props.currentChatId,
+
         time: lastMesage?.time && formattedDate(lastMesage.time),
         missedMesssageCount: +unreadCount,
         lastMessage: lastMesage?.content,
-        selected: window.location.pathname === `${PAGE_URL.CHATS}/${id}`,
+
         onClick: (_id: string | number) => {
-          // TODO add logic
-
-          // debugger;
-          // router.go(`${PAGE_URL.CHATS}/${_id}`);
-          // chatItem.setProps({ selected: true });
-
-          // (this.children.items as Block[]).forEach((item) => {
-          //   if (item !== chatItem) {
-          //     item.setProps({ selected: false });
-          //   }
-          // });
+          store.set("currentChatId", _id);
         },
       });
 

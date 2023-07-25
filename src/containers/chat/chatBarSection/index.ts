@@ -3,7 +3,7 @@ import arrowIcon from "icons/arrow-go-to.svg";
 import Block from "services/block";
 import ChatController from "services/controllers/chat-controller";
 import Router from "services/router";
-import { ChatData, ChatDetailsData } from "types/chat";
+import { ChatData } from "types/chat";
 
 import Button from "components/Button";
 import Input from "components/Input";
@@ -14,7 +14,7 @@ import ChatList from "./ChatBarList";
 
 type Props = {
   chats: ChatData[];
-  currentChat?: ChatDetailsData;
+  currentChatId?: number;
 };
 
 class ChatBar extends Block {
@@ -48,7 +48,7 @@ class ChatBar extends Block {
     });
 
     if (this.props.chats && this.props.chats.length > 0) {
-      this.children.chatList = new ChatList({ chats: this.props.chats });
+      this.children.chatList = new ChatList({ ...this.props });
     }
   }
 

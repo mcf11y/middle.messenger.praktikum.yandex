@@ -1,5 +1,6 @@
 import { NAMES } from "constants/fields";
 import PAGE_URL from "constants/page-urls";
+import { RESOURCE_URL } from "constants/urls";
 import Profile from "containers/Profile";
 import Block from "services/block";
 import AuthContoller from "services/controllers/auth-controller";
@@ -11,7 +12,6 @@ import Avatar from "components/Avatar";
 import ProfileField, { EProfileField } from "components/ProfileField";
 
 import template from "./template.hbs";
-import { RESOURCE_URL } from "constants/urls";
 
 interface IContentFieldsProps {
   email: string;

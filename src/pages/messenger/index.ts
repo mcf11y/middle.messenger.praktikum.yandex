@@ -19,10 +19,11 @@ class Messenger extends Block {
   }
 
   protected render(): DocumentFragment {
-    const { chats } = this.props;
+    const { chats, currentChatId } = this.props;
 
     this.children.messenger = new Chat({
       chats,
+      currentChatId,
       validation,
     });
 

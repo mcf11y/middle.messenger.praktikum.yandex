@@ -1,4 +1,5 @@
 import PAGE_URL from "constants/page-urls";
+import { MessengerPage } from "pages/Messenger";
 import AuthController from "services/controllers/auth-controller";
 import Router from "services/router";
 
@@ -6,7 +7,7 @@ import { EditPasswordPage } from "./pages/EditPassword";
 import { EditProfilePage } from "./pages/EditProfile";
 import ErrorPage from "./pages/Error";
 import Login from "./pages/Login";
-import { MessengerPage } from "./pages/Messenger";
+// import { MessengerPage } from "./pages/Messenger";
 import { ProfilePage } from "./pages/Profile";
 import SignUp from "./pages/Signup";
 
@@ -20,19 +21,15 @@ const error500 = ErrorPage({
 });
 const loginPage = Login();
 const signUpPage = SignUp();
-const profilePage = new ProfilePage();
-const editProfilePage = new EditProfilePage();
-const editPasswordPage = new EditPasswordPage();
-const messengerPage = new MessengerPage();
+// const profilePage = new ProfilePage();
+// const editProfilePage = new EditProfilePage();
+// const editPasswordPage = new EditPasswordPage();
+// const messengerPage = new MessengerPage();
 
 const routePaths = [
   {
     path: PAGE_URL.INDEX,
-    page: messengerPage,
-  },
-  {
-    path: PAGE_URL.CHATS,
-    page: messengerPage,
+    page: MessengerPage,
   },
   {
     path: PAGE_URL.LOGIN,
@@ -44,15 +41,15 @@ const routePaths = [
   },
   {
     path: PAGE_URL.PROFILE,
-    page: profilePage,
+    page: ProfilePage,
   },
   {
     path: PAGE_URL.EDIT_PASSWORD,
-    page: editPasswordPage,
+    page: EditPasswordPage,
   },
   {
     path: PAGE_URL.EDIT_PROFILE,
-    page: editProfilePage,
+    page: EditProfilePage,
   },
   {
     path: PAGE_URL.NOT_FOUND,
@@ -69,8 +66,6 @@ window.addEventListener("DOMContentLoaded", async () => {
     Router.use(path, page);
   });
 
-  Router.start();
-
   if (!routePaths.some(({ path }) => path === window.location.pathname)) {
     Router.go(PAGE_URL.NOT_FOUND);
   }
@@ -84,12 +79,15 @@ window.addEventListener("DOMContentLoaded", async () => {
       break;
   }
 
+  Router.start();
+
   try {
     await AuthController.fetchUser();
 
     if (!isProtectedRoute) {
       Router.go(PAGE_URL.INDEX);
     }
+
   } catch (e) {
     if (isProtectedRoute) {
       Router.go(PAGE_URL.LOGIN);

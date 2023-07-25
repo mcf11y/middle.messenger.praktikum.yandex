@@ -108,19 +108,15 @@ class ProfileController {
   }
 
   public async updateAvatar() {
-    const handleSubmit = async () => {
-      const avatarForm = document.getElementById("avatar-form-input");
+    const handleSubmit = async (e: SubmitEvent) => {
+      const form = new FormData(e.target as any);
 
-      if (avatarForm) {
-        const form = new FormData(avatarForm as HTMLFormElement);
+      const response = await UserAPI.updateAvatar(form);
 
-        const response = await UserAPI.updateAvatar(form);
+      if (response.status === 200) {
+        store.set("user", response.data);
 
-        if (response.status === 200) {
-          store.set("user", response.data);
-
-          ModalController.hideModal();
-        }
+        ModalController.hideModal();
       }
     };
 

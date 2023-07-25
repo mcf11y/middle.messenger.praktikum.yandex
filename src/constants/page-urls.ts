@@ -5,7 +5,6 @@ enum PAGE_URL {
   PROFILE = "/profile",
   EDIT_PROFILE = "/edit_profile",
   EDIT_PASSWORD = "/edit_password",
-  CHATS = "/chats",
   NOT_FOUND = "/404",
   SERVER_ERROR = "/500",
 }

@@ -3,14 +3,14 @@ import { MessageData } from "types/chat";
 
 import ChatMessage from "components/ChatMessage";
 
-import template from "./MessageSectionContent.hbs";
+import template from "./Content.hbs";
 
 type Props = {
   id?: string;
   messages: MessageData[];
 };
 
-class MessageSectionContent extends Block {
+class Content extends Block {
   constructor(props: Props) {
     super({
       ...props,
@@ -18,7 +18,7 @@ class MessageSectionContent extends Block {
   }
 
   private renderMessages(messages: MessageData[]) {
-    return messages.map(
+    return messages?.map(
       ({ contentType, content, time, my }) =>
         new ChatMessage({
           message: contentType === "text" ? (content as string) : "",
@@ -37,4 +37,4 @@ class MessageSectionContent extends Block {
   }
 }
 
-export default MessageSectionContent;
+export default Content;

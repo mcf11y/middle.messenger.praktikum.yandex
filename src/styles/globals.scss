@@ -19,15 +19,17 @@
 @import "../components/Modal/Modal.scss";
 @import "../components/CloseIcon/CloseIcon.scss";
 @import "../components/AvatarFormInput/AvatarFormInput.scss";
+@import "../components/Dropdown/Dropdown.scss";
+@import "../components/TextIconButton/TextIconButton.scss";
 
 /* containers */
 @import "../containers/AuthForm/AuthForm.scss";
 @import "../containers/Chat/ChatBarSection/ChatBarList/ChatBarItem/ChatBarItem.scss";
 @import "../containers/Chat/ChatBarSection/ChatBarList/ChatBarList.scss";
-@import "../containers/Chat/MessageSection/EmptyMessageSection/EmptyMessage.scss";
-@import "../containers/Chat/MessageSection/MessageSectionHeader/MessageSectionHeader.scss";
-@import "../containers/Chat/MessageSection/MessageSectionContent/MessageSectionContent.scss";
-@import "../containers/Chat/MessageSection/MessageSectionFooter/MessageSectionFooter.scss";
+@import "../containers/Chat/MessageSection/EmptyMessage/EmptyMessage.scss";
+@import "../containers/Chat/MessageSection/Header/Header.scss";
+@import "../containers/Chat/MessageSection/Content/Content.scss";
+@import "../containers/Chat/MessageSection/Footer/Footer.scss";
 @import "../containers/Chat/MessageSection/MessageSection.scss";
 @import "../containers/Chat/ChatBarSection/ChatBar.scss";
 @import "../containers/Chat/Chat.scss";

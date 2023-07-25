@@ -5,7 +5,7 @@ import Button from "components/Button";
 import template from "./AvatarFormInput.hbs";
 
 type Props = {
-  onSubmit: () => void;
+  onSubmit: (e: SubmitEvent) => void;
 };
 
 class AvatarFormInput extends Block {
@@ -22,7 +22,7 @@ class AvatarFormInput extends Block {
     this.props.events = {
       submit: (e: SubmitEvent) => {
         e.preventDefault();
-        this.props?.onSubmit?.();
+        this.props?.onSubmit?.(e);
       },
     };
   }

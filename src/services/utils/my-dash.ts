@@ -66,10 +66,6 @@ export function isNil(value: any): value is undefined | null {
   return value === null || value === undefined;
 }
 
-export function isArray(value: unknown): value is [] {
-  return Array.isArray(value);
-}
-
 export function isArrayLike<T>(value: T) {
   if (typeof value === "object") {
     return (
@@ -253,7 +249,11 @@ type PlainObject<T = any> = {
   [k in string]: T;
 };
 
-export function isPlainObject(value: unknown): value is PlainObject {
+function isArray(value: unknown): value is [] {
+  return Array.isArray(value);
+}
+
+function isPlainObject(value: unknown): value is PlainObject {
   return (
     typeof value === "object" &&
     value !== null &&

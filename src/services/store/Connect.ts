@@ -1,4 +1,4 @@
-import Block from "services/block/block";
+import Block from "services/block";
 
 import Store, { EStoreEvents } from "./store";
 

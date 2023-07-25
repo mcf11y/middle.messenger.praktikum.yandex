@@ -1,15 +1,15 @@
 import Block from "services/block";
 import ValidationMediator from "services/validation/validation-mediator";
-import { ChatData, ChatDetailsData } from "types/chat";
+import { ChatData } from "types/chat";
 
-import EmptyMessage from "./MessageSection/EmptyMessageSection";
+import EmptyMessage from "./MessageSection/EmptyMessage";
 import template from "./Chat.hbs";
 import ChatBar from "./ChatBarSection";
 import MessageSection from "./MessageSection";
 
 type Props = {
   chats: ChatData[];
-  currentChat?: ChatDetailsData;
+  currentChatId?: number;
   validation: ValidationMediator;
 };
 
@@ -19,11 +19,16 @@ class Chat extends Block {
   }
 
   protected init() {
-    const { chats, currentChat } = this.props;
+    const { chats, currentChatId } = this.props as Props;
 
-    this.children.chatBar = new ChatBar({ chats });
+    const currentChat = chats?.find((chat) => +chat.id === currentChatId);
+
+    this.children.chatBar = new ChatBar({ chats, currentChatId });
     this.children.chatMessages = currentChat
-      ? new MessageSection({ currentChat, validation: this.props.validation })
+      ? new MessageSection({
+        currentChat,
+        validation: this.props.validation,
+      })
       : new EmptyMessage();
   }
 

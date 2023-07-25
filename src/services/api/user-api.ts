@@ -45,19 +45,12 @@ class UserAPI extends BaseAPI {
   public getUserById = async (userId: number) =>
     this.httpFetch<IUserRequestData>("/", METHOD.GET, { id: userId });
 
-  public findUserByLogin = async (login: string) => {
-    const response = await this.httpFetch<
-      { login: string },
-      IUserSearchResponseData
-    >("/search", METHOD.GET, { login });
-
-    const user = response.data.find((value) => value.login === login);
-    if (!user) {
-      throw new Error("User not found");
-    }
-
-    return user;
-  };
+  public findUsersByLogin = async (login: string) =>
+    this.httpFetch<{ login: string }, IUserSearchResponseData>(
+      "/search",
+      METHOD.POST,
+      { login }
+    );
 }
 
 export default new UserAPI();
