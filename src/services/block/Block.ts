@@ -2,6 +2,15 @@ import { nanoid } from "nanoid";
 import { isEqual } from "services/utils/my-dash";
 import EventBus from "services/utils/observable";
 
+type BaseProps<P> = {
+  events?: Record<string, Maybe<Handler>>;
+  attrs?: Record<string, string>;
+} & P;
+
+type PropsWithChildren<P> = {
+  children?: Record<string, Block | Block[]>;
+} & BaseProps<P>;
+
 class Block<P extends Record<string, any> = any> {
   static EVENTS = {
     INIT: "init",
@@ -12,7 +21,7 @@ class Block<P extends Record<string, any> = any> {
 
   public id = nanoid(6);
 
-  protected props: P;
+  protected props: BaseProps<P>;
   public children: Record<string, Block | Block[]>;
 
   private _eventBus: () => EventBus;
@@ -24,7 +33,7 @@ class Block<P extends Record<string, any> = any> {
    *
    * @returns {void}
    */
-  constructor(propsWithChildren: P) {
+  constructor(propsWithChildren: PropsWithChildren<P>) {
     const eventBus = new EventBus();
 
     const { props, children } = this._getChildrenAndProps(propsWithChildren);
@@ -39,8 +48,8 @@ class Block<P extends Record<string, any> = any> {
     eventBus.emit(Block.EVENTS.INIT);
   }
 
-  private _getChildrenAndProps(childrenAndProps: P): {
-    props: P;
+  private _getChildrenAndProps(childrenAndProps: PropsWithChildren<P>): {
+    props: BaseProps<P>;
     children: Record<string, Block | Block[]>;
   } {
     const props: Record<string, unknown> = {};
@@ -60,27 +69,31 @@ class Block<P extends Record<string, any> = any> {
       }
     });
 
-    return { props: props as P, children };
+    return { props: props as BaseProps<P>, children };
   }
 
   private _addEvents() {
-    const { events = {} } = this.props as P & { events: Record<string, () => void> };
+    const { events = {} } = this.props as BaseProps<P>;
 
     Object.keys(events).forEach((eventName) => {
-      this._element?.addEventListener(eventName, events[eventName]);
+      if (events[eventName]) {
+        this._element?.addEventListener(eventName, events[eventName]!);
+      }
     });
   }
 
   protected _removeEvents() {
-    const { events = {} } = this.props as P & { events: Record<string, () => void> };
+    const { events = {} } = this.props as BaseProps<P>;
 
     Object.keys(events).forEach((eventName) => {
-      this._element?.removeEventListener(eventName, events[eventName]);
+      if (events[eventName]) {
+        this._element?.removeEventListener(eventName, events[eventName]!);
+      }
     });
   }
 
   private _addAttribute() {
-    const { attrs = {} } = this.props as P & { attrs: Record<string, string> };
+    const { attrs = {} } = this.props as BaseProps<P>;
 
     Object.entries(attrs).forEach(([key, value]) => {
       this._element!.setAttribute(key, value);
@@ -127,11 +140,11 @@ class Block<P extends Record<string, any> = any> {
   }
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  protected componentDidUpdate(_oldProps: P, _newProps: P) {
-    return isEqual(_oldProps, _newProps);
+  protected componentDidUpdate(_oldProps: BaseProps<P>, _newProps: BaseProps<P>) {
+    return !isEqual(_oldProps, _newProps);
   }
 
-  public setProps = (nextProps: Partial<P>) => {
+  public setProps = (nextProps: Partial<BaseProps<P>>) => {
     if (!nextProps) {
       return;
     }
@@ -212,7 +225,7 @@ class Block<P extends Record<string, any> = any> {
     return this.element;
   }
 
-  private _makePropsProxy(props: P) {
+  private _makePropsProxy(props: BaseProps<P>) {
     const self = this;
 
     return new Proxy(props, {
@@ -223,7 +236,7 @@ class Block<P extends Record<string, any> = any> {
       set(target, prop: string, value) {
         const oldTarget = { ...target };
 
-        target[prop as keyof P] = value;
+        target[prop as keyof BaseProps<P>] = value;
 
         self._eventBus().emit(Block.EVENTS.FLOW_CDU, oldTarget, target);
         return true;

@@ -1,5 +1,5 @@
 import { IChat, IUser } from "services/api/interface";
-import { METHOD } from "services/http/transport";
+import { METHOD } from "services/http-transport/http-transport";
 
 import BaseAPI from "./api";
 
@@ -75,9 +75,12 @@ class ChatsAPI extends BaseAPI {
 
   public getChatToken = async (chatId: number) =>
     this.httpFetch<{ chatId: number }, Array<{ token: string }>>(
-      `/${chatId}/token`,
+      `/token/${chatId}`,
       METHOD.POST
     );
+
+  // public updateAvatar = async (form: FormData) =>
+  //   this.httpFetch("/avatar", METHOD.PUT, { data: form});
 
   public updateAvatar = async (form: FormData) => this.fetchFile("/avatar", form);
 

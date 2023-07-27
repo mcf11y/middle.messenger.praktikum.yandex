@@ -3,25 +3,15 @@ import arrowIcon from "icons/arrow-go-to.svg";
 import Block from "services/block";
 import ChatController from "services/controllers/chat-controller";
 import Router from "services/router";
-import { ChatData } from "types/chat";
 
 import Button from "components/Button";
 import Input from "components/Input";
 import SearchInput from "components/SearchInput";
 
 import template from "./chatBar.hbs";
-import ChatList from "./ChatBarList";
-
-type Props = {
-  chats: ChatData[];
-  currentChatId?: number;
-};
+import { ChatBarList } from "./ChatBarList";
 
 class ChatBar extends Block {
-  constructor(props: Props) {
-    super({ ...props });
-  }
-
   protected init() {
     this.children.addChatButton = new Button({
       variant: "secondary",
@@ -47,9 +37,7 @@ class ChatBar extends Block {
       }),
     });
 
-    if (this.props.chats && this.props.chats.length > 0) {
-      this.children.chatList = new ChatList({ ...this.props });
-    }
+    this.children.chatList = new ChatBarList();
   }
 
   protected render(): DocumentFragment {

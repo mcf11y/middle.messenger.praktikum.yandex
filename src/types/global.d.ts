@@ -41,7 +41,7 @@ declare type ArgumentTypes<F extends Function> = F extends (...args: infer A) =>
 
 declare type Callback<T extends (...args: any[]) => any> = Maybe<T>;
 
-declare type Handler<T extends any[] = unknown[]> = (...args: T) => void;
+declare type Handler<T extends any[] = any[]> = (...args: T) => void;
 
 declare type PromiseValue<T extends Promise<any>> = T extends Promise<infer P>
   ? P

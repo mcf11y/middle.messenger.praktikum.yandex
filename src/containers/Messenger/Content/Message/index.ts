@@ -1,27 +1,28 @@
 import { RESOURCE_URL } from "constants/urls";
 import Block from "services/block";
 import ValidationMediator from "services/validation/validation-mediator";
-import { ChatData } from "types/chat";
 
 import Divider from "components/Divider";
 
-import Content from "./Content";
+// import Content from "./Content";
 import Footer from "./Footer";
 import Header from "./Header";
 import template from "./MessageSection.hbs";
 
 type Props = {
-  currentChat: ChatData;
+  activeChatId?: number;
+  activeChat: {
+    id: number;
+    name: string;
+    avatar: string;
+    myDraftMessage: any;
+  };
   validation: ValidationMediator;
 };
 
-class ChatMessages extends Block {
-  constructor(props: Props) {
-    super({ ...props });
-  }
-
+class MessageSection extends Block<Props> {
   protected init() {
-    const { id, name, avatar, messages, myDraftMessage } = this.props.currentChat;
+    const { id, name, avatar, myDraftMessage } = this.props.activeChat;
 
     this.children.header = new Header({
       chatId: id,
@@ -31,9 +32,9 @@ class ChatMessages extends Block {
 
     this.children.topDivider = new Divider();
 
-    if (messages) {
-      this.children.content = new Content({ messages });
-    }
+    // if (messages) {
+    //   this.children.content = new Content({ messages });
+    // }
 
     this.children.bottomDivider = new Divider();
 
@@ -52,4 +53,4 @@ class ChatMessages extends Block {
   }
 }
 
-export default ChatMessages;
+export default MessageSection;

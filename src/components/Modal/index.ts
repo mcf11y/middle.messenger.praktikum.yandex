@@ -16,25 +16,7 @@ export type ModalProps = {
   onClose?: () => void;
 };
 
-class Modal extends Block {
-  constructor({
-    title,
-    content,
-    hasSubmitBtn,
-    submitBtnText,
-    onSubmit,
-    onClose,
-  }: ModalProps) {
-    super({
-      title,
-      content,
-      onSubmit,
-      onClose,
-      hasSubmitBtn,
-      submitBtnText,
-    });
-  }
-
+class Modal extends Block<ModalProps> {
   public show() {
     this.show();
   }

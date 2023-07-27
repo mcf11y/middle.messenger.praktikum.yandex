@@ -9,7 +9,7 @@ import Button from "components/Button";
 import ProfileField, { EProfileField } from "components/ProfileField";
 
 import template from "./template.hbs";
-import { RESOURCE_URL } from 'constants/urls';
+import { RESOURCE_URL } from "constants/urls";
 
 const validation = ProfileController.editProfileValidation;
 
@@ -102,7 +102,10 @@ class EditProfile extends Block {
 
     const contentFields = renderContentFields({ userName, ...rest });
     this.children.profile = new Profile({
-      avatar: new Avatar({ size: "l", imageSrc: RESOURCE_URL + avatarPath }),
+      avatar: new Avatar({
+        size: "l",
+        imageSrc: avatarPath ? RESOURCE_URL + avatarPath : undefined,
+      }),
       userName,
       contentFields,
       footerFields: FOOTER_FIELDS,

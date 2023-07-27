@@ -9,11 +9,7 @@ interface Props {
   onClick?: (id?: number) => void;
 }
 
-class TextIconButton extends Block {
-  constructor(props: Props) {
-    super({ ...props });
-  }
-
+class TextIconButton extends Block<Props> {
   protected init(): void {
     this.props.events = {
       click: () => this.props?.onClick?.(this.props.id),

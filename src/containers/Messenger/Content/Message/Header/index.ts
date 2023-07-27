@@ -18,11 +18,7 @@ type Props = {
   chatName: string;
 };
 
-class Header extends Block {
-  constructor(props: Props) {
-    super({ ...props });
-  }
-
+class Header extends Block<Props> {
   protected init() {
     this.children.avatar = new Avatar({ size: "s", imageSrc: this.props.avatarSrc });
 

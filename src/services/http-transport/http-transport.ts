@@ -49,17 +49,13 @@ class HTTPTransport {
     options: OptionsType<T> = { method: METHOD.GET },
     timeout = 5000
   ): Promise<XMLHttpRequest> => {
-    const { headers = {}, method, data, withCredentials } = options;
+    const { headers = {}, method, data, withCredentials = false } = options;
 
     const _url = this.baseUrl + url;
 
     return new Promise((resolve, reject) => {
       const xhr = new XMLHttpRequest();
       const isGet = method === METHOD.GET;
-
-      if (withCredentials) {
-        xhr.withCredentials = true;
-      }
 
       xhr.open(method, isGet && !!data ? `${_url}${queryStringify(data)}` : _url);
 
@@ -78,12 +74,17 @@ class HTTPTransport {
       xhr.onerror = reject;
 
       xhr.timeout = timeout;
+      xhr.withCredentials = withCredentials;
+      xhr.responseType;
       xhr.ontimeout = reject;
 
       if (isGet || !data) {
         xhr.send();
+      } else if (data instanceof FormData) {
+        xhr.send(data);
       } else {
-        xhr.send(data instanceof FormData ? data : JSON.stringify(data));
+        xhr.setRequestHeader("Content-Type", "application/json");
+        xhr.send(JSON.stringify(data));
       }
     });
   };

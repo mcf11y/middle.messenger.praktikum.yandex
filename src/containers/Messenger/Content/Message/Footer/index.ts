@@ -14,11 +14,7 @@ type Props = {
   validation: ValidationMediator;
 };
 
-class Footer extends Block {
-  constructor(props: Props) {
-    super({ ...props });
-  }
-
+class Footer extends Block<Props> {
   protected init(): void {
     const fName = NAMES.message;
 

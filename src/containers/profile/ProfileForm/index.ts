@@ -12,11 +12,7 @@ type Props = {
   onSubmit?: () => void;
 };
 
-class ProfileForm extends Block {
-  constructor(props: Props) {
-    super({ ...props });
-  }
-
+class ProfileForm extends Block<Props> {
   protected init(): void {
     this.props.events = {
       submit: this.onSubmit.bind(this),

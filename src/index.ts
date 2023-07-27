@@ -1,5 +1,5 @@
 import PAGE_URL from "constants/page-urls";
-import { MessengerPage } from "pages/Messenger";
+import MessengerPage from "pages/Messenger";
 import AuthController from "services/controllers/auth-controller";
 import Router from "services/router";
 
@@ -19,6 +19,7 @@ const error500 = ErrorPage({
   code: 500,
   message: "Мы уже фиксим",
 });
+const messengerPage = MessengerPage();
 const loginPage = Login();
 const signUpPage = SignUp();
 // const profilePage = new ProfilePage();
@@ -29,7 +30,7 @@ const signUpPage = SignUp();
 const routePaths = [
   {
     path: PAGE_URL.INDEX,
-    page: MessengerPage,
+    page: messengerPage,
   },
   {
     path: PAGE_URL.LOGIN,
@@ -87,7 +88,6 @@ window.addEventListener("DOMContentLoaded", async () => {
     if (!isProtectedRoute) {
       Router.go(PAGE_URL.INDEX);
     }
-
   } catch (e) {
     if (isProtectedRoute) {
       Router.go(PAGE_URL.LOGIN);

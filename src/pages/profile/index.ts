@@ -106,10 +106,11 @@ class UserProfile extends Block {
     const { avatarPath, userName, ...rest } = this.props;
 
     const contentFields = renderContentFields({ userName, ...rest });
+
     this.children.profile = new Profile({
       avatar: new Avatar({
         size: "l",
-        imageSrc: RESOURCE_URL + avatarPath,
+        imageSrc: avatarPath ? RESOURCE_URL + avatarPath : undefined,
         isEditable: true,
         onClick: () => {
           ProfileController.updateAvatar();

@@ -6,13 +6,7 @@ type Props = {
   onClose?: () => void;
 };
 
-class CloseIcon extends Block {
-  constructor({ onClose }: Props) {
-    super({
-      onClose,
-    });
-  }
-
+class CloseIcon extends Block<Props> {
   protected init() {
     this.props.events = {
       click: this.props?.onClose?.bind(this),

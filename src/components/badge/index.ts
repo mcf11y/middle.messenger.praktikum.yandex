@@ -9,10 +9,6 @@ type Props = {
 };
 
 class Badge extends Block<Props> {
-  constructor(props: Props) {
-    super({ ...props });
-  }
-
   protected render(): DocumentFragment {
     return this.compile(template, this.props);
   }

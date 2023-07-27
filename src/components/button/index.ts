@@ -6,7 +6,7 @@ type Props = {
   id?: string;
   variant?: "primary" | "secondary" | "link";
   type?: "submit" | "reset" | "button";
-  text: string;
+  text?: string;
   disabled?: boolean;
   startIconSrc?: string;
   endIconSrc?: string;
@@ -20,7 +20,7 @@ class Button extends Block {
     id,
     variant = "primary",
     type,
-    text,
+    text = "",
     disabled = false,
     startIconSrc,
     endIconSrc,

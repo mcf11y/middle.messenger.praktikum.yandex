@@ -6,11 +6,7 @@ type Props = {
   content: Block;
 };
 
-class CenteredWrapper extends Block {
-  constructor({ content }: Props) {
-    super({ content });
-  }
-
+class CenteredWrapper extends Block<Props> {
   protected render(): DocumentFragment {
     return this.compile(template, this.props);
   }

@@ -10,13 +10,7 @@ type Props = {
   messages: MessageData[];
 };
 
-class Content extends Block {
-  constructor(props: Props) {
-    super({
-      ...props,
-    });
-  }
-
+class Content extends Block<Props> {
   private renderMessages(messages: MessageData[]) {
     return messages?.map(
       ({ contentType, content, time, my }) =>

@@ -14,13 +14,7 @@ type Props = {
   onSubmit?: (data: Record<TFieldNames, string>) => void;
 };
 
-class AuthForm extends Block {
-  constructor({ ...props }: Props) {
-    super({
-      ...props,
-    });
-  }
-
+class AuthForm extends Block<Props> {
   public getFieldsValue(): Record<string, string> {
     const fields = this.children.contentItems;
 

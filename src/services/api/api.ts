@@ -1,5 +1,5 @@
-import HTTPTransport from "services/http";
-import { METHOD } from "services/http/transport";
+import HTTPTransport from "services/http-transport";
+import { METHOD } from "services/http-transport/http-transport";
 
 export const BASE_URL = "https://ya-praktikum.tech";
 
@@ -48,9 +48,6 @@ abstract class BaseAPI {
       case METHOD.GET:
         return this.apiInstance
           .get<T>(url, {
-            headers: {
-              "content-type": "application/json",
-            },
             withCredentials: true,
             data,
           })
@@ -59,9 +56,6 @@ abstract class BaseAPI {
       case METHOD.POST:
         return this.apiInstance
           .post(url, {
-            headers: {
-              "content-type": "application/json",
-            },
             withCredentials: true,
             data,
           })
@@ -70,9 +64,6 @@ abstract class BaseAPI {
       case METHOD.PUT:
         return this.apiInstance
           .put(url, {
-            headers: {
-              "content-type": "application/json",
-            },
             withCredentials: true,
             data,
           })
@@ -81,9 +72,6 @@ abstract class BaseAPI {
       case METHOD.DELETE:
         return this.apiInstance
           .delete(url, {
-            headers: {
-              "content-type": "application/json",
-            },
             withCredentials: true,
             data,
           })

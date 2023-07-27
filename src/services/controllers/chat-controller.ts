@@ -9,6 +9,7 @@ import AvatarFormInput from "components/AvatarFormInput";
 import FormField from "components/FormField";
 
 import ModalController from "./modal-controller";
+import { ChatData } from "types/chat";
 
 class ChatController {
   private _validation: ValidationMediator;
@@ -75,6 +76,16 @@ class ChatController {
     ModalController.showModal();
   };
 
+  public setActiveChat = (chat: ChatData) => {
+    store.set("activeChatId", chat.id);
+    store.set("activeChat", chat);
+  };
+
+  public clearActiveChat = () => {
+    store.removeStateItem("activeChatId");
+    store.removeStateItem("activeChat");
+  };
+
   public deleteChat = (chatId: number) => {
     const handleSubmitClick = async () => {
       const response = await ChatsAPI.deleteChatById(chatId);
@@ -83,6 +94,8 @@ class ChatController {
         await this.fetchChats();
 
         ModalController.hideModal();
+
+        this.clearActiveChat();
       }
     };
 
@@ -199,6 +212,12 @@ class ChatController {
     });
 
     ModalController.showModal();
+  }
+
+  public async fetchChatToken(chatId: number) {
+    ChatsAPI.getChatToken(chatId).then((response) => {
+      response.status === 200 && store.set(`${chatId}`, response.data);
+    });
   }
 }
 

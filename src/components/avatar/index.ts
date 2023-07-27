@@ -11,11 +11,7 @@ type Props = {
   onClick?: () => void;
 };
 
-class Avatar extends Block {
-  constructor(props: Props) {
-    super({ ...props });
-  }
-
+class Avatar extends Block<Props> {
   protected init() {
     this.props.events = {
       click: this.props?.onClick?.bind(this),

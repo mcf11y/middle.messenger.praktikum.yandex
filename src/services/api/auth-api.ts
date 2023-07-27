@@ -1,5 +1,5 @@
 import BaseAPI from "services/api/api";
-import { METHOD } from "services/http/transport";
+import { METHOD } from "services/http-transport/http-transport";
 
 import { IUser, IUserData } from "./interface";
 

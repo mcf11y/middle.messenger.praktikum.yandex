@@ -9,11 +9,7 @@ interface Props {
   items: Block[];
 }
 
-class Dropdown extends Block {
-  constructor(props: Props) {
-    super({ ...props });
-  }
-
+class Dropdown extends Block<Props & { open?: boolean }> {
   public hideDropdown() {
     this.setProps({
       open: false,

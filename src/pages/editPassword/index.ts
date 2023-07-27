@@ -1,4 +1,5 @@
 import { IDS, NAMES } from "constants/fields";
+import { RESOURCE_URL } from "constants/urls";
 import Profile from "containers/Profile";
 import Block from "services/block";
 import ProfileController from "services/controllers/profile-controller";
@@ -9,7 +10,6 @@ import Button from "components/Button";
 import ProfileField, { EProfileField } from "components/ProfileField";
 
 import template from "./template.hbs";
-import { RESOURCE_URL } from "constants/urls";
 
 const validation = ProfileController.editPasswordValidation;
 
@@ -56,7 +56,10 @@ export class EditPassword extends Block {
     const footerFields = [submitButton];
 
     this.children.profile = new Profile({
-      avatar: new Avatar({ size: "l", imageSrc: RESOURCE_URL + avatarPath }),
+      avatar: new Avatar({
+        size: "l",
+        imageSrc: avatarPath ? RESOURCE_URL + avatarPath : undefined,
+      }),
       userName,
       contentFields,
       footerFields,

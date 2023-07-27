@@ -1,4 +1,4 @@
-import { METHOD } from "services/http/transport";
+import { METHOD } from "services/http-transport/http-transport";
 
 import BaseAPI from "./api";
 import { IProfileUser, IProfileUserData, IUser } from "./interface";

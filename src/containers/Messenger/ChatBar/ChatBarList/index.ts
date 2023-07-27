@@ -1,16 +1,16 @@
+import { RESOURCE_URL } from "constants/urls";
 import Block from "services/block";
-import store from "services/store";
+import ChatController from "services/controllers/chat-controller";
+import { Connect } from "services/store";
 import { ChatData } from "types/chat";
 
 import Avatar from "components/Avatar";
 
-import ChatBarItem from "./ChatBarItem";
+import { ChatBarItem } from "./ChatBarItem";
 import template from "./chatBarList.hbs";
-import { RESOURCE_URL } from 'constants/urls';
 
 type Props = {
   chats: ChatData[];
-  currentChatId?: number;
 };
 
 const formattedDate = (dateString: string) => {
@@ -26,28 +26,25 @@ const formattedDate = (dateString: string) => {
   return date.toLocaleString("en-US", options);
 };
 
-class ChatBarList extends Block {
-  constructor(props: Props) {
-    super({ ...props });
-  }
-
+class ChatBar extends Block<Props> {
   private renderItems(chats: ChatData[]) {
-    return chats.map(({ id, name, avatar, unreadCount, lastMesage }) => {
+    return chats.map((chat) => {
+      const { id, name, avatar, unreadCount, lastMesage } = chat;
+
       const chatItem = new ChatBarItem({
         id,
         chatName: name,
         avatar: new Avatar({
           size: "m",
-          imageSrc:  avatar ? RESOURCE_URL + avatar : undefined,
+          imageSrc: avatar ? RESOURCE_URL + avatar : undefined,
         }),
-        selected: id === this.props.currentChatId,
 
         time: lastMesage?.time && formattedDate(lastMesage.time),
         missedMesssageCount: +unreadCount,
         lastMessage: lastMesage?.content,
 
-        onClick: (_id: string | number) => {
-          store.set("currentChatId", _id);
+        onClick: () => {
+          ChatController.setActiveChat(chat);
         },
       });
 
@@ -55,13 +52,22 @@ class ChatBarList extends Block {
     });
   }
 
-  protected init() {
-    this.children.items = this.renderItems(this.props.chats);
-  }
-
   protected render(): DocumentFragment {
+    this.children.items = this.renderItems(this.props.chats);
+
     return this.compile(template, this.props);
   }
 }
 
-export default ChatBarList;
+function mapStateToProps(state: any) {
+  if (!state || !state.chats) return;
+
+  console.log("CHATS STATE", state.chats);
+
+  return { chats: state.chats };
+}
+
+// eslint-disable-next-line import/prefer-default-export
+export const ChatBarList =
+  // @ts-ignore
+  Connect(ChatBar, mapStateToProps);

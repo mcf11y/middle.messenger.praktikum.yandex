@@ -19,11 +19,7 @@ type Props = {
   validation?: ValidationMediator;
 };
 
-class FormField extends Block {
-  constructor({ ...props }: Props) {
-    super({ ...props });
-  }
-
+class FormField extends Block<Props & {id?: string}> {
   protected init(): void {
     const fName = this.props.fieldName;
 

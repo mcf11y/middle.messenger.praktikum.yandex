@@ -6,11 +6,7 @@ type Props = {
   input: Block;
 };
 
-class SearchInput extends Block {
-  constructor(props: Props) {
-    super({ ...props });
-  }
-
+class SearchInput extends Block<Props> {
   protected render(): DocumentFragment {
     return this.compile(template, this.props);
   }

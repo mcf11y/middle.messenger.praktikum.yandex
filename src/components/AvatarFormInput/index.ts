@@ -8,11 +8,7 @@ type Props = {
   onSubmit: (e: SubmitEvent) => void;
 };
 
-class AvatarFormInput extends Block {
-  constructor(props: Props) {
-    super({ ...props });
-  }
-
+class AvatarFormInput extends Block<Props> {
   protected init() {
     this.children.submitBtn = new Button({
       text: "Поменять",
