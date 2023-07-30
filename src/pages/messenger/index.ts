@@ -1,14 +1,11 @@
 import Chat from "containers/Messenger";
 import ChatController from "services/controllers/chat-controller";
 
-const validation = ChatController.validation;
+const formMediator = ChatController.formMediator;
 
-const MessengerPage = () => {
-  ChatController.fetchChats();
-
-  return new Chat({
-    validation,
+const MessengerPage = () =>
+  new Chat({
+    formMediator,
   });
-};
 
 export default MessengerPage;

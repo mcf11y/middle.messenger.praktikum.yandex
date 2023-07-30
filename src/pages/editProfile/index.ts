@@ -11,7 +11,7 @@ import ProfileField, { EProfileField } from "components/ProfileField";
 import template from "./template.hbs";
 import { RESOURCE_URL } from "constants/urls";
 
-const validation = ProfileController.editProfileValidation;
+const formMediator = ProfileController.editProfileValidation;
 
 interface IContentFieldsProps {
   email: string;
@@ -34,42 +34,42 @@ const renderContentFields = ({
     fieldType: EProfileField.EDITABLE,
     fieldName: NAMES.email,
     value: email,
-    validation,
+    formMediator,
   }),
 
   new ProfileField({
     fieldType: EProfileField.EDITABLE,
     fieldName: NAMES.login,
     value: login,
-    validation,
+    formMediator,
   }),
 
   new ProfileField({
     fieldType: EProfileField.EDITABLE,
     fieldName: NAMES.firstName,
     value: firstName,
-    validation,
+    formMediator,
   }),
 
   new ProfileField({
     fieldType: EProfileField.EDITABLE,
     fieldName: NAMES.secondName,
     value: secondName,
-    validation,
+    formMediator,
   }),
 
   new ProfileField({
     fieldType: EProfileField.EDITABLE,
     fieldName: NAMES.displayName,
     value: userName,
-    validation,
+    formMediator,
   }),
 
   new ProfileField({
     fieldType: EProfileField.EDITABLE,
     fieldName: NAMES.phone,
     value: phone,
-    validation,
+    formMediator,
     withDivider: false,
   }),
 ];

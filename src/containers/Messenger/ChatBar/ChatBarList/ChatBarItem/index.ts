@@ -1,5 +1,4 @@
 import Block from "services/block";
-import ChatController from "services/controllers/chat-controller";
 import { Connect } from "services/store";
 
 import Badge from "components/Badge";
@@ -34,8 +33,6 @@ class ChatItem extends Block<Props & { activeChatId?: number | string }> {
         this.props.onClick();
       },
     };
-
-    ChatController.fetchChatToken(+this.props.id);
   }
 
   protected render(): DocumentFragment {
@@ -49,10 +46,7 @@ class ChatItem extends Block<Props & { activeChatId?: number | string }> {
 }
 
 function mapStateToProps(state: any) {
-  if (!state || !state.activeChatId) return;
-
-  // eslint-disable-next-line consistent-return
-  return { activeChatId: state.activeChatId };
+  return { activeChatId: state?.activeChat?.id };
 }
 
 // eslint-disable-next-line import/prefer-default-export

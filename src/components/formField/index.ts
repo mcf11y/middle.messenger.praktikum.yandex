@@ -6,7 +6,7 @@ import {
   TFieldNames,
 } from "constants/fields";
 import Block from "services/block";
-import ValidationMediator from "services/validation/validation-mediator";
+import FormMediator from "services/form-mediator/form-mediator";
 
 import Input from "components/Input";
 import Label from "components/Label";
@@ -16,14 +16,14 @@ import template from "./FormField.hbs";
 type Props = {
   fieldName: TFieldNames;
   style?: CSSStyleSheet;
-  validation?: ValidationMediator;
+  formMediator?: FormMediator;
 };
 
 class FormField extends Block<Props & {id?: string}> {
   protected init(): void {
     const fName = this.props.fieldName;
 
-    this.props.validation?.subscribeField(fName);
+    this.props.formMediator?.subscribeToValidate(fName);
     this.props.id = IDS[fName];
 
     this.children.label = new Label({
@@ -38,11 +38,11 @@ class FormField extends Block<Props & {id?: string}> {
       placeholder: PLACEHOLDERS[fName],
 
       // onBlur: () => {
-      //   this.props.validation?.validateField(fName);
+      //   this.props.formMediator?.validateField(fName);
       // },
 
       onInput: () => {
-        this.props.validation?.validateField(fName);
+        this.props.formMediator?.validateField(fName);
       },
     });
   }

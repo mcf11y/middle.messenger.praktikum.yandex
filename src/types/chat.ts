@@ -2,9 +2,9 @@ export type MessageContentType = "text" | "image" | "file" | "video";
 export type MessageContent = string | File | HTMLImageElement;
 
 export type MessageData = {
-  contentType: MessageContentType;
+  contentType?: MessageContentType;
   content: MessageContent;
-  time: string | Date;
+  time?: string;
   my: boolean;
 };
 

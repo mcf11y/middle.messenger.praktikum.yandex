@@ -2,23 +2,33 @@ import { NAMES } from "constants/fields";
 import FORM_TYPE from "constants/form-types";
 import ChatsAPI from "services/api/chats-api";
 import UserAPI from "services/api/user-api";
+import FormMediator from "services/form-mediator/form-mediator";
 import store from "services/store";
-import ValidationMediator from "services/validation/validation-mediator";
+import { ChatData } from "types/chat";
 
 import AvatarFormInput from "components/AvatarFormInput";
 import FormField from "components/FormField";
 
 import ModalController from "./modal-controller";
-import { ChatData } from "types/chat";
+
+export const isSystemMessage = (content?: string) => {
+  if (!content) return false;
+
+  try {
+    return JSON.parse(content)?.type === "ping";
+  } catch (e) {
+    return false;
+  }
+};
 
 class ChatController {
-  private _validation: ValidationMediator;
+  private _validation: FormMediator;
 
   constructor() {
-    this._validation = new ValidationMediator(FORM_TYPE.CHATS);
+    this._validation = new FormMediator(FORM_TYPE.CHATS);
   }
 
-  public get validation() {
+  public get formMediator() {
     return this._validation;
   }
 
@@ -31,17 +41,23 @@ class ChatController {
       }
 
       const convertData = () =>
-        response.data.map((chat) => ({
-          id: chat.id,
-          name: chat.title,
-          avatar: chat.avatar,
-          unreadCount: chat.unread_count,
-          lastMesage: {
-            userName: chat.last_message?.user?.first_name,
-            content: chat.last_message?.content,
-            time: chat.last_message?.time,
-          },
-        }));
+        response.data.map((chat) => {
+          this.fetchChatToken(+chat.id);
+
+          return {
+            id: chat.id,
+            name: chat.title,
+            avatar: chat.avatar,
+            unreadCount: chat.unread_count,
+            lastMesage: isSystemMessage(chat.last_message?.content)
+              ? undefined
+              : {
+                  userName: chat.last_message?.user?.first_name,
+                  content: chat.last_message?.content,
+                  time: chat.last_message?.time,
+                },
+          };
+        });
 
       store.set("chats", convertData());
     } catch (e) {
@@ -51,7 +67,7 @@ class ChatController {
 
   public createChat = () => {
     const handleSubmitClick = async () => {
-      const chatName = this.validation.getFieldValue(NAMES.createChat);
+      const chatName = this.formMediator.getFieldValue(NAMES.createChat);
       const response = await ChatsAPI.createChat(chatName ?? "new chat");
 
       if (response.status === 200) {
@@ -65,7 +81,7 @@ class ChatController {
       title: "Создать чат",
       content: new FormField({
         fieldName: NAMES.createChat,
-        validation: this.validation,
+        formMediator: this.formMediator,
       }),
       hasSubmitBtn: true,
       submitBtnText: "Создать",
@@ -77,13 +93,13 @@ class ChatController {
   };
 
   public setActiveChat = (chat: ChatData) => {
-    store.set("activeChatId", chat.id);
+    // store.set("activeChatId", chatId);
     store.set("activeChat", chat);
   };
 
   public clearActiveChat = () => {
-    store.removeStateItem("activeChatId");
-    store.removeStateItem("activeChat");
+    // store.remove("activeChatId");
+    store.remove("activeChat");
   };
 
   public deleteChat = (chatId: number) => {
@@ -96,6 +112,9 @@ class ChatController {
         ModalController.hideModal();
 
         this.clearActiveChat();
+        this.deleteChatToken(chatId);
+
+        // ws off
       }
     };
 
@@ -124,6 +143,8 @@ class ChatController {
         this.fetchChats();
 
         ModalController.hideModal();
+
+        this.setActiveChat(response.data as any);
       }
     };
 
@@ -140,7 +161,7 @@ class ChatController {
 
   public addUser(chatId: number) {
     const handleSubmitClick = async () => {
-      const userLogin = this.validation.getFieldValue(NAMES.login);
+      const userLogin = this.formMediator.getFieldValue(NAMES.login);
 
       try {
         const users = await UserAPI.findUsersByLogin(userLogin);
@@ -156,7 +177,7 @@ class ChatController {
             this.fetchChats().then(() => ModalController.hideModal());
         });
       } catch (e) {
-        this.validation.setFieldErrorMessage(NAMES.login, e);
+        this.formMediator.setFieldErrorMessage(NAMES.login, e);
       }
     };
 
@@ -165,7 +186,7 @@ class ChatController {
 
       content: new FormField({
         fieldName: NAMES.login,
-        validation: this.validation,
+        formMediator: this.formMediator,
       }),
       hasSubmitBtn: true,
       submitBtnText: "Добавить",
@@ -178,7 +199,7 @@ class ChatController {
 
   public deleteUser(chatId: number) {
     const handleSubmitClick = async () => {
-      const userLogin = this.validation.getFieldValue(NAMES.login);
+      const userLogin = this.formMediator.getFieldValue(NAMES.login);
 
       try {
         const users = await UserAPI.findUsersByLogin(userLogin);
@@ -194,7 +215,7 @@ class ChatController {
             this.fetchChats().then(() => ModalController.hideModal());
         });
       } catch (e) {
-        this.validation.setFieldErrorMessage(NAMES.login, e);
+        this.formMediator.setFieldErrorMessage(NAMES.login, e);
       }
     };
 
@@ -203,7 +224,7 @@ class ChatController {
 
       content: new FormField({
         fieldName: NAMES.login,
-        validation: this.validation,
+        formMediator: this.formMediator,
       }),
       hasSubmitBtn: true,
       submitBtnText: "Удалить",
@@ -214,9 +235,15 @@ class ChatController {
     ModalController.showModal();
   }
 
+  public deleteChatToken(chatId: number) {
+    store.remove(`chatTokens.${chatId}`);
+  }
+
   public async fetchChatToken(chatId: number) {
     ChatsAPI.getChatToken(chatId).then((response) => {
-      response.status === 200 && store.set(`${chatId}`, response.data);
+      if (response.status === 200) {
+        store.set(`chatTokens.${chatId}`, response.data.token);
+      }
     });
   }
 }

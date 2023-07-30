@@ -223,6 +223,25 @@ export function merge(lhs: Indexed, rhs: Indexed): Indexed {
   return lhs;
 }
 
+export function removeObjValue(object: Indexed | unknown, path: string): void {
+  if (typeof object !== "object" || object === null) {
+    return;
+  }
+
+  if (typeof path !== "string") {
+    throw new Error("path must be string");
+  }
+
+  try {
+    // eslint-disable-next-line no-eval
+    eval(
+      path.split(".").reduce((acc, item) => `${acc}["${item}"]`, "delete object")
+    );
+  } catch (e) {
+    console.error(e);
+  }
+}
+
 export function setObjValue(
   object: Indexed | unknown,
   path: string,

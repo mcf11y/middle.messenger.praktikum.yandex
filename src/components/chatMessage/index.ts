@@ -4,7 +4,7 @@ import template from "./ChatMessage.hbs";
 
 type Props = {
   message: string;
-  time: string;
+  time?: string;
   my: boolean;
 };
 

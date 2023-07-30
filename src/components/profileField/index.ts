@@ -6,7 +6,7 @@ import {
   TFieldNames,
 } from "constants/fields";
 import Block from "services/block";
-import ValidationMediator from "services/validation/validation-mediator";
+import FormMediator from "services/form-mediator/form-mediator";
 
 import Divider from "components/Divider";
 import Input from "components/Input";
@@ -31,7 +31,7 @@ type Props = {
   btnColor?: string;
 
   withDivider?: boolean;
-  validation?: ValidationMediator;
+  formMediator?: FormMediator;
 };
 
 class ProfileField extends Block {
@@ -40,14 +40,14 @@ class ProfileField extends Block {
     fieldName,
     value,
     withDivider = true,
-    validation,
+    formMediator,
     btnOnClick,
     btnColor,
   }: Props) {
     super({
       fieldName,
       fieldType,
-      validation,
+      formMediator,
       value,
       withDivider,
       btnOnClick,
@@ -56,7 +56,7 @@ class ProfileField extends Block {
   }
 
   private _renderEditableField(field: TFieldNames) {
-    this.props.validation?.subscribeField(field);
+    this.props.formMediator?.subscribeToValidate(field);
 
     this.children.leftField = new Label({
       forId: IDS[field],
@@ -74,11 +74,11 @@ class ProfileField extends Block {
       value: this.props.value,
 
       onInput: () => {
-        this.props.validation?.validateField(field);
+        this.props.formMediator?.validateField(field);
       },
 
       onBlur: () => {
-        this.props.validation?.validateField(field);
+        this.props.formMediator?.validateField(field);
       },
     });
   }

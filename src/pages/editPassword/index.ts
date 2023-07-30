@@ -11,27 +11,27 @@ import ProfileField, { EProfileField } from "components/ProfileField";
 
 import template from "./template.hbs";
 
-const validation = ProfileController.editPasswordValidation;
+const formMediator = ProfileController.editPasswordValidation;
 
 const oldPasswordField = new ProfileField({
   fieldType: EProfileField.EDITABLE,
   fieldName: NAMES.oldPassword,
 
-  validation,
+  formMediator,
 });
 
 const newPasswordField = new ProfileField({
   fieldType: EProfileField.EDITABLE,
   fieldName: NAMES.newPassword,
 
-  validation,
+  formMediator,
 });
 
 const newPasswordAgain = new ProfileField({
   fieldType: EProfileField.EDITABLE,
   fieldName: NAMES.newPasswordAgain,
 
-  validation,
+  formMediator,
 
   withDivider: false,
 });

@@ -128,7 +128,6 @@ class UserProfile extends Block {
 function mapStateToProps(state: any) {
   if (!state || !state.user) return;
 
-  console.log("Data", state);
   // eslint-disable-next-line consistent-return
   return {
     avatarPath: state.user.avatar,

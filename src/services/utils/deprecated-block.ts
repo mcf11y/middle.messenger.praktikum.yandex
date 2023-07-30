@@ -50,9 +50,6 @@ class Block {
       props: nativeProps,
     } = this._getChildrenAndProps(props);
 
-    // eslint-disable-next-line no-debugger
-    debugger;
-
     this.children = this._makePropsProxy(children);
     this.childrenList = this._makePropsProxy(childrenList);
     this.props = this._makePropsProxy({ ...nativeProps, __id: this._id });

@@ -10,7 +10,7 @@ type TValidaitonResult = Record<TFieldNames, string>;
 const ERROR_LABEL_ID_POSTFIX = "-error-label";
 const ERROR_BTN_CLASS = "btn-disabled";
 
-class ValidationMediator {
+class FormMediator {
   private _mediator: Mediator;
   private _formType?: FORM_TYPE;
 
@@ -31,11 +31,13 @@ class ValidationMediator {
   }
 
   public getFieldValue(fieldName: TFieldNames) {
-    const value = (
-      document.querySelectorAll(`[name="${fieldName}"]`)[0] as HTMLInputElement
-    )?.value;
+    return this._getFieldElement(fieldName)?.value ?? "";
+  }
 
-    return value;
+  private _getFieldElement(fieldName: TFieldNames): Maybe<HTMLInputElement> {
+    return document.querySelectorAll(
+      `[name="${fieldName}"]`
+    )[0] as Maybe<HTMLInputElement>;
   }
 
   private _setFieldErrorMessage(fieldName: TFieldNames, errorMessage: string) {
@@ -78,7 +80,7 @@ class ValidationMediator {
     this._disableSubmitBtn();
   }
 
-  public subscribeField(fieldName: TFieldNames, formType?: FORM_TYPE) {
+  public subscribeToValidate(fieldName: TFieldNames, formType?: FORM_TYPE) {
     this._isFormTypeSet(formType);
 
     this._mediator.subscribe(formType ?? this._formType, fieldName, () =>
@@ -86,7 +88,7 @@ class ValidationMediator {
     );
   }
 
-  public unsubscribeField(fieldName: TFieldNames, formType?: FORM_TYPE) {
+  public unsubscribeToValidate(fieldName: TFieldNames, formType?: FORM_TYPE) {
     this._isFormTypeSet(formType);
 
     this._mediator.unsubscribe(formType ?? this._formType, fieldName);
@@ -119,6 +121,13 @@ class ValidationMediator {
     return this._validationResult;
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  public clearField(fieldName: TFieldNames) {
+    if (this._getFieldElement(fieldName)?.value) {
+      this._getFieldElement(fieldName)!.value = "";
+    }
+  }
+
   public clearFieldErrorMessage(fieldName: TFieldNames): void {
     if (this._validationResult[fieldName]) {
       this._validationResult[fieldName] = "";
@@ -142,4 +151,4 @@ class ValidationMediator {
   }
 }
 
-export default ValidationMediator;
+export default FormMediator;

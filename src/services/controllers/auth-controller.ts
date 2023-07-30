@@ -6,17 +6,18 @@ import AuthAPI, {
   ILoginRequestData,
   ISignupRequestData,
 } from "services/api/auth-api";
+import ChatController from "services/controllers/chat-controller";
+import FormMediator from "services/form-mediator/form-mediator";
 import Router from "services/router";
 import store from "services/store";
-import ValidationMediator from "services/validation/validation-mediator";
 
 class AuthController {
-  private _loginValidation: ValidationMediator;
-  private _signupValidation: ValidationMediator;
+  private _loginValidation: FormMediator;
+  private _signupValidation: FormMediator;
 
   constructor() {
-    this._loginValidation = new ValidationMediator(FORM_TYPE.LOGIN);
-    this._signupValidation = new ValidationMediator(FORM_TYPE.SIGNUP);
+    this._loginValidation = new FormMediator(FORM_TYPE.LOGIN);
+    this._signupValidation = new FormMediator(FORM_TYPE.SIGNUP);
   }
 
   public get signupValidation() {
@@ -73,7 +74,17 @@ class AuthController {
         return;
       }
 
-      Router.go(PAGE_URL.INDEX);
+      await this.fetchUser()
+        .then(() => {
+          ChatController.fetchChats();
+
+          Router.go(PAGE_URL.INDEX);
+        })
+        .catch((error) => {
+          console.error(error);
+
+          Router.go(PAGE_URL.LOGIN);
+        });
     } catch (error) {
       this.loginValidation.setFieldErrorMessage(
         NAMES.login,
@@ -135,7 +146,11 @@ class AuthController {
       }
 
       await this.fetchUser()
-        .then(() => Router.go(PAGE_URL.INDEX))
+        .then(() => {
+          ChatController.fetchChats();
+
+          Router.go(PAGE_URL.INDEX);
+        })
         .catch((error) => {
           console.error(error);
 
@@ -165,7 +180,7 @@ class AuthController {
       throw new Error(response.data.reason ?? "Ошибка при выходе из системы");
     }
 
-    store.removeState();
+    store.removeStore();
     Router.go(PAGE_URL.LOGIN);
   }
 }

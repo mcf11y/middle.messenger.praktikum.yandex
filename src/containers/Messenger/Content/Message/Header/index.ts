@@ -20,10 +20,6 @@ type Props = {
 
 class Header extends Block<Props> {
   protected init() {
-    this.children.avatar = new Avatar({ size: "s", imageSrc: this.props.avatarSrc });
-
-    this.children.title = new Title({ text: this.props.chatName, size: "s" });
-
     const dropdown = new Dropdown({
       iconSrc: DotsIcon,
 
@@ -74,6 +70,9 @@ class Header extends Block<Props> {
   }
 
   protected render(): DocumentFragment {
+    this.children.avatar = new Avatar({ size: "s", imageSrc: this.props.avatarSrc });
+    this.children.title = new Title({ text: this.props.chatName, size: "s" });
+
     return this.compile(template, this.props);
   }
 }

@@ -1,3 +1,4 @@
+import { removeObjValue, setObjValue } from "services/utils/my-dash";
 import { Observable as EventBus } from "services/utils/observable";
 
 export enum EStoreEvents {
@@ -36,20 +37,21 @@ export default class Store extends EventBus {
     return this._state;
   }
 
-  public removeState() {
+  public removeStore() {
     this._state = {};
 
     this.emit(EStoreEvents.Updated);
   }
 
-  public removeStateItem(id: string) {
-    delete this._state[id];
+  public remove(path: string) {
+    removeObjValue(this._state, path);
 
     this.emit(EStoreEvents.Updated);
   }
 
-  public set(id: string, value: unknown) {
-    this._state[id] = value;
+  public set(path: string, value: unknown) {
+    setObjValue(this._state, path, value);
+
     this.emit(EStoreEvents.Updated);
 
     return this;

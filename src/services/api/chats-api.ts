@@ -74,7 +74,7 @@ class ChatsAPI extends BaseAPI {
     this.httpFetch<typeof data>("/users", METHOD.DELETE, data);
 
   public getChatToken = async (chatId: number) =>
-    this.httpFetch<{ chatId: number }, Array<{ token: string }>>(
+    this.httpFetch<{ chatId: number }, { token: string }>(
       `/token/${chatId}`,
       METHOD.POST
     );

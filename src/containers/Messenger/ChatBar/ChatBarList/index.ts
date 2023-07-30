@@ -53,7 +53,9 @@ class ChatBar extends Block<Props> {
   }
 
   protected render(): DocumentFragment {
-    this.children.items = this.renderItems(this.props.chats);
+    if (this.props.chats) {
+      this.children.items = this.renderItems(this.props.chats);
+    }
 
     return this.compile(template, this.props);
   }
@@ -61,8 +63,6 @@ class ChatBar extends Block<Props> {
 
 function mapStateToProps(state: any) {
   if (!state || !state.chats) return;
-
-  console.log("CHATS STATE", state.chats);
 
   return { chats: state.chats };
 }

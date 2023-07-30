@@ -1,12 +1,12 @@
 import Block from "services/block";
-import ValidationMediator from "services/validation/validation-mediator";
+import FormMediator from "services/form-mediator/form-mediator";
 
 import ChatBar from "./ChatBar";
 import { ChatContent } from "./Content";
 import template from "./Messenger.hbs";
 
 type Props = {
-  validation: ValidationMediator;
+  formMediator: FormMediator;
 };
 
 class Messenger extends Block<Props> {
@@ -14,7 +14,7 @@ class Messenger extends Block<Props> {
     this.children.chatBar = new ChatBar({});
 
     this.children.chatContent = new ChatContent({
-      validation: this.props.validation,
+      formMediator: this.props.formMediator,
     });
   }
 

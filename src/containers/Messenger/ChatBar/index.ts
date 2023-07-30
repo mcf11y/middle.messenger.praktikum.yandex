@@ -13,6 +13,8 @@ import { ChatBarList } from "./ChatBarList";
 
 class ChatBar extends Block {
   protected init() {
+    ChatController.fetchChats();
+
     this.children.addChatButton = new Button({
       variant: "secondary",
       text: "Создать чат",

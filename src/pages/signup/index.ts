@@ -11,37 +11,37 @@ import Title from "components/Title";
 
 const emailField = new Field({
   fieldName: NAMES.email,
-  validation: AuthController.signupValidation,
+  formMediator: AuthController.signupValidation,
 });
 
 const loginField = new Field({
   fieldName: NAMES.login,
-  validation: AuthController.signupValidation,
+  formMediator: AuthController.signupValidation,
 });
 
 const firstNameField = new Field({
   fieldName: NAMES.firstName,
-  validation: AuthController.signupValidation,
+  formMediator: AuthController.signupValidation,
 });
 
 const secondNameField = new Field({
   fieldName: NAMES.secondName,
-  validation: AuthController.signupValidation,
+  formMediator: AuthController.signupValidation,
 });
 
 const phoneField = new Field({
   fieldName: NAMES.phone,
-  validation: AuthController.signupValidation,
+  formMediator: AuthController.signupValidation,
 });
 
 const passwordField = new Field({
   fieldName: NAMES.password,
-  validation: AuthController.signupValidation,
+  formMediator: AuthController.signupValidation,
 });
 
 const passwordAgainField = new Field({
   fieldName: NAMES.passwordAgain,
-  validation: AuthController.signupValidation,
+  formMediator: AuthController.signupValidation,
 });
 
 const onAuthFormSubmit = (data: Record<TFieldNames, string>) => {

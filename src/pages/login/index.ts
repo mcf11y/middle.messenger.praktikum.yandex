@@ -12,12 +12,12 @@ import Title from "components/Title";
 
 const loginField = new FormField({
   fieldName: NAMES.login,
-  validation: AuthController.loginValidation,
+  formMediator: AuthController.loginValidation,
 });
 
 const passwordField = new FormField({
   fieldName: NAMES.password,
-  validation: AuthController.loginValidation,
+  formMediator: AuthController.loginValidation,
 });
 
 (window as any).AUTH_API = AuthAPI;

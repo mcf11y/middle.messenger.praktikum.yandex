@@ -8,6 +8,14 @@ export enum EWSTransportEvents {
   CLOSE = "close",
 }
 
+export type WSResponse = {
+  content: string | object;
+  id?: number;
+  time?: string;
+  type: string;
+  user_id?: number;
+};
+
 // type EventTypes<T> = {
 //   [EWSTransportEvents.OPEN]: [void];
 //   [EWSTransportEvents.MESSAGE]: [T];
@@ -27,12 +35,17 @@ class WSTransport extends Observable {
     this.url = url;
   }
 
-  public send(data: string | number | object) {
+  public send({ data, type }: { data?: string | number | object; type: string }) {
     if (!this.socket) {
       throw new Error("Socket is not conntected");
     }
 
-    this.socket.send(JSON.stringify(data));
+    this.socket.send(
+      JSON.stringify({
+        type,
+        content: data,
+      })
+    );
   }
 
   public connect(): Promise<void> {
@@ -97,7 +110,7 @@ class WSTransport extends Observable {
 
           this.emit(EWSTransportEvents.MESSAGE, data);
         } catch (e) {
-          // ignore erros
+          console.error(e);
         }
       }
     );

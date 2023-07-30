@@ -3,21 +3,21 @@ import FORM_TYPE from "constants/form-types";
 import PAGE_URL from "constants/page-urls";
 import UserAPI from "services/api/user-api";
 import AuthContoller from "services/controllers/auth-controller";
+import FormMediator from "services/form-mediator/form-mediator";
 import Router from "services/router";
 import store from "services/store";
-import ValidationMediator from "services/validation/validation-mediator";
 
 import AvatarFormInput from "components/AvatarFormInput";
 
 import ModalController from "./modal-controller";
 
 class ProfileController {
-  private _editProfileValidation: ValidationMediator;
-  private _editPasswordValidation: ValidationMediator;
+  private _editProfileValidation: FormMediator;
+  private _editPasswordValidation: FormMediator;
 
   constructor() {
-    this._editProfileValidation = new ValidationMediator(FORM_TYPE.EDIT_PROFILE);
-    this._editPasswordValidation = new ValidationMediator(FORM_TYPE.EDIT_PASSWORD);
+    this._editProfileValidation = new FormMediator(FORM_TYPE.EDIT_PROFILE);
+    this._editPasswordValidation = new FormMediator(FORM_TYPE.EDIT_PASSWORD);
   }
 
   public get editProfileValidation() {
@@ -30,10 +30,10 @@ class ProfileController {
 
   private getFieldsData = (
     fieldsName: TFieldNames[],
-    validation: ValidationMediator
+    formMediator: FormMediator
   ) =>
     fieldsName.reduce((acc, fieldName) => {
-      acc[fieldName] = validation.getFieldValue(fieldName);
+      acc[fieldName] = formMediator.getFieldValue(fieldName);
       return acc;
     }, {} as Record<TFieldNames, string>);
 

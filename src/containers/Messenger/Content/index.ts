@@ -1,23 +1,28 @@
 import Block from "services/block";
+import FormMediator from "services/form-mediator/form-mediator";
 import { Connect } from "services/store";
-import ValidationMediator from "services/validation/validation-mediator";
+import { ChatData } from "types/chat";
 
 import template from "./Content.hbs";
 import EmptyMessage from "./EmptyMessage";
 import MessageSection from "./Message";
 
 type Props = {
-  activeChat: any;
-  activeChatId?: number;
-  validation: ValidationMediator;
+  activeChat: ChatData;
+  formMediator: FormMediator;
 };
 
 class Content extends Block<Props> {
+  // todo понять в чем проблема
+  protected componentDidUpdate() {
+    return true;
+  }
+
   protected render(): DocumentFragment {
     const activeChat = this.props.activeChat;
 
     this.children.content = activeChat
-      ? new MessageSection({ validation: this.props.validation, activeChat })
+      ? new MessageSection({ formMediator: this.props.formMediator, activeChat })
       : new EmptyMessage();
 
     return this.compile(template, this.props);
@@ -25,7 +30,7 @@ class Content extends Block<Props> {
 }
 
 function mapStateToProps(state: any) {
-  return { activeChatId: state.activeChatId, activeChat: state.activeChat };
+  return { activeChat: state.activeChat };
 }
 
 // eslint-disable-next-line import/prefer-default-export
