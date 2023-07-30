@@ -8,7 +8,7 @@ import Button from "components/Button";
 import Input from "components/Input";
 import SearchInput from "components/SearchInput";
 
-import template from "./chatBar.hbs";
+import template from "./ChatBar.hbs";
 import { ChatBarList } from "./ChatBarList";
 
 class ChatBar extends Block {

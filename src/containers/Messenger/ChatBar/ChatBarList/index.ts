@@ -7,7 +7,7 @@ import { ChatData } from "types/chat";
 import Avatar from "components/Avatar";
 
 import { ChatBarItem } from "./ChatBarItem";
-import template from "./chatBarList.hbs";
+import template from "./ChatBarList.hbs";
 
 type Props = {
   chats: ChatData[];

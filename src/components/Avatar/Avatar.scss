@@ -5,7 +5,6 @@
   box-sizing: border-box;
   background: $primary-gray;
   border-radius: 50%;
-
   text-align: center;
 
   &_s {
@@ -26,11 +25,9 @@
   &__img-src {
     position: relative;
     z-index: 2;
-
     border-radius: 50%;
     max-width: 100%;
     max-height: 100%;
-
     transition: all ease-in-out 0.3s;
   }
 
@@ -41,22 +38,19 @@
     &__icon {
       position: absolute;
       transition: all ease-in-out 0.3s;
-
       top: 50%;
       left: 50%;
-
       transform: translate(-50%, -50%);
-
       width: inherit;
       height: inherit;
       border-radius: 100%;
       opacity: 0;
-      background-color: rgba(0, 0, 0, 0);
+      background-color: rgba(0 0 0 / 0%);
     }
 
     &:hover {
       box-shadow: $avatar-hover-shadow;
-      background-color: rgba(0, 0, 0, 0.273);
+      background-color: rgba(0 0 0 / 27.3%);
 
       .avatar__img-src {
         z-index: 1;

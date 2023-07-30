@@ -14,7 +14,7 @@ import Label from "components/Label";
 import Link from "components/Link";
 import Title from "components/Title";
 
-import template from "./profileField.hbs";
+import template from "./ProfileField.hbs";
 
 export enum EProfileField {
   TEXT,

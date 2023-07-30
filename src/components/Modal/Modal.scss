@@ -2,20 +2,14 @@
   position: absolute;
   display: flex !important;
   flex-direction: column;
-
-
   top: 50%;
   left: 50%;
-
   transform: translate(-50%, -50%);
-
   height: 260px;
   width: 340px;
   border-radius: 6px;
   padding: 2rem 1.5rem;
-
-  background-color: #fefefe;
-  background: #ffffff;
+  background: #fff;
 
   &__title {
     text-align: center;

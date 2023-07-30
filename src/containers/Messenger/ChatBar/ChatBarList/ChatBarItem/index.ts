@@ -4,7 +4,7 @@ import { Connect } from "services/store";
 import Badge from "components/Badge";
 import Title from "components/Title";
 
-import template from "./chatBarItem.hbs";
+import template from "./ChatBarItem.hbs";
 
 type Props = {
   id: string | number;

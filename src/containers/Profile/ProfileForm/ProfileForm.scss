@@ -20,9 +20,9 @@
   }
 
   &__content {
-    @include common-container-styles;
-
     margin: 60px 0;
+
+    @include common-container-styles;
   }
 
   &__footer {
