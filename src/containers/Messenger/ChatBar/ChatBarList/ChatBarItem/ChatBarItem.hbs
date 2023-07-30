@@ -1,0 +1,17 @@
+<div class="chat-bar-item{{#if selected}} chat-bar-item_selected{{/if}}">
+  {{{avatar}}}
+
+  <div class="chat-bar-item__content">
+    <div class="chat-bar-item__content__info-row">
+      {{{chatTitle}}}
+      <span class="chat-bar-item__content__info-row__time">{{time}}</span>
+    </div>
+
+    <div class="chat-bar-item__content__subtitle">
+      {{#if lastMessage}}
+        <span class="chat-bar-item__content__subtitle__message">{{lastMessage}}</span>
+      {{/if}}
+      {{{countBadge}}}
+    </div>
+  </div>
+</div>

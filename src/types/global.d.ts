@@ -17,6 +17,8 @@ declare module "*.scss" {
   export default styles;
 }
 
+declare type UID = string | number;
+
 declare type Nullable<T> = T | null;
 
 declare type Maybe<T> = T | undefined;
@@ -37,9 +39,9 @@ declare type ArgumentTypes<F extends Function> = F extends (...args: infer A) =>
   ? A
   : never;
 
-declare type Callback<T extends (...args: any[]) => any> = T;
+declare type Callback<T extends (...args: any[]) => any> = Maybe<T>;
 
-declare type EventCallback<T extends (...args: any[]) => void> = T;
+declare type Handler<T extends any[] = any[]> = (...args: T) => void;
 
 declare type PromiseValue<T extends Promise<any>> = T extends Promise<infer P>
   ? P
@@ -51,3 +53,9 @@ declare type TypedAction<TActionModule> = {
     ? ReturnType<TActionModule[P]>
     : never;
 }[keyof TActionModule];
+
+declare type ObjectKeys<T extends object> = keyof T;
+
+type Indexed<T = unknown> = {
+  [key in string]: T;
+};

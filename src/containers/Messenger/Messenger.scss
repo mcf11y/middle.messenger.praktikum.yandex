@@ -1,0 +1,15 @@
+.messenger-container {
+  height: 100%;
+  display: flex;
+  flex-flow: row nowrap;
+
+  &__bar {
+    flex: 1 1 35%;
+    background-color: $gray-light-background;
+    border-right: 1px solid $primary-gray;
+  }
+
+  &__content {
+    flex: 1 1 65%;
+  }
+}

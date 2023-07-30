@@ -1,0 +1,18 @@
+<button
+  class="icon-button icon-button__{{variant}} {{#if disabled}}btn-disabled{{/if}}"
+  {{#if disabled}} disabled{{/if}}
+  {{#if btnWidth}}
+    style="width: {{btnWidth}}px; height: {{btnWidth}}px;"
+  {{/if}}
+  {{#if id}} id="{{id}}" {{/if}}
+  {{#if name}} name="{{name}}" {{/if}}
+  {{#if value}} value="{{value}}" {{/if}}
+>
+  <img
+    class="icon-button__img"
+    {{#if iconWidth}}
+      style="width: {{iconWidth}}px"
+    {{/if}}
+    src="{{iconSrc}}"
+  />
+</button>

@@ -1,10 +1,15 @@
+import PAGE_URL from "constants/page-urls";
+import MessengerPage from "pages/messenger";
+import AuthController from "services/controllers/auth-controller";
+import Router from "services/router";
+
+import { EditPasswordPage } from "./pages/EditPassword";
+import { EditProfilePage } from "./pages/EditProfile";
+import ErrorPage from "./pages/Error";
 import Login from "./pages/login";
+// import { MessengerPage } from "./pages/Messenger";
+import { ProfilePage } from "./pages/Profile";
 import SignUp from "./pages/signup";
-import ErrorPage from "./pages/error";
-import ProfilePage from "./pages/profile";
-import EditProfilePage from "./pages/editProfile";
-import EditPasswordPage from "./pages/editPassword";
-import HomePage from "./pages/home";
 
 const error404 = ErrorPage({
   code: 404,
@@ -14,73 +19,85 @@ const error500 = ErrorPage({
   code: 500,
   message: "Мы уже фиксим",
 });
+const messengerPage = MessengerPage();
 const loginPage = Login();
 const signUpPage = SignUp();
-const profilePage = ProfilePage();
-const editProfilePage = EditProfilePage();
-const editPasswordPage = EditPasswordPage();
-const homePage = HomePage();
+// const profilePage = new ProfilePage();
+// const editProfilePage = new EditProfilePage();
+// const editPasswordPage = new EditPasswordPage();
+// const messengerPage = new MessengerPage();
 
-const routes = [
+const routePaths = [
   {
-    path: "/",
-    data: homePage,
+    path: PAGE_URL.MESSENGER,
+    page: messengerPage,
   },
   {
-    path: "/login",
-    data: loginPage,
+    path: PAGE_URL.LOGIN,
+    page: loginPage,
   },
   {
-    path: "/signup",
-    data: signUpPage,
+    path: PAGE_URL.SIGN_UP,
+    page: signUpPage,
   },
   {
-    path: "/profile",
-    data: profilePage,
+    path: PAGE_URL.PROFILE,
+    page: ProfilePage,
   },
   {
-    path: "/editpassword",
-    data: editPasswordPage,
+    path: PAGE_URL.EDIT_PASSWORD,
+    page: EditPasswordPage,
   },
   {
-    path: "/editprofile",
-    data: editProfilePage,
+    path: PAGE_URL.EDIT_PROFILE,
+    page: EditProfilePage,
   },
   {
-    path: "/404",
-    data: error404,
+    path: PAGE_URL.NOT_FOUND,
+    page: error404,
   },
   {
-    path: "/500",
-    data: error500,
+    path: PAGE_URL.SERVER_ERROR,
+    page: error500,
   },
 ];
 
-const root = document.getElementById("root");
+window.addEventListener("DOMContentLoaded", async () => {
+  routePaths.forEach(({ path, page }) => {
+    Router.use(path, page);
+  });
 
-(window as any).router = (event: any) => {
-  event.preventDefault();
-  window.history.pushState({}, "newUrl", event.target.href);
-  const route = routes.find((r) => r.path === window.location.pathname);
-  if (root != null && route?.data) {
-    root.innerHTML = "";
-    root!.append(route.data.getContent()!);
+  if (!routePaths.some(({ path }) => path === window.location.pathname)) {
+    Router.go(PAGE_URL.NOT_FOUND);
   }
+
+  let isProtectedRoute = true;
+  // eslint-disable-next-line default-case
+  switch (window.location.pathname) {
+    case PAGE_URL.LOGIN:
+    case PAGE_URL.SIGN_UP:
+      isProtectedRoute = false;
+      break;
+  }
+
+  Router.start();
+
+  try {
+    await AuthController.fetchUser();
+
+    if (!isProtectedRoute) {
+      Router.go(PAGE_URL.MESSENGER);
+    }
+  } catch (e) {
+    if (isProtectedRoute) {
+      Router.go(PAGE_URL.LOGIN);
+    }
+  }
+});
+
+(window as any).router = ({ event, path }: { event: any; path: string }) => {
+  event?.preventDefault();
+  Router.go(path);
 };
 
-window.addEventListener("popstate", () => {
-  const route = routes.find((r) => r.path === window.location.pathname);
-  if (root != null && route?.data) {
-    root.innerHTML = "";
-    root!.append(route.data.getContent()!);
-  }
-});
-
-window.addEventListener("DOMContentLoaded", () => {
-  const route = routes.find((r) => r.path === window.location.pathname);
-
-  if (root != null && route?.data) {
-    root.innerHTML = "";
-    root!.append(route.data.getContent()!);
-  }
-});
+(window as any).Router = Router;

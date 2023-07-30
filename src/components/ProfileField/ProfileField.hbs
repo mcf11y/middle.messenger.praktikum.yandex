@@ -1,0 +1,21 @@
+<div class="profile-field">
+  <div class="profile-field__content">
+    {{#if leftField}}
+      <div class="profile-field__content__left">
+        {{{leftField}}}
+      </div>
+    {{/if}}
+    {{#if rightField}}
+      <div class="profile-field__content__right">
+        {{{rightField}}}
+        {{#if id}}
+          <label id="{{{id}}}-error-label" class="profile-field__content__right__error" />
+        {{/if}}
+      </div>
+    {{/if}}
+  </div>
+
+  {{#if divider}}
+    {{{divider}}}
+  {{/if}}
+</div>

@@ -1,36 +1,41 @@
 @import "variables.scss";
 
 /* components */
-@import "../components/input/input.scss";
-@import "../components/label/label.scss";
-@import "../components/field/field.scss";
-@import "../components/button/button.scss";
-@import "../components/link/link.scss";
-@import "../components/searchInput/searchInput.scss";
-@import "../components/avatar/avatar.scss";
-@import "../components/iconButton/iconButton.scss";
-@import "../components/title/title.scss";
-@import "../components/centeredWrapper/centeredWrapper.scss";
-@import "../components/badge/badge.scss";
-@import "../components/divider/divider.scss";
-@import "../components/profileField/profileField.scss";
-@import "../components/messageTextArea/messageTextArea.scss";
-@import "../components/chatMessage/chatMessage.scss";
+@import "../components/Input/Input.scss";
+@import "../components/Label/Label.scss";
+@import "../components/FormField/FormField.scss";
+@import "../components/Button/Button.scss";
+@import "../components/Link/Link.scss";
+@import "../components/SearchInput/SearchInput.scss";
+@import "../components/Avatar/Avatar.scss";
+@import "../components/IconButton/IconButton.scss";
+@import "../components/Title/Title.scss";
+@import "../components/CenteredWrapper/CenteredWrapper.scss";
+@import "../components/Badge/Badge.scss";
+@import "../components/Divider/Divider.scss";
+@import "../components/ProfileField/ProfileField.scss";
+@import "../components/MessageTextArea/MessageTextArea.scss";
+@import "../components/ChatMessage/ChatMessage.scss";
+@import "../components/Modal/Modal.scss";
+@import "../components/CloseIcon/CloseIcon.scss";
+@import "../components/AvatarFormInput/AvatarFormInput.scss";
+@import "../components/Dropdown/Dropdown.scss";
+@import "../components/TextIconButton/TextIconButton.scss";
 
 /* containers */
-@import "../containers/authForm/authForm.scss";
-@import "../containers/chat/chatBarSection/components/chatItem/chatItem.scss";
-@import "../containers/chat/chatBarSection/components/chatList/chatList.scss";
-@import "../containers/chat/messageSection/components/emptyMessageSection/emptyMessage.scss";
-@import "../containers/chat/messageSection/components/messageSectionHeader/messageSectionHeader.scss";
-@import "../containers/chat/messageSection/components/messageSectionContent/messageSectionContent.scss";
-@import "../containers/chat/messageSection/components/messageSectionFooter/messageSectionFooter.scss";
-@import "../containers/chat/messageSection/messageSection.scss";
-@import "../containers/chat/chatBarSection/chatBar.scss";
-@import "../containers/chat/chat.scss";
-@import "../containers/profile/components/leftBar/leftBar.scss";
-@import "../containers/profile/components/profileForm/profileForm.scss";
-@import "../containers/profile/profile.scss";
+@import "../containers/AuthForm/AuthForm.scss";
+@import "../containers/Messenger/ChatBar/ChatBarList/ChatBarItem/ChatBarItem.scss";
+@import "../containers/Messenger/ChatBar/ChatBarList/ChatBarList.scss";
+@import "../containers/Messenger/ChatBar/ChatBar.scss";
+@import "../containers/Messenger/Content/EmptyMessage/EmptyMessage.scss";
+@import "../containers/Messenger/Content/Message/MessageSection.scss";
+@import "../containers/Messenger/Content/Message/Header/Header.scss";
+@import "../containers/Messenger/Content/Message/Footer/Footer.scss";
+@import "../containers/Messenger/Content/Message/Content/Content.scss";
+@import "../containers/Messenger/Messenger.scss";
+@import "../containers/Profile/LeftBar/LeftBar.scss";
+@import "../containers/Profile/ProfileForm/ProfileForm.scss";
+@import "../containers/Profile/Profile.scss";
 
 /* pages */
-@import "../pages/error/error.scss";
+@import "../pages/Error/Error.scss";
