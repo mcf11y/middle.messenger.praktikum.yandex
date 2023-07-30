@@ -1,6 +1,4 @@
-import Store from "./store";
+import Store from "./Store";
 
 export default new Store();
-export { default as Connect } from "./connect";
-
-export * as Actions from "./actions";
+export { default as Connect } from "./Connect";

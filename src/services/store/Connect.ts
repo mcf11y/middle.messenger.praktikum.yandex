@@ -1,6 +1,6 @@
 import Block from "services/block";
 
-import Store, { EStoreEvents } from "./store";
+import Store, { EStoreEvents } from "./Store";
 
 export default function Connect(
   Component: typeof Block,

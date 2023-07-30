@@ -1,6 +1,6 @@
 import Block from "services/block";
 
-import Route, { BlockConstructable } from "./route";
+import Route, { BlockConstructable } from "./Route";
 
 class Router {
   private static __instance: Router;
