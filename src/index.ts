@@ -1,15 +1,15 @@
 import PAGE_URL from "constants/page-urls";
-import MessengerPage from "pages/Messenger";
+import MessengerPage from "pages/messenger";
 import AuthController from "services/controllers/auth-controller";
 import Router from "services/router";
 
 import { EditPasswordPage } from "./pages/EditPassword";
 import { EditProfilePage } from "./pages/EditProfile";
 import ErrorPage from "./pages/Error";
-import Login from "./pages/Login";
+import Login from "./pages/login";
 // import { MessengerPage } from "./pages/Messenger";
 import { ProfilePage } from "./pages/Profile";
-import SignUp from "./pages/Signup";
+import SignUp from "./pages/signup";
 
 const error404 = ErrorPage({
   code: 404,
@@ -82,7 +82,7 @@ window.addEventListener("DOMContentLoaded", async () => {
 
   Router.start();
 
-  try {;
+  try {
     await AuthController.fetchUser();
 
     if (!isProtectedRoute) {
