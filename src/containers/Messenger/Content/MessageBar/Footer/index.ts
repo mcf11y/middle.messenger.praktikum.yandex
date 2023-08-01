@@ -57,6 +57,7 @@ class Footer extends Block<Props> {
       id: IDS[NAMES.submitBtn],
       iconSrc: SubmitIcon,
       onClick: this.props.onSubmit,
+      disabled: true,
     });
   }
 

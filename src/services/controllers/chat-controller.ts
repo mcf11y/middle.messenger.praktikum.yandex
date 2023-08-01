@@ -102,7 +102,7 @@ class ChatController {
     store.remove("activeChat");
   };
 
-  public deleteChat = (chatId: number) => {
+  public deleteChat = (chatId: ID) => {
     const handleSubmitClick = async () => {
       const response = await ChatsAPI.deleteChatById(chatId);
 
@@ -111,6 +111,7 @@ class ChatController {
 
         ModalController.hideModal();
 
+        this.closeSocket(chatId);
         this.clearActiveChat();
         this.deleteChatToken(chatId);
 
@@ -130,7 +131,7 @@ class ChatController {
     ModalController.showModal();
   };
 
-  public async updateAvatar(chatId: number) {
+  public async updateAvatar(chatId: ID) {
     const handleSubmit = async (e: SubmitEvent) => {
       // const avatarForm = document.getElementById("avatar-form-input");
 
@@ -159,7 +160,7 @@ class ChatController {
     ModalController.showModal();
   }
 
-  public addUser(chatId: number) {
+  public addUser(chatId: ID) {
     const handleSubmitClick = async () => {
       const userLogin = this.formMediator.getFieldValue(NAMES.login);
 
@@ -197,7 +198,7 @@ class ChatController {
     ModalController.showModal();
   }
 
-  public deleteUser(chatId: number) {
+  public deleteUser(chatId: ID) {
     const handleSubmitClick = async () => {
       const userLogin = this.formMediator.getFieldValue(NAMES.login);
 
@@ -235,11 +236,18 @@ class ChatController {
     ModalController.showModal();
   }
 
-  public deleteChatToken(chatId: number) {
+  public deleteChatToken(chatId: ID) {
     store.remove(`chatTokens.${chatId}`);
   }
 
-  public async fetchChatToken(chatId: number) {
+  public closeSocket(chatId: ID) {
+    const path = `chatSocket.${chatId}`;
+
+    (store.getState()[path] as any)?.disconnect();
+    store.remove(path);
+  }
+
+  public async fetchChatToken(chatId: ID) {
     ChatsAPI.getChatToken(chatId).then((response) => {
       if (response.status === 200) {
         store.set(`chatTokens.${chatId}`, response.data.token);

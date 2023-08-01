@@ -17,7 +17,7 @@ declare module "*.scss" {
   export default styles;
 }
 
-declare type UID = string | number;
+declare type ID = string | number;
 
 declare type Nullable<T> = T | null;
 

@@ -9,6 +9,9 @@ import { isSystemMessage } from "./chat-controller";
 
 const WS_CHAT_URL = "wss://ya-praktikum.tech/ws/chats/";
 
+export type TokensMap = Record<ID, string>;
+export type SocketsMap = Record<ID, WSMessageController>;
+
 class WSMessageController {
   private wSTransport: WSTransport;
   private chatId: string | number;
@@ -16,9 +19,9 @@ class WSMessageController {
   // @ts-ignore
   private activeChatId?: string | number;
 
-  constructor(chatId: number) {
+  constructor(chatId: ID, chatToken?: string) {
     this.chatId = chatId;
-    const token = (store.getState()?.chatTokens as any)?.[chatId];
+    const token = chatToken || (store.getState()?.chatTokens as any)?.[chatId];
     this.userId = (store.getState()?.user as any)?.id;
     // this.activeChatId = store.getState().activeChat?.id;
 
@@ -47,7 +50,6 @@ class WSMessageController {
   }
 
   public getOldMessages(start: number) {
-    debugger;
     this.wSTransport.send({ data: start, type: "get old" });
   }
 
@@ -64,7 +66,10 @@ class WSMessageController {
       // todo для других видом данных нужна другая проверка
       // if (typeof response.content === "string" && response.content?.type !== "ping") {
 
-      if (typeof _response?.content === "string" && !isSystemMessage(_response.content)) {
+      if (
+        typeof _response?.content === "string" &&
+        !isSystemMessage(_response.content)
+      ) {
         const messageData: MessageData = {
           contentType: "text",
           content: _response.content,

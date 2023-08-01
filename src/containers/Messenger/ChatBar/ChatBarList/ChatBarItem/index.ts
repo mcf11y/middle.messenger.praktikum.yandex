@@ -17,7 +17,7 @@ type Props = {
   onClick: () => void;
 };
 
-class ChatItem extends Block<Props & { activeChatId?: number | string }> {
+class ChatItem extends Block<Props & { activeChatId?: ID }> {
   protected init() {
     this.children.chatTitle = new Title({
       text: this.props.chatName,

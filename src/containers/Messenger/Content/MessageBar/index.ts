@@ -1,6 +1,5 @@
 import { RESOURCE_URL } from "constants/urls";
 import Block from "services/block";
-import WSMessageController from "services/controllers/ws-message-controller";
 import FormMediator from "services/form-mediator/form-mediator";
 import { ChatData } from "types/chat";
 
@@ -9,32 +8,57 @@ import Divider from "components/Divider";
 import { Content } from "./Content";
 import Footer from "./Footer";
 import Header from "./Header";
-import template from "./MessageSection.hbs";
+import template from "./MessageBar.hbs";
+
+import WSMessageController, {
+  SocketsMap,
+} from "services/controllers/ws-message-controller";
 
 type Props = {
   activeChat: ChatData;
   formMediator: FormMediator;
+  chatSockets?: SocketsMap;
 };
 
-class MessageSection extends Block<Props> {
-  private messageController: Nullable<WSMessageController> = null;
+let currentSocket: Nullable<WSMessageController>;
 
+class MessageBar extends Block<Props> {
   constructor(props: Props) {
     super(props);
-
-    try {
-      this.messageController = new WSMessageController(+this.props.activeChat.id);
-      this.messageController.connect().then(() => {
-        // this.messageController?.getOldMessages(0);
-      });
-    } catch (e) {
-      console.error(e);
-    }
   }
 
   protected init() {
     this.children.topDivider = new Divider();
     this.children.bottomDivider = new Divider();
+  }
+
+  public async fetchSocket(id: ID) {
+    debugger;
+    currentSocket = new WSMessageController(id);
+    await currentSocket.connect();
+
+    currentSocket.getOldMessages(0);
+  }
+
+  public async sendMessage() {
+    const id = this.props.activeChat.id;
+
+    if (this.props.chatSockets) {
+      try {
+        const wsController = this.props.chatSockets[id];
+
+        wsController.sendMessage(this.props.formMediator);
+      } catch (e) {
+        debugger;
+        console.error(e);
+
+        if (!currentSocket) {
+          await this.fetchSocket(id);
+        }
+
+        currentSocket?.sendMessage(this.props.formMediator);
+      }
+    }
   }
 
   protected render(): DocumentFragment {
@@ -50,9 +74,7 @@ class MessageSection extends Block<Props> {
 
     this.children.footer = new Footer({
       formMediator: this.props.formMediator,
-      onSubmit: () => {
-        this.messageController?.sendMessage(this.props.formMediator);
-      },
+      onSubmit: this.sendMessage.bind(this),
 
       // savedMessage:
       //   myDraftMessage != null && myDraftMessage.contentType === "text"
@@ -64,4 +86,4 @@ class MessageSection extends Block<Props> {
   }
 }
 
-export default MessageSection;
+export default MessageBar;

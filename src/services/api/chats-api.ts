@@ -6,26 +6,26 @@ import BaseAPI from "./api";
 const PATH = "/api/v2/chats";
 
 export interface IChatsRequestData {
-  offset?: number;
-  limit?: number;
+  offset?: ID;
+  limit?: ID;
   title?: string;
 }
 
 export interface IChatsResponseData extends Array<IChat> {}
 
 export interface IDeleteChatResponseData {
-  userId: number;
+  userId: ID;
   result: {
-    id: number;
+    id: ID;
     title: string;
     avatar: string;
   };
 }
 
 export interface IGetChatUsersRequestData {
-  chatId: number;
-  offset?: number;
-  limit?: number;
+  chatId: ID;
+  offset?: ID;
+  limit?: ID;
   name?: string;
   email?: string;
 }
@@ -35,8 +35,8 @@ export interface IGetChatUsersResponseData extends Array<IUser> {
 }
 
 export interface IAddUsersRequestData {
-  users: number[];
-  chatId: number;
+  users: ID[];
+  chatId: ID;
 }
 
 class ChatsAPI extends BaseAPI {
@@ -50,8 +50,8 @@ class ChatsAPI extends BaseAPI {
   public createChat = async (title: string) =>
     this.httpFetch<{ title: string }>("", METHOD.POST, { title });
 
-  public deleteChatById = async (chatId: number) =>
-    this.httpFetch<{ chatId: number }, IDeleteChatResponseData>("", METHOD.DELETE, {
+  public deleteChatById = async (chatId: ID) =>
+    this.httpFetch<{ chatId: ID }, IDeleteChatResponseData>("", METHOD.DELETE, {
       chatId,
     });
 
@@ -61,8 +61,8 @@ class ChatsAPI extends BaseAPI {
       METHOD.GET
     );
 
-  public getNewMessagesCount = async (chatId: number) =>
-    this.httpFetch<{ chatId: number }, { unread_count: number }>(
+  public getNewMessagesCount = async (chatId: ID) =>
+    this.httpFetch<{ chatId: ID }, { unread_count: ID }>(
       `/new/${chatId}`,
       METHOD.GET
     );
@@ -73,8 +73,8 @@ class ChatsAPI extends BaseAPI {
   public deteleUsers = async (data: IAddUsersRequestData) =>
     this.httpFetch<typeof data>("/users", METHOD.DELETE, data);
 
-  public getChatToken = async (chatId: number) =>
-    this.httpFetch<{ chatId: number }, { token: string }>(
+  public getChatToken = async (chatId: ID) =>
+    this.httpFetch<{ chatId: ID }, { token: string }>(
       `/token/${chatId}`,
       METHOD.POST
     );
@@ -84,8 +84,8 @@ class ChatsAPI extends BaseAPI {
 
   public updateAvatar = async (form: FormData) => this.fetchFile("/avatar", form);
 
-  // public getChatSentFiles = async (chatId: number) =>
-  //   this.httpFetch<{ chatId: number }, Array<{ token: string }>>(
+  // public getChatSentFiles = async (chatId: ID) =>
+  //   this.httpFetch<{ chatId: ID }, Array<{ token: string }>>(
   //     `/${chatId}/token`,
   //     METHOD.POST
   //   );

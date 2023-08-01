@@ -5,11 +5,14 @@ import { ChatData } from "types/chat";
 
 import template from "./Content.hbs";
 import EmptyMessage from "./EmptyMessage";
-import MessageSection from "./Message";
+import MessageBar from "./MessageBar";
+
+import { SocketsMap } from "services/controllers/ws-message-controller";
 
 type Props = {
   activeChat: ChatData;
   formMediator: FormMediator;
+  chatSockets?: SocketsMap;
 };
 
 class Content extends Block<Props> {
@@ -22,7 +25,11 @@ class Content extends Block<Props> {
     const activeChat = this.props.activeChat;
 
     this.children.content = activeChat
-      ? new MessageSection({ formMediator: this.props.formMediator, activeChat })
+      ? new MessageBar({
+          formMediator: this.props.formMediator,
+          activeChat,
+          chatSockets: this.props.chatSockets,
+        })
       : new EmptyMessage();
 
     return this.compile(template, this.props);
