@@ -25,7 +25,7 @@ class Messenger extends Block<Props> {
     this.wasInited = false;
   }
 
-  private _createChatSockets(tokens: TokensMap) {
+  private async _createChatSockets(tokens: TokensMap) {
     this.wasInited = true;
 
     Object.entries(tokens).forEach(async ([key, value]) => {
@@ -77,8 +77,6 @@ class Messenger extends Block<Props> {
 
   protected render(): DocumentFragment {
     const chatTokens = this.props.chatTokens;
-
-    // const chatSockets: SocketsMap = {};
 
     if (chatTokens) {
       this._createChatSockets(chatTokens);
