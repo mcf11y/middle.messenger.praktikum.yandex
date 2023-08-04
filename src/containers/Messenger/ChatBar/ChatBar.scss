@@ -1,0 +1,29 @@
+.chat-bar {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+
+  &__header {
+    padding: 21px 10px 7px;
+    display: flex;
+    flex-direction: column;
+
+    &__btn-group {
+      width: 100%;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      margin-bottom: 15px;
+
+      &__btn {
+        width: fit-content;
+        padding: 0;
+      }
+    }
+  }
+
+  &__list {
+    padding: 10px;
+  }
+}

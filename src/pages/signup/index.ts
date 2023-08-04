@@ -1,68 +1,51 @@
-import Button from "components/button";
-import Title from "components/title";
-import Field from "components/field";
-import CenteredLayout from "components/centeredWrapper";
+import { IDS, NAMES, TFieldNames } from "constants/fields";
+import PAGE_URL from "constants/page-urls";
+import AuthForm from "containers/AuthForm";
+import AuthController from "services/controllers/auth-controller";
+import Router from "services/router";
 
-import AuthForm from "containers/authForm";
+import Button from "components/Button";
+import CenteredLayout from "components/CenteredWrapper";
+import Field from "components/FormField";
+import Title from "components/Title";
 
 const emailField = new Field({
-  id: "email",
-  type: "text",
-  fieldName: "Почта",
-  placeholder: "Введите почту",
-  inputName: "email",
+  fieldName: NAMES.email,
+  formMediator: AuthController.signupValidation,
 });
 
 const loginField = new Field({
-  id: "login",
-  type: "text",
-  fieldName: "Логин",
-  placeholder: "Введите логин",
-  inputName: "login",
+  fieldName: NAMES.login,
+  formMediator: AuthController.signupValidation,
 });
 
 const firstNameField = new Field({
-  id: "first_name",
-  type: "text",
-  fieldName: "Имя",
-  placeholder: "Введите имя",
-  inputName: "first_name",
+  fieldName: NAMES.firstName,
+  formMediator: AuthController.signupValidation,
 });
 
 const secondNameField = new Field({
-  id: "second_name",
-  type: "text",
-  fieldName: "Фамилия",
-  placeholder: "Введите фамилию",
-  inputName: "second_name",
+  fieldName: NAMES.secondName,
+  formMediator: AuthController.signupValidation,
 });
 
 const phoneField = new Field({
-  id: "phone",
-  type: "tel",
-  fieldName: "Телефон",
-  placeholder: "Введите телефон",
-  inputName: "phone",
+  fieldName: NAMES.phone,
+  formMediator: AuthController.signupValidation,
 });
 
 const passwordField = new Field({
-  id: "password",
-  type: "password",
-  fieldName: "Пароль",
-  placeholder: "Введите пароль",
-  inputName: "password",
+  fieldName: NAMES.password,
+  formMediator: AuthController.signupValidation,
 });
 
-const rePasswordField = new Field({
-  id: "re-password",
-  type: "password",
-  fieldName: "Повторите пароль",
-  placeholder: "Повторно введите пароль",
-  inputName: "password",
+const passwordAgainField = new Field({
+  fieldName: NAMES.passwordAgain,
+  formMediator: AuthController.signupValidation,
 });
 
-const onAuthFormSubmit = (data: any) => {
-  console.log("FORM DATA", data);
+const onAuthFormSubmit = (data: Record<TFieldNames, string>) => {
+  AuthController.signup(data);
 };
 
 const signUpFormContext = {
@@ -70,6 +53,7 @@ const signUpFormContext = {
     text: "Регистрация",
     size: "l",
   }),
+
   contentItems: [
     emailField,
     loginField,
@@ -77,21 +61,28 @@ const signUpFormContext = {
     secondNameField,
     phoneField,
     passwordField,
-    rePasswordField,
+    passwordAgainField,
   ],
+
   submitBtn: new Button({
-    id: "login-submit-btn",
+    id: IDS[NAMES.submitBtn],
     variant: "primary",
     type: "submit",
     text: "Зарегистрироваться",
   }),
+
   redirectBtn: new Button({
     id: "redirect-btn",
     variant: "link",
     type: "button",
     text: "Уже есть аккаунт?",
+    onClick: () => {
+      Router.go(PAGE_URL.LOGIN);
+    },
   }),
+
   action: "",
+
   onSubmit: onAuthFormSubmit,
 };
 

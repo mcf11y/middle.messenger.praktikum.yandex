@@ -1,0 +1,51 @@
+.icon-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+  border: none;
+  border-radius: 50%;
+
+  &__img {
+    max-width: 100%;
+    max-height: 100%;
+    width: 15px;
+    align-items: center;
+  }
+
+  &__primary {
+    background-color: $primary-blue;
+
+    &:hover {
+      background-color: $button-blue-hover;
+    }
+  }
+
+  &__secondary {
+    background-color: transparent;
+
+    &:hover {
+      background-color: $light-gray-hover;
+    }
+  }
+
+  // &__disabled {
+  //   opacity: 0.7;
+  //   background-color: $primary-blue;
+
+  //   &:hover {
+  //     background-color: $primary-blue;
+  //   }
+  // }
+}
+
+.btn-disabled {
+  opacity: 0.7;
+  background-color: $primary-blue;
+
+  &:hover {
+    background-color: $primary-blue;
+  }
+}

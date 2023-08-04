@@ -1,0 +1,15 @@
+.icon_close {
+  position: absolute;
+  top: .7rem;
+  right: 1rem;
+  color: $text-gray;
+  font-size: 28px;
+  font-weight: bold;
+
+  &:hover,
+  &:focus {
+    color: $button-gray-hover;
+    text-decoration: none;
+    cursor: pointer;
+  }
+}

@@ -1,0 +1,12 @@
+<div class="field"
+  {{#if style}} style="{{style}}" {{/if}}>
+  <div class="field__content">
+    {{{label}}}
+    <div class="field__content__input">
+      {{{input}}}
+    </div>
+  </div>
+  {{#if id}}
+    <label id="{{{id}}}-error-label" class="field__error"></label>
+  {{/if}}
+</div>

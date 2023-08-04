@@ -1,0 +1,13 @@
+<div class="dropdown">
+  {{{iconBtn}}}
+
+  {{#if open}}
+    <div class="dropdown__overlay">
+      {{#if items}}
+        {{#each items}}
+          <div class="dropdown__overlay__item">{{{this}}}</div>
+        {{/each}}
+      {{/if}}
+    </div>
+  {{/if}}
+</div>
