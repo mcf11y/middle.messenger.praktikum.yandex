@@ -47,6 +47,8 @@ declare type PromiseValue<T extends Promise<any>> = T extends Promise<infer P>
   ? P
   : never;
 
+declare type PromiseReturnType<T> = T extends Promise<infer Return> ? Return : T;
+
 declare type TypedAction<TActionModule> = {
   // eslint-disable-next-line @typescript-eslint/ban-types
   [P in keyof TActionModule]: TActionModule[P] extends Function
@@ -55,6 +57,12 @@ declare type TypedAction<TActionModule> = {
 }[keyof TActionModule];
 
 declare type ObjectKeys<T extends object> = keyof T;
+
+type Readonly<T> = {
+  readonly [P in keyof T]: T[P];
+};
+
+type NonNullable<T> = T extends null | undefined ? never : T;
 
 type Indexed<T = unknown> = {
   [key in string]: T;

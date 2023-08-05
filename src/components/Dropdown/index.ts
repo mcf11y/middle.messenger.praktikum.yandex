@@ -9,7 +9,9 @@ interface Props {
   items: Block[];
 }
 
-class Dropdown extends Block<Props & { open?: boolean }> {
+type BlockProps = Props & { open?: boolean };
+
+class Dropdown extends Block<BlockProps> {
   public hideDropdown() {
     this.setProps({
       open: false,

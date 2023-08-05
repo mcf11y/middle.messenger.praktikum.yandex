@@ -7,9 +7,9 @@ type Props = {
   savedMessage?: Nullable<string>;
   name: string;
   placeholder: string;
-  onFocus?: (e: any) => void;
-  onBlur?: (e: any) => void;
-  onInput?: (e: any) => void;
+  onFocus?: (e: FocusEvent) => void;
+  onBlur?: (e: FocusEvent) => void;
+  onInput?: (e: InputEvent) => void;
 };
 
 class MessageInputArea extends Block {
