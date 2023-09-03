@@ -37,10 +37,13 @@
     "baseUrl": "src"
   },
 
-  "include": [
-    "./src/**/*.ts",
-    "src/**/*.hbs",
-  ],
+  "include": ["./src/**/*.ts", "src/**/*.hbs"],
 
-  "exclude": ["node_modules"]
+  "exclude": [
+    "**/*.test.ts",
+    "**/*.spec.ts",
+    "config",
+    "node_modules",
+    "mochaSetup.js"
+  ]
 }

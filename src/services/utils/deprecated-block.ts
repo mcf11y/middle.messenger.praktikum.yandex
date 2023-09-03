@@ -38,8 +38,6 @@ class Block {
   /** JSDoc
    * @param {string} tagName
    * @param {Object} props
-   *
-   * @returns {void}
    */
   constructor(tagName: string = "div", props: PropsType = {}) {
     this._context = props;
