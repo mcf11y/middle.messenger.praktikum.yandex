@@ -1,7 +1,3 @@
-import AddIcon from "icons/add-icon.svg";
-import DeleteIcon from "icons/delete-icon.svg";
-import DotsIcon from "icons/dots-icon.svg";
-import EditIcon from "icons/edit-icon.svg";
 import Block from "services/block";
 import ChatController from "services/controllers/chat-controller";
 
@@ -9,6 +5,11 @@ import Avatar from "components/Avatar";
 import Dropdown from "components/Dropdown";
 import TextIconButton from "components/TextIconButton";
 import Title from "components/Title";
+
+import AddIcon from "../../../../../../static/icons/add-icon.svg";
+import DeleteIcon from "../../../../../../static/icons/delete-icon.svg";
+import DotsIcon from "../../../../../../static/icons/dots-icon.svg";
+import EditIcon from "../../../../../../static/icons/edit-icon.svg";
 
 import template from "./Header.hbs";
 

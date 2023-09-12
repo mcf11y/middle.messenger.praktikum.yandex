@@ -1,4 +1,5 @@
 import { IDS, NAMES } from "constants/fields";
+import { RESOURCE_URL } from "constants/urls";
 import Profile from "containers/Profile";
 import Block from "services/block";
 import ProfileController from "services/controllers/profile-controller";
@@ -9,7 +10,6 @@ import Button from "components/Button";
 import ProfileField, { EProfileField } from "components/ProfileField";
 
 import template from "./template.hbs";
-import { RESOURCE_URL } from "constants/urls";
 
 const formMediator = ProfileController.editProfileValidation;
 

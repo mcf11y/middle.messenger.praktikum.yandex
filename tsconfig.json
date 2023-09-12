@@ -1,40 +1,49 @@
 {
   "compilerOptions": {
     "target": "es2015",
+    "module": "commonjs",
     "lib": ["dom", "dom.iterable", "esnext"],
 
-    "experimentalDecorators": true,
+    "declaration": true,
+    "sourceMap": true,
+    "outDir": "./dist",
+    "strict": true,
 
-    "module": "commonjs",
+    "moduleResolution": "node",
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+
+    "typeRoots": [
+      "node_modules/@types",
+      "src/types/global.d.ts"
+    ],
+
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
-
     "noImplicitAny": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
-    "sourceMap": true,
     "strictNullChecks": true,
     "isolatedModules": true,
-
     "allowSyntheticDefaultImports": true,
-
-    "strict": true,
     "noFallthroughCasesInSwitch": true,
     "useUnknownInCatchVariables": false,
     "downlevelIteration": true,
-
     "allowJs": true,
     "skipLibCheck": true,
-
-    "noEmit": true,
     "resolveJsonModule": true,
-
-    "jsx": "preserve",
     "incremental": true,
-
-    "emitDecoratorMetadata": true,
-
-    "baseUrl": "src"
+    "baseUrl": "src",
+    "paths": {
+      "@/*": ["*"],
+      "components": ["components/*"],
+      "service": ["services/*"],
+      "constants": ["constants/*"],
+      "containers": ["containers/*"],
+      "pages": ["pages/*"],
+      "styles": ["styles/*"],
+      "types": ["types/*"],
+    }
   },
 
   "include": ["./src/**/*.ts", "src/**/*.hbs"],
@@ -44,6 +53,6 @@
     "**/*.spec.ts",
     "config",
     "node_modules",
-    "mochaSetup.js"
+    "mochaSetup.js",
   ]
 }

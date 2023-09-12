@@ -1,5 +1,4 @@
 import PAGE_URL from "constants/page-urls";
-import arrowIcon from "icons/arrow-go-to.svg";
 import Block from "services/block";
 import ChatController from "services/controllers/chat-controller";
 import Router from "services/router";
@@ -8,10 +7,16 @@ import Button from "components/Button";
 import Input from "components/Input";
 import SearchInput from "components/SearchInput";
 
+import arrowIcon from "../../../../static/icons/arrow-go-to.svg";
+
 import template from "./ChatBar.hbs";
 import { ChatBarList } from "./ChatBarList";
 
 class ChatBar extends Block {
+  // constructor() {
+  //   super({});
+  // }
+
   protected init() {
     ChatController.fetchChats();
 
@@ -39,7 +44,7 @@ class ChatBar extends Block {
       }),
     });
 
-    this.children.chatList = new ChatBarList();
+    this.children.chatList = new ChatBarList({});
   }
 
   protected render(): DocumentFragment {

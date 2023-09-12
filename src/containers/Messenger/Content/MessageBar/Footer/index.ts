@@ -1,11 +1,12 @@
 import { IDS, NAMES, PLACEHOLDERS } from "constants/fields";
-import SubmitIcon from "icons/arrow-right.svg";
-import AttachIcon from "icons/attach-icon.svg";
 import Block from "services/block";
 import FormMediator from "services/form-mediator/form-mediator";
 
 import IconButton from "components/IconButton";
 import MessageInputArea from "components/MessageTextArea";
+
+import SubmitIcon from "../../../../../../static/icons/arrow-right.svg";
+import AttachIcon from "../../../../../../static/icons/attach-icon.svg";
 
 import template from "./Footer.hbs";
 

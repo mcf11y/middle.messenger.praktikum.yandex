@@ -10,6 +10,10 @@ import Login from "./pages/login";
 import { ProfilePage } from "./pages/Profile";
 import SignUp from "./pages/signup";
 
+import "./styles/variables.scss";
+import "./styles/globals.scss";
+import "./styles/root.scss";
+
 const error404 = ErrorPage({
   code: 404,
   message: "Не туда попали",
