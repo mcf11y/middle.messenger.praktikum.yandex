@@ -170,7 +170,7 @@ export type FlatArray<Arr, Depth extends number> = {
           17,
           18,
           19,
-          20
+          20,
         ][Depth]
       >
     : Arr;
@@ -235,7 +235,7 @@ export function removeObjValue(object: Indexed | unknown, path: string): void {
   try {
     // eslint-disable-next-line no-eval
     eval(
-      path.split(".").reduce((acc, item) => `${acc}["${item}"]`, "delete object")
+      path.split(".").reduce((acc, item) => `${acc}["${item}"]`, "delete object"),
     );
   } catch (e) {
     console.error(e);
@@ -245,7 +245,7 @@ export function removeObjValue(object: Indexed | unknown, path: string): void {
 export function setObjValue(
   object: Indexed | unknown,
   path: string,
-  value: unknown
+  value: unknown,
 ): Indexed | unknown {
   if (typeof object !== "object" || object === null) {
     return object;
@@ -259,7 +259,7 @@ export function setObjValue(
     (acc, key) => ({
       [key]: acc,
     }),
-    value as any
+    value as any,
   );
   return merge(object as Indexed, result);
 }
@@ -327,7 +327,7 @@ export function isEqual(lhs: PlainObject, rhs: PlainObject) {
 
 export function cloneDeep<T extends object = object>(obj: T) {
   return (function _cloneDeep(
-    item: T
+    item: T,
   ): T | Date | Set<unknown> | Map<unknown, unknown> | object | T[] {
     // Handle:
     // * null
@@ -387,7 +387,7 @@ export function cloneDeep<T extends object = object>(obj: T) {
       // * Object.symbol
       Object.getOwnPropertySymbols(item).forEach(
         // @ts-ignore:next-line
-        (s) => (copy[s] = _cloneDeep(item[s]))
+        (s) => (copy[s] = _cloneDeep(item[s])),
       );
 
       // Handle:
@@ -456,9 +456,11 @@ export function runLengthEncoding(str: string): string {
 }
 
 export function compress(list: number[]) {
-  if (!list.length) return;
+  if (!list.length) {
+    throw new Error("List is empty");
+  };
 
-  list.sort((a,b) => a - b);
+  list.sort((a, b) => a - b);
   let prev = list[0];
   let isRangeOpen = false;
 
@@ -467,7 +469,7 @@ export function compress(list: number[]) {
 
     if (prev + 1 === item) {
       if (i === arr.length - 1 && isRangeOpen) {
-        return acc += `-${item}`;
+        return (acc += `-${item}`);
       }
 
       isRangeOpen = true;
@@ -477,13 +479,12 @@ export function compress(list: number[]) {
     }
 
     if (i === arr.length - 1)
-
-    if (isRangeOpen) {
-      acc += `-${prev}`;
-      isRangeOpen = false;
-    }
+      if (isRangeOpen) {
+        acc += `-${prev}`;
+        isRangeOpen = false;
+      }
 
     prev = item;
-    return acc + `,${item}`;
+    return `${acc  },${item}`;
   }, `${prev}`);
 }

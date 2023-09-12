@@ -13,9 +13,9 @@ type Props = {
 
 class Messenger extends Block<Props> {
   protected init() {
-    this.children.chatBar = new ChatBar({});
+    this.children.chatBarList = new ChatBar({});
 
-    this.children.chatContent = new ChatContent({
+    this.children.chatContentContainer = new ChatContent({
       formMediator: this.props.formMediator,
       chatSockets: this.props.chatSockets,
     });
