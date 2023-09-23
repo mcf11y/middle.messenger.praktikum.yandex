@@ -148,31 +148,34 @@ const optimization = () => {
 
 const plugins = () => {
   const base = [
-    new HtmlWebpackPlugin(
-      Object.assign(
-        {},
-        {
-          inject: true,
-          template: paths.appHtml,
-        },
-        isProd
-          ? {
-              minify: {
-                removeComments: true,
-                collapseWhitespace: true,
-                removeRedundantAttributes: true,
-                useShortDoctype: true,
-                removeEmptyAttributes: true,
-                removeStyleLinkTypeAttributes: true,
-                keepClosingSlash: true,
-                minifyJS: true,
-                minifyCSS: true,
-                minifyURLs: true,
-              },
-            }
-          : undefined,
-      ),
-    ),
+    new HtmlWebpackPlugin({
+      template: "static/index.html",
+    }),
+    // new HtmlWebpackPlugin(
+    //   Object.assign(
+    //     {},
+    //     {
+    //       // inject: true,
+    //       template: "static/index.html",
+    //     },
+    //     isProd
+    //       ? {
+    //           minify: {
+    //             removeComments: true,
+    //             collapseWhitespace: true,
+    //             removeRedundantAttributes: true,
+    //             useShortDoctype: true,
+    //             removeEmptyAttributes: true,
+    //             removeStyleLinkTypeAttributes: true,
+    //             keepClosingSlash: true,
+    //             minifyJS: true,
+    //             minifyCSS: true,
+    //             minifyURLs: true,
+    //           },
+    //         }
+    //       : undefined,
+    //   ),
+    // ),
 
     isProd &&
       new MiniCssExtractPlugin({
@@ -263,6 +266,11 @@ const modules = () => {
         options: {
           transpileOnly: true,
         },
+      },
+      {
+        test: /test\.[tj]s$/,
+        use: "mocha-loader",
+        exclude: /node_modules/,
       },
       { test: /\.hbs$/, loader: "handlebars-loader" },
     ],

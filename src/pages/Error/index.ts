@@ -42,3 +42,4 @@ const ErrorPage = (props: Props) =>
   new CenteredWrapper({ content: new ErrorComponent(props) });
 
 export default ErrorPage;
+

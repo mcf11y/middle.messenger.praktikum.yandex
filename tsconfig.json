@@ -13,10 +13,7 @@
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
 
-    "typeRoots": [
-      "node_modules/@types",
-      "src/types/global.d.ts"
-    ],
+    "typeRoots": ["node_modules/@types", "src/types/global.d.ts"],
 
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
@@ -42,17 +39,10 @@
       "containers": ["containers/*"],
       "pages": ["pages/*"],
       "styles": ["styles/*"],
-      "types": ["types/*"],
+      "types": ["types/*"]
     }
   },
 
   "include": ["./src/**/*.ts", "src/**/*.hbs"],
-
-  "exclude": [
-    "**/*.test.ts",
-    "**/*.spec.ts",
-    "config",
-    "node_modules",
-    "mochaSetup.js",
-  ]
+  "exclude": ["./.eslintrc.js", "**/*.test.ts", "**/*.spec.ts"]
 }

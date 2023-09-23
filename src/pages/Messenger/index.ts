@@ -1,12 +1,13 @@
 import Chat from "containers/Messenger";
 import Block from "services/block";
 import ChatController from "services/controllers/chat-controller";
-import { Connect } from "services/store";
-import template from "./template.hbs";
 import WSMessageController, {
-  TokensMap,
   SocketsMap,
+  TokensMap,
 } from "services/controllers/ws-message-controller";
+import { Connect } from "services/store";
+
+import template from "./template.hbs";
 
 const formMediator = ChatController.formMediator;
 
