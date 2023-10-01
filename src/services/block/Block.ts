@@ -1,6 +1,7 @@
 import { nanoid } from "nanoid";
-import { isEqual } from "services/utils/my-dash";
-import EventBus from "services/utils/observable";
+
+import { isEqual } from "../utils/my-dash";
+import EventBus from "../utils/observable";
 
 type BaseProps<P> = {
   events?: Record<string, Maybe<Handler>>;
@@ -11,7 +12,7 @@ type PropsWithChildren<P> = {
   children?: Record<string, Block | Block[]>;
 } & BaseProps<P>;
 
-class Block<P extends Record<string, any> = any> {
+abstract class Block<P extends Record<string, any> = any> {
   static EVENTS = {
     INIT: "init",
     FLOW_CDM: "flow:component-did-mount",

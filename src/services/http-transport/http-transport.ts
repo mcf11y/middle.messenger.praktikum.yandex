@@ -1,4 +1,4 @@
-import { queryStringify } from "services/utils/my-dash";
+import { queryStringify } from "../utils/my-dash";
 
 export enum METHOD {
   GET = "GET",

@@ -148,34 +148,31 @@ const optimization = () => {
 
 const plugins = () => {
   const base = [
-    new HtmlWebpackPlugin({
-      template: "static/index.html",
-    }),
-    // new HtmlWebpackPlugin(
-    //   Object.assign(
-    //     {},
-    //     {
-    //       // inject: true,
-    //       template: "static/index.html",
-    //     },
-    //     isProd
-    //       ? {
-    //           minify: {
-    //             removeComments: true,
-    //             collapseWhitespace: true,
-    //             removeRedundantAttributes: true,
-    //             useShortDoctype: true,
-    //             removeEmptyAttributes: true,
-    //             removeStyleLinkTypeAttributes: true,
-    //             keepClosingSlash: true,
-    //             minifyJS: true,
-    //             minifyCSS: true,
-    //             minifyURLs: true,
-    //           },
-    //         }
-    //       : undefined,
-    //   ),
-    // ),
+    new HtmlWebpackPlugin(
+      Object.assign(
+        {},
+        {
+          // inject: true,
+          template: "static/index.html",
+        },
+        isProd
+          ? {
+              minify: {
+                removeComments: true,
+                collapseWhitespace: true,
+                removeRedundantAttributes: true,
+                useShortDoctype: true,
+                removeEmptyAttributes: true,
+                removeStyleLinkTypeAttributes: true,
+                keepClosingSlash: true,
+                minifyJS: true,
+                minifyCSS: true,
+                minifyURLs: true,
+              },
+            }
+          : undefined,
+      ),
+    ),
 
     isProd &&
       new MiniCssExtractPlugin({

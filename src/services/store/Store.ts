@@ -13,7 +13,6 @@ export default class Store extends EventBus {
 
   constructor() {
     if (Store._instance) {
-      // eslint-disable-next-line no-constructor-return
       return Store._instance;
     }
 

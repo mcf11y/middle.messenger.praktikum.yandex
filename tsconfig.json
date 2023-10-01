@@ -1,14 +1,20 @@
 {
+  "ts-node": {
+    "files": true
+  },
+
+  "files": ["**/*.d.ts"],
+
   "compilerOptions": {
     "target": "es2015",
     "module": "commonjs",
-    "lib": ["dom", "dom.iterable", "esnext"],
+    "lib": ["dom", "dom.iterable", "ESNext"],
 
     "declaration": true,
     "sourceMap": true,
     "outDir": "./dist",
     "strict": true,
-
+    "noEmit": true,
     "moduleResolution": "node",
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
@@ -43,6 +49,6 @@
     }
   },
 
-  "include": ["./src/**/*.ts", "src/**/*.hbs"],
+  "include": ["./src/**/*.ts", "src/**/*.hbs", "**/*.d.ts", "src/components/Link/index.test.js"],
   "exclude": ["./.eslintrc.js", "**/*.test.ts", "**/*.spec.ts"]
 }

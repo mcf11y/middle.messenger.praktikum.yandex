@@ -12,7 +12,6 @@ class Router {
 
   constructor(private readonly rootQuery: string) {
     if (Router.__instance) {
-      // eslint-disable-next-line no-constructor-return
       return Router.__instance;
     }
 
@@ -65,7 +64,15 @@ class Router {
   }
 
   public reload() {
-	  window.location.reload();
+    window.location.reload();
+  }
+
+  public resetRouter() {
+    // @ts-ignore
+    delete Router.__instance;
+
+    // eslint-disable-next-line no-new
+    new Router(this.rootQuery);
   }
 
   private _getRoute(pathname: string) {

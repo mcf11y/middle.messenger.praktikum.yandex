@@ -1,9 +1,11 @@
 {
+  "$schema": "https://json.schemastore.org/mocharc",
   "diff": true,
   "extension": ["js", "ts"],
   "package": "./package.json",
+  "loader": "ts-node/register",
   "reporter": "spec",
-  "require": "ts-node/register",
+  "require": ["./mochaSetup.js"],
   "recursive": true,
   "slow": 75,
   "timeout": 60000,
