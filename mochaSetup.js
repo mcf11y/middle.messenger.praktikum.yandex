@@ -11,6 +11,7 @@ const { window, document, FormData, XMLHttpRequest } = new JSDOM(
 
 global.window = window;
 global.document = document;
+
 global.FormData = FormData;
 global.XMLHttpRequest = XMLHttpRequest;
 global.DocumentFragment = window.DocumentFragment;

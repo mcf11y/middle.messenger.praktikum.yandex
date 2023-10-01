@@ -19,6 +19,7 @@ const fs = require("fs");
 const toml = require("toml");
 const yaml = require("yamljs");
 const json5 = require("json5");
+const webpack = require("webpack");
 
 const version = process.env.version;
 const isDev = process.env.NODE_ENV === "development";
@@ -203,6 +204,11 @@ const plugins = () => {
     new BundleAnalyzerPlugin({
       analyzerMode: process.env.STATS || "disabled",
     }),
+
+    new webpack.ProvidePlugin({
+      process: "process/browser",
+      Buffer: ["buffer", "Buffer"],
+    }),
   ]?.filter(Boolean);
 
   return base;
@@ -323,6 +329,15 @@ module.exports = {
       ".png",
     ],
     plugins: [new TsconfigPathsPlugin({})],
+
+    fallback: {
+      assert: require.resolve("assert"),
+      crypto: require.resolve("crypto-browserify"),
+      http: require.resolve("stream-http"),
+      https: require.resolve("https-browserify"),
+      os: require.resolve("os-browserify/browser"),
+      stream: require.resolve("stream-browserify"),
+    },
   },
 
   devServer: {

@@ -14,7 +14,7 @@
     "eslint": "npx eslint ./src/**/*.ts --fix",
     "lint:style": "npx stylelint **/*.scss --fix",
     "reset-packages": "rm -rf node_modules && rm -rf dist && sudo npm cache clean --force && npm i",
-    "test": "mocha"
+    "test": "mocha --require ts-node/register --require ./mochaSetup.js"
   },
   "author": "Lobanov A. I. // andrey.l12399@gmail.com",
   "license": "ISC",
@@ -103,10 +103,16 @@
   "dependencies": {
     "@types/lodash": "4.14.198",
     "@types/nanoid": "3.0.0",
+    "assert": "^2.1.0",
+    "crypto-browserify": "^3.12.0",
     "express": "4.18.2",
     "handlebars": "4.7.7",
+    "https-browserify": "^1.0.0",
     "lodash": "4.17.21",
-    "nanoid": "4.0.2",
-    "postcss-scss": "4.0.6"
+    "nanoid": "3.0.0",
+    "os-browserify": "^0.3.0",
+    "postcss-scss": "4.0.6",
+    "stream-browserify": "^3.0.0",
+    "stream-http": "^3.2.0"
   }
 }
