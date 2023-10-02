@@ -7,14 +7,14 @@ describe("Link", () => {
     new Link({ text: "link" });
   });
 
-  it("element should return span", () => {
+  it("element should return button", () => {
     const link = new Link({ text: "link" });
     const element = (link as any).element;
 
     expect(element).to.be.instanceof(window.HTMLButtonElement);
   });
 
-  it("should go to passed route on click", () => {
+  it("should call on click cb after click", () => {
     const spy = sinon.spy();
 
     const link = new Link({ text: "link", onClick: spy });

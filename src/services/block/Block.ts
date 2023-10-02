@@ -1,7 +1,7 @@
 import { nanoid } from "nanoid";
 
+import { EventBus } from "../utils/event-bus";
 import { isEqual } from "../utils/my-dash";
-import EventBus from "../utils/observable";
 
 type BaseProps<P> = {
   events?: Record<string, Maybe<Handler>>;
@@ -83,7 +83,7 @@ abstract class Block<P extends Record<string, any> = any> {
     });
   }
 
-  protected _removeEvents() {
+  private _removeEvents() {
     const { events = {} } = this.props as BaseProps<P>;
 
     Object.keys(events).forEach((eventName) => {
@@ -181,7 +181,7 @@ abstract class Block<P extends Record<string, any> = any> {
     Object.entries(this.children).forEach(([name, component]) => {
       if (Array.isArray(component)) {
         contextAndStubs[name] = component.map(
-          (child) => `<div data-id="${child.id}"></div>`
+          (child) => `<div data-id="${child.id}"></div>`,
         );
       } else {
         contextAndStubs[name] = `<div data-id="${component.id}"></div>`;
@@ -190,7 +190,7 @@ abstract class Block<P extends Record<string, any> = any> {
 
     const html = template(contextAndStubs);
 
-    const temp = window.document.createElement("template");
+    const temp = document.createElement("template");
 
     temp.innerHTML = html;
 

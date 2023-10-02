@@ -1,4 +1,4 @@
-import Observable from "services/utils/observable";
+import EventBus from "@/services/utils/event-bus";
 
 export enum EWSTransportEvents {
   OPEN = "open",
@@ -24,7 +24,7 @@ export type WSResponse = {
 //   [EWSTransportEvents.CLOSE]: [void];
 // };
 
-class WSTransport extends Observable {
+class WSTransport extends EventBus {
   private socket?: WebSocket;
   private pingInterval: Maybe<ReturnType<typeof setInterval>>;
   private readonly pingIntervalTime = 30000;

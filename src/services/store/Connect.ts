@@ -4,7 +4,7 @@ import Store, { EStoreEvents } from "./Store";
 
 export default function Connect(
   Component: typeof Block,
-  mapStateToProps: Callback<any>
+  mapStateToProps: Callback<any>,
 ) {
   return class extends Component {
     constructor(props = {}) {

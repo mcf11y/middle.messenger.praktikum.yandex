@@ -1,4 +1,4 @@
-import Block from "services/block";
+import Block from "../block";
 
 export interface BlockConstructable<P extends Record<string, any> = any> {
   new (props: P): Block<P>;

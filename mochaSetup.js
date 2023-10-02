@@ -10,7 +10,7 @@ const { window, document, FormData, XMLHttpRequest } = new JSDOM(
 );
 
 global.window = window;
-global.document = document;
+global.document = window.document;
 
 global.FormData = FormData;
 global.XMLHttpRequest = XMLHttpRequest;

@@ -80,7 +80,7 @@ class HTTPTransport {
 
       if (isGet || !data) {
         xhr.send();
-      } else if (data instanceof FormData) {
+      } else if (data instanceof window.FormData) {
         xhr.send(data);
       } else {
         xhr.setRequestHeader("Content-Type", "application/json");
