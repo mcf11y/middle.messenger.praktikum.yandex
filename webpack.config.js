@@ -270,11 +270,11 @@ const modules = () => {
           transpileOnly: true,
         },
       },
-      {
-        test: /test\.[tj]s$/,
-        use: "mocha-loader",
-        exclude: /node_modules/,
-      },
+      // {
+      //   test: /test\.[tj]s$/,
+      //   use: "mocha-loader",
+      //   exclude: /node_modules/,
+      // },
       { test: /\.hbs$/, loader: "handlebars-loader" },
     ],
   };
