@@ -17,6 +17,11 @@
     "reset-packages": "rm -rf node_modules && rm -rf dist && sudo npm cache clean --force && npm i",
     "test": "mocha --require ts-node/register --require ./mochaSetup.js"
   },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm-run-all test lint:all"
+    }
+  },
   "author": "Lobanov A. I. // andrey.l12399@gmail.com",
   "license": "ISC",
   "browserslist": [
@@ -63,13 +68,14 @@
     "fork-ts-checker-webpack-plugin": "8.0.0",
     "handlebars-loader": "1.7.3",
     "html-webpack-plugin": "^5.5.3",
-    "husky": "^8.0.3",
+    "husky": "^8.0.0",
     "jsdom": "22.1.0",
     "json5": "2.2.3",
     "mini-css-extract-plugin": "2.7.6",
-    "mocha": "^8.0.0",
+    "mocha": "^10.2.0",
     "mocha-loader": "^5.1.5",
     "node-sass": "9.0.0",
+    "npm-run-all": "^4.1.5",
     "postcss": "8.4.29",
     "postcss-cssnext": "3.1.1",
     "postcss-import": "15.1.0",
