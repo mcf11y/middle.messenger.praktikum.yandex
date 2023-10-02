@@ -15,12 +15,8 @@
     "eslint": "npx eslint ./src/**/*.ts --fix",
     "lint:style": "npx stylelint **/*.scss --fix",
     "reset-packages": "rm -rf node_modules && rm -rf dist && sudo npm cache clean --force && npm i",
-    "test": "mocha --require ts-node/register --require ./mochaSetup.js"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "npm-run-all test lint:all"
-    }
+    "test": "mocha --require ts-node/register --require ./mochaSetup.js",
+    "lint-staged": "npx lint-staged"
   },
   "author": "Lobanov A. I. // andrey.l12399@gmail.com",
   "license": "ISC",
@@ -37,8 +33,10 @@
     "@types/eslint-config-prettier": "6.11.0",
     "@types/express": "4.17.17",
     "@types/jsdom": "21.1.1",
+    "@types/lodash": "4.14.198",
     "@types/mini-css-extract-plugin": "2.5.1",
     "@types/mocha": "10.0.1",
+    "@types/nanoid": "3.0.0",
     "@types/node": "20.4.9",
     "@types/proxyquire": "1.3.29",
     "@types/sinon": "10.0.16",
@@ -68,9 +66,10 @@
     "fork-ts-checker-webpack-plugin": "8.0.0",
     "handlebars-loader": "1.7.3",
     "html-webpack-plugin": "5.5.3",
-    "husky": "8.0.0",
+    "husky": "^8.0.0",
     "jsdom": "22.1.0",
     "json5": "2.2.3",
+    "lint-staged": "^14.0.1",
     "mini-css-extract-plugin": "2.7.6",
     "mocha": "10.2.0",
     "node-sass": "9.0.0",
@@ -98,8 +97,6 @@
     "ts-node": "10.9.1",
     "tsconfig-paths-webpack-plugin": "4.1.0",
     "tslib": "2.6.1",
-    "tslint": "6.1.3",
-    "tslint-loader": "3.5.4",
     "typescript": "5.0.4",
     "url-loader": "4.1.1",
     "webpack-bundle-analyzer": "4.9.1",
@@ -108,8 +105,6 @@
     "yamljs": "0.3.0"
   },
   "dependencies": {
-    "@types/lodash": "4.14.198",
-    "@types/nanoid": "3.0.0",
     "assert": "2.1.0",
     "crypto-browserify": "3.12.0",
     "express": "4.18.2",
@@ -121,5 +116,20 @@
     "postcss-scss": "4.0.6",
     "stream-browserify": "3.0.0",
     "stream-http": "3.2.0"
+  },
+  "lint-staged": {
+    "*.js": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "*.ts": [
+      "prettier --write",
+      "eslint"
+    ],
+    "*.html": [
+      "eslint",
+      "prettier --write"
+    ],
+    "*.scss": "prettier --write"
   }
 }

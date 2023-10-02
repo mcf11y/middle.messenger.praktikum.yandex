@@ -14,6 +14,7 @@ module.exports = {
     "/test",
     "**/*.test.ts",
     "mochaSetup.js",
+    "static/index.html",
   ],
   extends: [
     "eslint:recommended",
@@ -27,6 +28,7 @@ module.exports = {
     sourceType: "module",
     tsconfigRootDir: __dirname,
     project: ["./tsconfig.json"],
+    extraFileExtensions: [".html"],
   },
   plugins: ["simple-import-sort"],
   overrides: [
