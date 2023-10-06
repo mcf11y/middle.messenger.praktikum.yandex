@@ -37,7 +37,7 @@ class WSMessageController {
       `${WS_CHAT_URL}/${this.userId}/${chatId}/${token}`
     );
 
-    this.wSTransport.on(EWSTransportEvents.MESSAGE, this.recieveMessage.bind(this));
+    this.wSTransport.on(EWSTransportEvents.MESSAGE, this.receiveMessage.bind(this));
   }
 
   public async connect() {
@@ -45,7 +45,7 @@ class WSMessageController {
   }
 
   public disconnect() {
-    this.wSTransport.off(EWSTransportEvents.MESSAGE, this.recieveMessage);
+    this.wSTransport.off(EWSTransportEvents.MESSAGE, this.receiveMessage);
     this.wSTransport.close();
   }
 
@@ -59,7 +59,7 @@ class WSMessageController {
     formMediator.clearField(NAMES.message);
   }
 
-  public recieveMessage(response: WSResponse | WSResponse[]) {
+  public receiveMessage(response: WSResponse | WSResponse[]) {
     const userId = this.userId;
 
     const setData = (_response: WSResponse) => {

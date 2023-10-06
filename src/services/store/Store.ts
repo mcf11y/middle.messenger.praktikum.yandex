@@ -1,5 +1,5 @@
 import { removeObjValue, setObjValue } from "services/utils/my-dash";
-import { Observable as EventBus } from "services/utils/observable";
+import { EventBus } from "@/services/utils/event-bus";
 
 export enum EStoreEvents {
   Updated = "updated",
@@ -13,7 +13,6 @@ export default class Store extends EventBus {
 
   constructor() {
     if (Store._instance) {
-      // eslint-disable-next-line no-constructor-return
       return Store._instance;
     }
 

@@ -1,4 +1,4 @@
-# Web-messenger (pure js)
+# Web-messenger (pure js/ts)
 
 ## Architecture
 
@@ -8,19 +8,33 @@
 
 ## Commands:
 
-#### - **npm i** _- to install packages_
+#### **nvm use** _- to change node version_
 
-#### - **npm run build** _- to build project_
+#### **npm i** _- to install packages_
 
-#### - **npm run dev** _- to start project in browser locally_
+#### **npm prebuild** _- executed before the project is built_
 
-#### - **npm run start** _- to start server on port 3000_
+#### **npm run build:dev** _- to builds the project in development mode_
 
-#### - **npm run eslint** _- to start eslint and fix linting_
+#### **npm run build:prod** _- to builds the project in production mode_
 
-#### - **npm run lint:style** _- to start stylelint and fix linting in scss_
+#### **npm run start:dev** _- to launches the application in development mode_
 
-#### - **npm run ts-check** _- to start typescript validate_
+#### **npm run start:prod** _- to launches the application in production mode_
+
+#### **npm run start** _- to start project with server on port 3000_
+
+#### **npm run stats:dev** _- to analyze dev project build_
+
+#### **npm run stats:prod** _- to analyze prod project build_
+
+#### **npm run eslint** _- to start eslint and fix linting_
+
+#### **npm run lint:style** _- to start stylelint and fix linting in scss_
+
+#### **npm run ts-check** _- to start typescript validate_
+
+#### **npm run test** _- to start unit tests_
 
 ## Links:
 
@@ -30,12 +44,12 @@
 
 ## Tech stack and environment:
 
-### - _js / html_
+### - _TypeScript / scss_
 
 ### - _[handlebars](https://handlebarsjs.com/)_
 
-### - _[scss](https://sass-lang.com/)_
-
-### - _[parcel](https://parceljs.org/)_
+### - _[webpack](https://webpack.js.org/)_
 
 ### - _[netlify](https://www.netlify.com/)_
+
+### - _[mocha/chai/sinon](https://mochajs.org/)_

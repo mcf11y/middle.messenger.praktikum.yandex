@@ -1,53 +1,23 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-<head>
-  <meta charset="UTF-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My chat</title>
 
-  <title>My chat</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300&display=swap"
+    />
+  </head>
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet"
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300&display=swap">
-  <link rel="stylesheet" href="../src/styles/globals.scss">
-  <link rel="stylesheet" href="./styles.scss">
-</head>
+  <body>
+    <main id="root"></main>
 
-<body>
-  <!-- <nav>
-    <ul>
-      <li style="color: red;" ><a href="/" onclick="window.router({event: event, path: '/'})">Home</a>
-      </li>
-      <li><a href="/login"
-          onclick="window.router({event: event, path: '/login'})">Login</a></li>
-      <li><a href="/signup"
-          onclick="window.router({event: event, path: '/signup'})">Sing Up</a></li>
-      <li><a href="/profile"
-          onclick="window.router({event: event, path: '/profile'})">Profile</a></li>
-      <li><a href="/edit_profile"
-          onclick="window.router({event: event, path: '/edit_profile'})">Edit
-          profile</a></li>
-      <li><a href="/edit_password"
-          onclick="window.router({event: event, path: '/edit_password'})">Edit
-          password</a></li>
-      <li><a href="/404"
-          onclick="window.router({event: event, path: '/404'})">404</a></li>
-      <li><a href="/500"
-          onclick="window.router({event: event, path: '/500'})">500</a></li>
-    </ul>
-  </nav> -->
-
-  <main id="root">
-  </main>
-
-  <div id="modal-container">
-  </div>
-
-  <script src="../src/index.ts" type="module">
-  </script>
-</body>
-
+    <div id="modal-container"></div>
+  </body>
 </html>

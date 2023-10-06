@@ -16,8 +16,8 @@ type Props = {
 
 export default class BaseProfile extends Block {
   constructor({ avatar, userName, contentFields, footerFields, onSubmit }: Props) {
-    const leftBar = new LeftBar();
-    const profileForm = new CenteredWrapper({
+    const leftBarContainer = new LeftBar();
+    const profileFormContainer = new CenteredWrapper({
       content: new ProfileForm({
         avatar,
         userName,
@@ -27,7 +27,7 @@ export default class BaseProfile extends Block {
       }),
     });
 
-    super({ leftBar, profileForm });
+    super({ leftBarContainer, profileFormContainer });
   }
 
   protected render(): DocumentFragment {

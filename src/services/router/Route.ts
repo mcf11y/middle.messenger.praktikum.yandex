@@ -1,11 +1,11 @@
-import Block from "services/block";
+import Block from "../block";
 
 export interface BlockConstructable<P extends Record<string, any> = any> {
   new (props: P): Block<P>;
 }
 
 // TODO: костыль для чатов - в будущем переделать
-const isPathEqual = (lhs: string, rhs: string): boolean => {
+export const isPathEqual = (lhs: string, rhs: string): boolean => {
   if (lhs === rhs) {
     return true;
   }
@@ -17,7 +17,7 @@ const isPathEqual = (lhs: string, rhs: string): boolean => {
   return false;
 };
 
-const render = (query: string, block: Block) => {
+export const render = (query: string, block: Block) => {
   const root = document.querySelector(query);
 
   if (root === null) {

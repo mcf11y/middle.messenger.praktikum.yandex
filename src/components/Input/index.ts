@@ -12,8 +12,8 @@ type Props = {
   reverseAlign?: boolean;
   onFocus?: (e: FocusEvent) => void;
   onBlur?: (e: FocusEvent) => void;
-  onChange?: (e: any) => void;
-  onInput?: (e: any) => void;
+  onChange?: (e: InputEvent) => void;
+  onInput?: (e: InputEvent) => void;
 };
 
 class Input extends Block {

@@ -1,4 +1,4 @@
-import Block from "services/block";
+import Block from "@/services/block";
 
 import template from "./Avatar.hbs";
 

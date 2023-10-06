@@ -4,6 +4,18 @@ module.exports = {
     browser: true,
     es2021: true,
   },
+  ignorePatterns: [
+    ".eslintrc.js",
+    "server.js",
+    "/dist",
+    "**/*.min.js",
+    "/node_modules",
+    "webpack.config.js",
+    "/test",
+    "**/*.test.ts",
+    "mochaSetup.js",
+    "static/index.html",
+  ],
   extends: [
     "eslint:recommended",
     "airbnb",
@@ -16,6 +28,7 @@ module.exports = {
     sourceType: "module",
     tsconfigRootDir: __dirname,
     project: ["./tsconfig.json"],
+    extraFileExtensions: [".html"],
   },
   plugins: ["simple-import-sort"],
   overrides: [
@@ -88,6 +101,7 @@ module.exports = {
 
     "no-unused-expressions": "off",
     "@typescript-eslint/no-unused-expressions": 0,
+    "no-constructor-return": 0,
 
     quotes: ["error", "double"],
     indent: ["error", 2, { SwitchCase: 1 }],

@@ -170,7 +170,7 @@ export type FlatArray<Arr, Depth extends number> = {
           17,
           18,
           19,
-          20
+          20,
         ][Depth]
       >
     : Arr;
@@ -235,7 +235,7 @@ export function removeObjValue(object: Indexed | unknown, path: string): void {
   try {
     // eslint-disable-next-line no-eval
     eval(
-      path.split(".").reduce((acc, item) => `${acc}["${item}"]`, "delete object")
+      path.split(".").reduce((acc, item) => `${acc}["${item}"]`, "delete object"),
     );
   } catch (e) {
     console.error(e);
@@ -245,7 +245,7 @@ export function removeObjValue(object: Indexed | unknown, path: string): void {
 export function setObjValue(
   object: Indexed | unknown,
   path: string,
-  value: unknown
+  value: unknown,
 ): Indexed | unknown {
   if (typeof object !== "object" || object === null) {
     return object;
@@ -259,7 +259,7 @@ export function setObjValue(
     (acc, key) => ({
       [key]: acc,
     }),
-    value as any
+    value as any,
   );
   return merge(object as Indexed, result);
 }
@@ -327,7 +327,7 @@ export function isEqual(lhs: PlainObject, rhs: PlainObject) {
 
 export function cloneDeep<T extends object = object>(obj: T) {
   return (function _cloneDeep(
-    item: T
+    item: T,
   ): T | Date | Set<unknown> | Map<unknown, unknown> | object | T[] {
     // Handle:
     // * null
@@ -387,7 +387,7 @@ export function cloneDeep<T extends object = object>(obj: T) {
       // * Object.symbol
       Object.getOwnPropertySymbols(item).forEach(
         // @ts-ignore:next-line
-        (s) => (copy[s] = _cloneDeep(item[s]))
+        (s) => (copy[s] = _cloneDeep(item[s])),
       );
 
       // Handle:
@@ -435,4 +435,56 @@ export function queryStringify(data: StringIndexed): string | never {
   }
 
   return queryArr.join("&");
+}
+
+/**
+ * The `rle` function in TypeScript is used to perform run-length encoding on a string, replacing
+ * consecutive repeated characters with the character followed by the number of repetitions.
+ * @param {string} str - The `str` parameter is a string that represents the input string that we want
+ * to compress using the Run-Length Encoding (RLE) algorithm.
+ * @returns The function `rle` returns a string that represents the run-length encoding of the input
+ * string `str`.
+ */
+export function runLengthEncoding(str: string): string {
+  if (!str) return str;
+
+  if (!/^[A-Z]+$/.test(str)) {
+    throw new Error("String is a not valid");
+  }
+
+  return str.replace(/([ \w])\1+/g, (group, chr) => chr + group.length);
+}
+
+export function compress(list: number[]) {
+  if (!list.length) {
+    throw new Error("List is empty");
+  };
+
+  list.sort((a, b) => a - b);
+  let prev = list[0];
+  let isRangeOpen = false;
+
+  return list.reduce((acc, item, i, arr) => {
+    if (i === 0) return acc;
+
+    if (prev + 1 === item) {
+      if (i === arr.length - 1 && isRangeOpen) {
+        return (acc += `-${item}`);
+      }
+
+      isRangeOpen = true;
+      prev = item;
+
+      return acc;
+    }
+
+    if (i === arr.length - 1)
+      if (isRangeOpen) {
+        acc += `-${prev}`;
+        isRangeOpen = false;
+      }
+
+    prev = item;
+    return `${acc  },${item}`;
+  }, `${prev}`);
 }

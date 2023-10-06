@@ -1,5 +1,8 @@
 import { RESOURCE_URL } from "constants/urls";
 import Block from "services/block";
+import WSMessageController, {
+  SocketsMap,
+} from "services/controllers/ws-message-controller";
 import FormMediator from "services/form-mediator/form-mediator";
 import { ChatData } from "types/chat";
 
@@ -10,10 +13,6 @@ import Footer from "./Footer";
 import Header from "./Header";
 import template from "./MessageBar.hbs";
 
-import WSMessageController, {
-  SocketsMap,
-} from "services/controllers/ws-message-controller";
-
 type Props = {
   activeChat: ChatData;
   formMediator: FormMediator;
@@ -23,17 +22,12 @@ type Props = {
 let currentSocket: Nullable<WSMessageController>;
 
 class MessageBar extends Block<Props> {
-  constructor(props: Props) {
-    super(props);
-  }
-
   protected init() {
     this.children.topDivider = new Divider();
     this.children.bottomDivider = new Divider();
   }
 
   public async fetchSocket(id: ID) {
-    debugger;
     currentSocket = new WSMessageController(id);
     await currentSocket.connect();
 
@@ -49,7 +43,6 @@ class MessageBar extends Block<Props> {
 
         wsController.sendMessage(this.props.formMediator);
       } catch (e) {
-        debugger;
         console.error(e);
 
         if (!currentSocket) {
@@ -64,15 +57,15 @@ class MessageBar extends Block<Props> {
   protected render(): DocumentFragment {
     const { id, name, avatar } = this.props.activeChat;
 
-    this.children.header = new Header({
+    this.children.headerContainer = new Header({
       chatId: +id,
       chatName: name,
       avatarSrc: avatar ? RESOURCE_URL + avatar : undefined,
     });
 
-    this.children.content = new Content();
+    this.children.contentContainer = new Content();
 
-    this.children.footer = new Footer({
+    this.children.footerContainer = new Footer({
       formMediator: this.props.formMediator,
       onSubmit: this.sendMessage.bind(this),
 

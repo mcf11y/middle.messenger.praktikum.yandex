@@ -1,6 +1,7 @@
 import { nanoid } from "nanoid";
-import { isEqual } from "services/utils/my-dash";
-import EventBus from "services/utils/observable";
+
+import { EventBus } from "../utils/event-bus";
+import { isEqual } from "../utils/my-dash";
 
 type BaseProps<P> = {
   events?: Record<string, Maybe<Handler>>;
@@ -11,7 +12,7 @@ type PropsWithChildren<P> = {
   children?: Record<string, Block | Block[]>;
 } & BaseProps<P>;
 
-class Block<P extends Record<string, any> = any> {
+abstract class Block<P extends Record<string, any> = any> {
   static EVENTS = {
     INIT: "init",
     FLOW_CDM: "flow:component-did-mount",
@@ -33,7 +34,7 @@ class Block<P extends Record<string, any> = any> {
    *
    * @returns {void}
    */
-  constructor(propsWithChildren: PropsWithChildren<P>) {
+  constructor(propsWithChildren: PropsWithChildren<P> = {} as PropsWithChildren<P>) {
     const eventBus = new EventBus();
 
     const { props, children } = this._getChildrenAndProps(propsWithChildren);
@@ -82,7 +83,7 @@ class Block<P extends Record<string, any> = any> {
     });
   }
 
-  protected _removeEvents() {
+  private _removeEvents() {
     const { events = {} } = this.props as BaseProps<P>;
 
     Object.keys(events).forEach((eventName) => {
@@ -180,7 +181,7 @@ class Block<P extends Record<string, any> = any> {
     Object.entries(this.children).forEach(([name, component]) => {
       if (Array.isArray(component)) {
         contextAndStubs[name] = component.map(
-          (child) => `<div data-id="${child.id}"></div>`
+          (child) => `<div data-id="${child.id}"></div>`,
         );
       } else {
         contextAndStubs[name] = `<div data-id="${component.id}"></div>`;

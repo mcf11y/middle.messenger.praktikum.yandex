@@ -1,4 +1,4 @@
-import Block from "services/block";
+import Block from "../../services/block";
 
 import template from "./Link.hbs";
 
@@ -25,7 +25,7 @@ class Link extends Block {
 
   protected init(): void {
     this.props.events = {
-      click: (e: any) => this.props?.onClick?.(e),
+      click: (e: Event) => this.props?.onClick?.(e),
     };
   }
 

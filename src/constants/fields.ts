@@ -1,4 +1,4 @@
-type TField =
+export type TFieldNames =
   | "login"
   | "password"
   | "password_again"
@@ -17,9 +17,32 @@ type TField =
   | "editProfile"
   | "editPassword"
   | "logout"
-  | "submit";
+  | "submit"
+  | "chat_name";
 
-export const NAMES: Record<string, TField> = {
+export type TFieldKeys =
+  | "login"
+  | "password"
+  | "passwordAgain"
+  | "firstName"
+  | "secondName"
+  | "email"
+  | "phone"
+  | "message"
+  | "oldPassword"
+  | "newPassword"
+  | "newPasswordAgain"
+  | "search"
+  | "displayName"
+  | "avatar"
+  | "createChat"
+  | "editProfileBtn"
+  | "editPasswordBtn"
+  | "logoutBtn"
+  | "submitBtn"
+  | "chatName";
+
+export const NAMES: Record<TFieldKeys, TFieldNames> = {
   login: "login",
   password: "password",
   passwordAgain: "password_again",
@@ -39,10 +62,8 @@ export const NAMES: Record<string, TField> = {
   editPasswordBtn: "editPassword",
   logoutBtn: "logout",
   submitBtn: "submit",
+  chatName: "create_chat",
 };
-
-export type TFieldKeys = keyof typeof NAMES;
-export type TFieldNames = (typeof NAMES)[TFieldKeys];
 
 export const LABELS = {
   [NAMES.login]: "Логин",
@@ -67,25 +88,23 @@ export const IDS = {
   [NAMES.login]: "fld-login",
   [NAMES.password]: "fld-password",
   [NAMES.passwordAgain]: "fld-password_again",
+  [NAMES.firstName]: "fld-first-name",
+  [NAMES.secondName]: "fld-second-name",
+  [NAMES.phone]: "fld-phone",
+  [NAMES.email]: "fld-email",
+  [NAMES.message]: "fld-message",
   [NAMES.oldPassword]: "fld-old-password",
   [NAMES.newPassword]: "fld-new-password",
   [NAMES.newPasswordAgain]: "fld-new-password_again",
   [NAMES.search]: "fld-search",
-  [NAMES.message]: "fld-message",
-  [NAMES.phone]: "fld-phone",
-  [NAMES.email]: "fld-email",
-
+  [NAMES.displayName]: "fld-display-name",
+  [NAMES.avatar]: "fld-avatar",
   [NAMES.createChat]: "fld-create-chat",
-  [NAMES.firstName]: "fld-first-name",
-  [NAMES.secondName]: "fld-second-name",
-  [NAMES.displayName]: "field-display-name",
-
-  [NAMES.submitBtn]: "fld-submit-btn",
-
   [NAMES.editProfileBtn]: "fld-edit-profile-btn",
   [NAMES.editPasswordBtn]: "fld-edit-password-btn",
-
   [NAMES.logoutBtn]: "fld-logut-btn",
+  [NAMES.submitBtn]: "fld-submit-btn",
+  [NAMES.chatName]: "fld-chat-name",
 };
 
 export const PLACEHOLDERS = {

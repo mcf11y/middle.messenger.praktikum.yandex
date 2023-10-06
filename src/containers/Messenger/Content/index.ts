@@ -1,4 +1,5 @@
 import Block from "services/block";
+import { SocketsMap } from "services/controllers/ws-message-controller";
 import FormMediator from "services/form-mediator/form-mediator";
 import { Connect } from "services/store";
 import { ChatData } from "types/chat";
@@ -6,8 +7,6 @@ import { ChatData } from "types/chat";
 import template from "./Content.hbs";
 import EmptyMessage from "./EmptyMessage";
 import MessageBar from "./MessageBar";
-
-import { SocketsMap } from "services/controllers/ws-message-controller";
 
 type Props = {
   activeChat: ChatData;
@@ -24,12 +23,12 @@ class Content extends Block<Props> {
   protected render(): DocumentFragment {
     const activeChat = this.props.activeChat;
 
-    this.children.content = activeChat
+    this.children.contentContainer = activeChat
       ? new MessageBar({
-          formMediator: this.props.formMediator,
-          activeChat,
-          chatSockets: this.props.chatSockets,
-        })
+        formMediator: this.props.formMediator,
+        activeChat,
+        chatSockets: this.props.chatSockets,
+      })
       : new EmptyMessage();
 
     return this.compile(template, this.props);

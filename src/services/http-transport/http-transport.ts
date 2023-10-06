@@ -1,4 +1,4 @@
-import { queryStringify } from "services/utils/my-dash";
+import { queryStringify } from "../utils/my-dash";
 
 export enum METHOD {
   GET = "GET",
@@ -15,39 +15,32 @@ export type OptionsType<T> = {
   timeout?: number;
 };
 
+type HTTPMethod = <T = unknown>(
+  url: string,
+  options?: OptionsWithoutMethod<T>,
+) => Promise<XMLHttpRequest>;
+
 type OptionsWithoutMethod<T> = Omit<OptionsType<T>, "method">;
 
 class HTTPTransport {
   constructor(private baseUrl: string) {}
 
-  public get = <T>(
-    url: string,
-    options: OptionsWithoutMethod<T> = {}
-  ): Promise<XMLHttpRequest> =>
+  get: HTTPMethod = (url, options = {}) =>
     this.request(url, { ...options, method: METHOD.GET }, options.timeout);
 
-  public put = <T>(
-    url: string,
-    options: OptionsWithoutMethod<T> = {}
-  ): Promise<XMLHttpRequest> =>
+  put: HTTPMethod = (url, options = {}) =>
     this.request(url, { ...options, method: METHOD.PUT }, options.timeout);
 
-  public post = <T>(
-    url: string,
-    options: OptionsWithoutMethod<T> = {}
-  ): Promise<XMLHttpRequest> =>
+  post: HTTPMethod = (url, options = {}) =>
     this.request(url, { ...options, method: METHOD.POST }, options.timeout);
 
-  public delete = <T>(
-    url: string,
-    options: OptionsWithoutMethod<T> = {}
-  ): Promise<XMLHttpRequest> =>
+  delete: HTTPMethod = (url, options = {}) =>
     this.request(url, { ...options, method: METHOD.DELETE }, options.timeout);
 
   public request = <T>(
     url: string,
     options: OptionsType<T> = { method: METHOD.GET },
-    timeout = 5000
+    timeout = 5000,
   ): Promise<XMLHttpRequest> => {
     const { headers = {}, method, data, withCredentials = false } = options;
 
@@ -80,7 +73,7 @@ class HTTPTransport {
 
       if (isGet || !data) {
         xhr.send();
-      } else if (data instanceof FormData) {
+      } else if (data instanceof window.FormData) {
         xhr.send(data);
       } else {
         xhr.setRequestHeader("Content-Type", "application/json");

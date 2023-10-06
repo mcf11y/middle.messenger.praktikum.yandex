@@ -1,6 +1,6 @@
 import { nanoid } from "nanoid";
 
-import { Observable as EventBus } from "./observable";
+import { EventBus } from "./event-bus";
 
 type PropsType = Record<string, any>;
 
@@ -38,8 +38,6 @@ class Block {
   /** JSDoc
    * @param {string} tagName
    * @param {Object} props
-   *
-   * @returns {void}
    */
   constructor(tagName: string = "div", props: PropsType = {}) {
     this._context = props;

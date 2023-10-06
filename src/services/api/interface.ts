@@ -35,7 +35,7 @@ export interface IChat {
       email?: string;
       login?: string;
       phone?: string;
-    }
+    };
     time?: string;
     content?: string;
   };

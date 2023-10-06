@@ -27,7 +27,7 @@ class Mediator {
 
     const subscribers = this.channels.get(channel)!;
     const index = subscribers.findIndex(
-      (subcriber) => subcriber.subscriberName === subscriberName
+      (subscriber) => subscriber.subscriberName === subscriberName
     );
     if (index >= 0) {
       subscribers.splice(index, 1);
@@ -53,7 +53,7 @@ class Mediator {
     const subscribers = this.channels.get(channel)!;
     if (recipient) {
       const index = subscribers.findIndex(
-        (subcriber) => subcriber.subscriberName === recipient
+        (subscriber) => subscriber.subscriberName === recipient
       );
       if (index >= 0) {
         subscribers[index].cb.apply(args);
@@ -62,8 +62,8 @@ class Mediator {
       return true;
     }
 
-    subscribers.forEach((subcriber) => {
-      subcriber.cb.apply(args);
+    subscribers.forEach((subscriber) => {
+      subscriber.cb.apply(args);
     });
 
     return true;

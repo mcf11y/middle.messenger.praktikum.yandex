@@ -8,11 +8,7 @@ interface IBaseResponse<T> {
   data: T & { reason?: string };
 }
 
-export interface Che {
-  prop: { a: string } | { b: number };
-}
-
-const safeJsonParce = (jsonStr: string) => {
+const safeJsonParse = (jsonStr: string) => {
   try {
     return JSON.parse(jsonStr);
   } catch (e) {
@@ -39,7 +35,7 @@ abstract class BaseAPI {
   protected responseHandler<T>(req: XMLHttpRequest): IBaseResponse<T> {
     return {
       status: req.status,
-      data: safeJsonParce(req.response),
+      data: safeJsonParse(req.response),
     };
   }
 

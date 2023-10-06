@@ -1,10 +1,10 @@
 import Block from "services/block";
+import { SocketsMap } from "services/controllers/ws-message-controller";
 import FormMediator from "services/form-mediator/form-mediator";
 
 import ChatBar from "./ChatBar";
 import { ChatContent } from "./Content";
 import template from "./Messenger.hbs";
-import { SocketsMap } from 'services/controllers/ws-message-controller';
 
 type Props = {
   formMediator: FormMediator;
@@ -13,9 +13,9 @@ type Props = {
 
 class Messenger extends Block<Props> {
   protected init() {
-    this.children.chatBar = new ChatBar({});
+    this.children.chatBarList = new ChatBar({});
 
-    this.children.chatContent = new ChatContent({
+    this.children.chatContentContainer = new ChatContent({
       formMediator: this.props.formMediator,
       chatSockets: this.props.chatSockets,
     });

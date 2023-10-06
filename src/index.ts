@@ -1,5 +1,5 @@
 import PAGE_URL from "constants/page-urls";
-
+import { MessengerPage } from "pages/Messenger";
 import AuthController from "services/controllers/auth-controller";
 import Router from "services/router";
 
@@ -9,7 +9,10 @@ import ErrorPage from "./pages/Error";
 import Login from "./pages/login";
 import { ProfilePage } from "./pages/Profile";
 import SignUp from "./pages/signup";
-import { MessengerPage } from "pages/Messenger";
+
+import "./styles/variables.scss";
+import "./styles/globals.scss";
+import "./styles/root.scss";
 
 const error404 = ErrorPage({
   code: 404,
